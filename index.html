@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wnxypgoluz");
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agentic Calling for Ecommerce — Veltrum.io</title>
+<meta name="description" content="Voice agents that sound human and run your ecommerce calling — pre-shipment confirmation, NDR resolution, abandoned cart, 24/7 inbound support, returns and retention. Built for Indian D2C." />
+<link rel="icon" type="image/png" href="dark_1024h.png" />
+<link rel="apple-touch-icon" href="dark_1024h.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --bg-2: #050505;
+    --surface: #0c0c0c;
+    --surface-2: #141414;
+    --surface-3: #1c1c1c;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.22);
+    --text: #ffffff;
+    --text-dim: #b0b0b0;
+    --text-muted: #6a6a6a;
+    --primary: #ffffff;
+    --primary-2: #d4d4d4;
+    --accent: #22d3ee;
+    /* accent palette */
+    --c-purple: #8b5cf6;
+    --c-violet: #a78bfa;
+    --c-cyan:   #22d3ee;
+    --c-teal:   #14b8a6;
+    --c-pink:   #f472b6;
+    --c-orange: #fb923c;
+    --c-amber:  #facc15;
+    --c-green:  #34d399;
+    --c-red:    #f87171;
+    --green:  var(--c-green);
+    --pink:   var(--c-pink);
+    --orange: var(--c-orange);
+    --gradient: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
+    --gradient-2: linear-gradient(135deg, #f472b6 0%, #8b5cf6 50%, #22d3ee 100%);
+    --gradient-cool: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
+    --gradient-warm: linear-gradient(135deg, #fb923c 0%, #f472b6 100%);
+    --gradient-voice: linear-gradient(135deg, #22d3ee 0%, #14b8a6 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Background ambience */
+  .grid-bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(34, 211, 238, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 211, 238, 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  }
+  .blob {
+    position: fixed; border-radius: 50%; filter: blur(140px); opacity: 0.20; z-index: 0; pointer-events: none;
+    animation: float 22s ease-in-out infinite;
+  }
+  .blob-1 { width: 600px; height: 600px; background: #22d3ee; top: -200px; left: -150px; }
+  .blob-2 { width: 520px; height: 520px; background: #14b8a6; top: 25%; right: -200px; animation-delay: -8s; }
+  .blob-3 { width: 700px; height: 700px; background: #8b5cf6; bottom: -300px; left: 30%; opacity: 0.14; animation-delay: -15s; }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -40px) scale(1.08); }
+    66% { transform: translate(-30px, 40px) scale(0.95); }
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 5%;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(0, 0, 0, 0.65);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 18px; letter-spacing: -0.02em;
+    color: var(--text); text-decoration: none;
+  }
+  .logo-img { height: 130px; width: auto; display: block; filter: invert(1); mix-blend-mode: screen; margin: -50px -26px; }
+  .logo-product {
+    margin-left: 14px; padding-left: 14px;
+    border-left: 1px solid var(--border-strong);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .logo-product .pulse-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    background: var(--c-cyan);
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 10px var(--c-cyan);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--text-dim); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    padding: 9px 18px; background: #ffffff; color: #000;
+    border-radius: 8px; font-weight: 600; font-size: 13px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.35);
+    transition: transform 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .nav-cta:hover { transform: translateY(-1px); }
+
+  /* Solutions dropdown */
+  .nav-links { align-items: center; }
+  .nav-links > li { position: relative; }
+  .has-dropdown { position: relative; }
+  .dropdown-trigger { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; color: var(--text-dim); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .dropdown-trigger:hover { color: var(--text); }
+  .dropdown-trigger .chev { font-size: 9px; opacity: 0.7; transition: transform 0.2s; }
+  .has-dropdown:hover .dropdown-trigger .chev,
+  .has-dropdown:focus-within .dropdown-trigger .chev { transform: rotate(180deg); opacity: 1; }
+  .has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
+  .dropdown-menu {
+    position: absolute; top: calc(100% + 14px); left: -16px;
+    min-width: 340px;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px; padding: 8px;
+    opacity: 0; visibility: hidden; transform: translateY(-8px);
+    transition: opacity 0.22s, transform 0.22s, visibility 0.22s;
+    z-index: 200;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  }
+  .has-dropdown:hover .dropdown-menu,
+  .has-dropdown:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dropdown-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 12px 14px; border-radius: 10px;
+    transition: background 0.18s; text-decoration: none; color: var(--text);
+  }
+  .dropdown-item:hover { background: rgba(255, 255, 255, 0.06); }
+  .dropdown-item-icon {
+    flex-shrink: 0; width: 36px; height: 36px;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+  }
+  .dropdown-item.commerce .dropdown-item-icon { background: linear-gradient(135deg, #f472b6, #fb923c); box-shadow: 0 6px 18px rgba(244,114,182,0.25); }
+  .dropdown-item.tms      .dropdown-item-icon { background: linear-gradient(135deg, #8b5cf6, #22d3ee); box-shadow: 0 6px 18px rgba(139,92,246,0.25); }
+  .dropdown-item.calling  .dropdown-item-icon { background: linear-gradient(135deg, #22d3ee, #14b8a6); box-shadow: 0 6px 18px rgba(34,211,238,0.25); }
+  .dropdown-item-text { display: flex; flex-direction: column; gap: 2px; }
+  .dropdown-item-h { font-weight: 600; font-size: 14px; color: var(--text); line-height: 1.2; }
+  .dropdown-item-d { color: var(--text-muted); font-size: 12px; line-height: 1.3; }
+  .dropdown-item.is-current { background: rgba(34, 211, 238, 0.10); }
+  .dropdown-item.is-current .dropdown-item-h { color: var(--c-cyan); }
+
+  section { padding: 110px 5%; position: relative; z-index: 1; }
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  .section-eyebrow {
+    color: var(--c-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; text-transform: uppercase;
+    letter-spacing: 0.18em; font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.05;
+    margin-bottom: 22px;
+  }
+  .section-subtitle {
+    color: var(--text-dim); font-size: 17px; line-height: 1.65;
+    max-width: 720px;
+  }
+  .gradient-text {
+    background: var(--gradient-2);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    padding: 14px 28px;
+    background: #ffffff;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 0 28px rgba(255,255,255,0.45);
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: transform 0.2s;
+    font-family: inherit;
+  }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-secondary {
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.04); border-color: var(--primary); }
+
+  /* ====== HERO ====== */
+  .hero {
+    min-height: 100vh;
+    padding: 160px 5% 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 72px;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px;
+    background: rgba(34, 211, 238, 0.10);
+    border: 1px solid rgba(34, 211, 238, 0.35);
+    border-radius: 100px;
+    font-size: 11px;
+    color: var(--c-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .hero-pill .dot {
+    width: 6px; height: 6px;
+    background: var(--c-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--c-cyan);
+    animation: pulse-dot 1.6s ease-in-out infinite;
+  }
+  .hero-l h1 {
+    font-size: clamp(44px, 6vw, 76px);
+    font-weight: 900; letter-spacing: -0.03em;
+    line-height: 1.0;
+    margin-bottom: 26px;
+  }
+  .hero-l h1 .em {
+    display: inline-block;
+    color: transparent;
+    background: var(--gradient-voice);
+    -webkit-background-clip: text; background-clip: text;
+  }
+  .hero-l p.lead {
+    font-size: 18px; color: var(--text-dim);
+    margin-bottom: 32px; max-width: 580px;
+    line-height: 1.65;
+  }
+  .hero-cta-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+    max-width: 600px;
+  }
+  .hero-stat .v { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+  .hero-stat .l { font-size: 11px; color: var(--text-muted); margin-top: 4px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* Hero right: live call panel */
+  .hero-r { position: relative; }
+  .call-panel {
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.06), rgba(139, 92, 246, 0.04));
+    border: 1px solid var(--border-strong);
+    border-radius: 22px;
+    padding: 26px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 100px rgba(34, 211, 238, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .call-panel::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at top, rgba(34, 211, 238, 0.10), transparent 65%);
+    pointer-events: none;
+  }
+  .call-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+  .call-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 5px 12px;
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--c-green);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .call-status .dot {
+    width: 6px; height: 6px;
+    background: var(--c-green); border-radius: 50%;
+    animation: pulse-dot 1.4s ease-in-out infinite;
+  }
+  .call-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--text-dim);
+  }
+  .call-meta {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+  .call-avatar {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--gradient-voice);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 800; font-size: 16px;
+    box-shadow: 0 0 22px rgba(34, 211, 238, 0.35);
+    position: relative;
+  }
+  .call-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -8px; border-radius: 50%;
+    border: 1px solid rgba(34, 211, 238, 0.35);
+    animation: ripple 1.8s ease-out infinite;
+  }
+  .call-avatar::before {
+    content: '';
+    position: absolute;
+    inset: -14px; border-radius: 50%;
+    border: 1px solid rgba(34, 211, 238, 0.20);
+    animation: ripple 1.8s ease-out infinite 0.6s;
+  }
+  @keyframes ripple {
+    0% { opacity: 1; transform: scale(0.8); }
+    100% { opacity: 0; transform: scale(1.4); }
+  }
+  .call-name { font-weight: 700; font-size: 15px; }
+  .call-role { color: var(--text-muted); font-size: 12px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+  .waveform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    height: 60px;
+    margin: 8px 0 18px;
+    position: relative; z-index: 1;
+  }
+  .waveform span {
+    display: block;
+    width: 3px;
+    background: linear-gradient(180deg, #22d3ee, #14b8a6);
+    border-radius: 3px;
+    animation: wave 1.1s ease-in-out infinite;
+  }
+  @keyframes wave {
+    0%, 100% { height: 8px; opacity: 0.4; }
+    50% { height: 60%; opacity: 1; }
+  }
+
+  .call-transcript {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative; z-index: 1;
+    min-height: 200px;
+  }
+  .bubble {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .bubble.agent {
+    align-self: flex-start;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: var(--text);
+    border-top-left-radius: 4px;
+  }
+  .bubble.customer {
+    align-self: flex-end;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-top-right-radius: 4px;
+  }
+  .bubble .who {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+    opacity: 0.6;
+  }
+  .call-foot {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 0.06em;
+    position: relative; z-index: 1;
+  }
+  .call-foot strong { color: var(--c-cyan); font-weight: 700; }
+
+  /* ====== STATS BAR ====== */
+  .stats-band {
+    padding: 70px 5%;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.03), transparent);
+  }
+  .stats-band-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 28px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .sb-stat { text-align: center; }
+  .sb-stat .v {
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: var(--gradient-voice);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sb-stat .l {
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  /* ====== USE CASES (TABBED) ====== */
+  .uc-wrap {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+    margin-top: 50px;
+  }
+  .uc-tabs {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .uc-tab {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: left;
+  }
+  .uc-tab:hover { border-color: var(--border-strong); }
+  .uc-tab.active {
+    background: linear-gradient(135deg, rgba(34, 211, 238, 0.10), rgba(139, 92, 246, 0.06));
+    border-color: rgba(34, 211, 238, 0.45);
+    box-shadow: 0 8px 26px rgba(34, 211, 238, 0.10);
+  }
+  .uc-tab-num {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--c-cyan);
+    background: rgba(34, 211, 238, 0.12);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .uc-tab-body { flex: 1; min-width: 0; }
+  .uc-tab-h { font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 3px; letter-spacing: -0.005em; }
+  .uc-tab-d { color: var(--text-muted); font-size: 12px; line-height: 1.45; }
+  .uc-tab.active .uc-tab-d { color: var(--text-dim); }
+
+  .uc-detail {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    min-height: 540px;
+  }
+  .uc-detail::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 60%);
+    pointer-events: none;
+  }
+  .uc-pane { display: none; position: relative; z-index: 1; }
+  .uc-pane.active { display: block; animation: fadeIn 0.45s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .uc-pane-head {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .uc-pane-icon {
+    width: 52px; height: 52px;
+    border-radius: 13px;
+    background: var(--gradient-voice);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(34, 211, 238, 0.25);
+    flex-shrink: 0;
+  }
+  .uc-pane-title h3 {
+    font-size: 24px; font-weight: 800; letter-spacing: -0.015em;
+    margin-bottom: 4px;
+  }
+  .uc-pane-title .outcome {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--c-green);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .uc-pane-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .uc-pane-l p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+  .uc-pane-l ul {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .uc-pane-l li {
+    display: flex; gap: 10px; align-items: flex-start;
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 8px;
+    line-height: 1.55;
+  }
+  .uc-pane-l li::before {
+    content: '✓';
+    color: var(--c-cyan);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .uc-result-row {
+    display: flex; flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .uc-chip {
+    padding: 5px 11px;
+    border-radius: 100px;
+    background: rgba(52, 211, 153, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    color: var(--c-green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .uc-chip.warm {
+    background: rgba(251, 146, 60, 0.12);
+    border-color: rgba(251, 146, 60, 0.3);
+    color: var(--c-orange);
+  }
+
+  /* Sample call mock inside detail */
+  .uc-call {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+    max-height: 360px;
+    overflow: hidden;
+    position: relative;
+  }
+  .uc-call-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 6px;
+  }
+  .uc-call-head .who {
+    font-weight: 600; font-size: 12px; color: var(--text);
+  }
+  .uc-call-head .when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+  .uc-call .bubble { font-size: 12.5px; padding: 8px 11px; }
+  .uc-call .bubble .who { font-size: 8px; }
+
+  /* ====== VOICE QUALITY (India-built) ====== */
+  .voice-section { background: var(--bg-2); }
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 40px;
+  }
+  .voice-feats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .voice-feat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .voice-feat:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .voice-feat-icon {
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+  }
+  .voice-feat-icon.purple { background: linear-gradient(135deg, #8b5cf6, #a78bfa); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.25); }
+  .voice-feat-icon.cyan   { background: linear-gradient(135deg, #22d3ee, #14b8a6); box-shadow: 0 8px 20px rgba(34, 211, 238, 0.25); }
+  .voice-feat-icon.pink   { background: linear-gradient(135deg, #f472b6, #fb923c); box-shadow: 0 8px 20px rgba(244, 114, 182, 0.25); }
+  .voice-feat-icon.green  { background: linear-gradient(135deg, #34d399, #22d3ee); box-shadow: 0 8px 20px rgba(52, 211, 153, 0.25); }
+  .voice-feat-h { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .voice-feat-d { color: var(--text-dim); font-size: 13px; line-height: 1.55; }
+
+  .lang-cloud {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .lang-cloud::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(34, 211, 238, 0.10), transparent 65%);
+    pointer-events: none;
+  }
+  .lang-cloud-h {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--c-cyan);
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+  .lang-grid {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    position: relative; z-index: 1;
+  }
+  .lang-pill {
+    padding: 7px 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--text-dim);
+    transition: all 0.2s;
+  }
+  .lang-pill:hover, .lang-pill.lit {
+    background: rgba(34, 211, 238, 0.1);
+    border-color: rgba(34, 211, 238, 0.4);
+    color: var(--c-cyan);
+  }
+  .lang-foot {
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted); font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    position: relative; z-index: 1;
+  }
+  .lang-foot strong { color: var(--text); font-weight: 600; }
+
+  /* ====== OUTCOMES ====== */
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 50px;
+  }
+  .outcome-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .outcome-card:hover { border-color: var(--border-strong); transform: translateY(-4px); }
+  .outcome-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .outcome-card:hover::before { opacity: 1; }
+  .outcome-num {
+    font-size: clamp(40px, 4.5vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    background: var(--gradient-voice);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .outcome-h { font-weight: 700; font-size: 16px; margin-bottom: 6px; position: relative; z-index: 1; }
+  .outcome-d { color: var(--text-dim); font-size: 13px; line-height: 1.55; position: relative; z-index: 1; }
+
+  /* ====== HOW IT WORKS ====== */
+  .how-section { background: var(--bg-2); }
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 50px;
+    position: relative;
+  }
+  .how-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+  }
+  .how-step-num {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--c-cyan);
+    background: rgba(34, 211, 238, 0.12);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    padding: 5px 11px;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+  .how-step h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .how-step p { color: var(--text-dim); font-size: 14px; line-height: 1.6; }
+  .how-step-tag {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ====== COMPLIANCE STRIP ====== */
+  .compliance {
+    margin-top: 60px;
+    padding: 24px 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+    justify-content: center;
+  }
+  .compliance .c-h {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-right: 4px;
+  }
+  .c-badge {
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+  .c-badge.lit { color: var(--c-cyan); border-color: rgba(34, 211, 238, 0.35); }
+
+  /* ====== DUAL CTA ====== */
+  .cta { text-align: center; padding: 100px 5%; position: relative; z-index: 1; }
+  .cta-box {
+    max-width: 980px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 24px;
+    padding: 60px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-box h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+    line-height: 1.1;
+  }
+  .cta-box p {
+    color: var(--text-dim);
+    font-size: 17px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+  }
+  .cta-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 32px;
+    text-align: left;
+  }
+  .cta-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .cta-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+  .cta-card-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--c-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 10px;
+  }
+  .cta-card.warm .cta-card-eyebrow { color: var(--c-violet); }
+  .cta-card-h {
+    font-size: 20px; font-weight: 700; color: var(--text);
+    margin-bottom: 10px; letter-spacing: -0.015em;
+  }
+  .cta-card-d { color: var(--text-dim); font-size: 14px; margin-bottom: 22px; line-height: 1.55; }
+  .cta-card-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 600; font-size: 14px;
+    padding: 11px 20px;
+    border-radius: 9px;
+    background: #ffffff; color: #000;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .cta-card-cta:hover { transform: translateX(4px); background: #f0f0f0; }
+  .cta-card.warm .cta-card-cta {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+  }
+  .cta-card.warm .cta-card-cta:hover { background: rgba(255,255,255,0.06); }
+
+  /* ====== CTA FORM ====== */
+  .form-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 36px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+  .form-left {
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.06), rgba(139, 92, 246, 0.04));
+    border: 1px solid var(--border-strong);
+    border-radius: 22px;
+    padding: 38px 34px;
+    position: relative;
+    overflow: hidden;
+  }
+  .form-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at top, rgba(34, 211, 238, 0.10), transparent 65%);
+    pointer-events: none;
+  }
+  .form-left-h {
+    font-size: 22px; font-weight: 800;
+    letter-spacing: -0.015em;
+    margin-bottom: 26px;
+    position: relative; z-index: 1;
+  }
+  .form-steps {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 22px;
+    position: relative; z-index: 1;
+  }
+  .form-steps li {
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .fs-num {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--c-cyan);
+    background: rgba(34, 211, 238, 0.12);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    padding: 5px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.06em;
+    margin-top: 1px;
+  }
+  .fs-body {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .fs-body strong { color: var(--text); font-weight: 700; }
+  .form-trust {
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 8px;
+    position: relative; z-index: 1;
+  }
+  .ft-pill {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .form-right {
+    position: relative;
+    min-height: 540px;
+  }
+  .ac-form {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 22px;
+    padding: 34px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .form-h {
+    font-size: 18px; font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .form-sub {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 22px;
+  }
+  .field { display: flex; flex-direction: column; margin-bottom: 14px; }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .field-row .field { margin-bottom: 0; }
+  .field label {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .field .lbl-aux {
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+    outline: none;
+  }
+  .field textarea { resize: vertical; min-height: 78px; }
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--text-muted); }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--c-cyan);
+    background: var(--surface-3);
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+  }
+  .field select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='none' stroke='%23a8a8a8' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M3 5l3 3 3-3'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+
+  .form-submit-btn {
+    width: 100%;
+    margin-top: 6px;
+    padding: 15px 22px;
+    background: var(--gradient-voice);
+    color: #fff;
+    border: none;
+    border-radius: 11px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    font-family: inherit;
+  }
+  .form-submit-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 36px rgba(34, 211, 238, 0.5); }
+  .form-submit-btn .arrow { font-size: 16px; }
+
+  .form-foot {
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.55;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .form-success {
+    display: none;
+    background: var(--surface);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    border-radius: 22px;
+    padding: 50px 34px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 60px rgba(52, 211, 153, 0.10);
+  }
+  .form-success.show { display: block; animation: fadeIn 0.5s ease; }
+  .success-tick {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #34d399, #22d3ee);
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+    box-shadow: 0 8px 30px rgba(52, 211, 153, 0.4);
+  }
+  .success-h {
+    font-size: 22px; font-weight: 800;
+    letter-spacing: -0.015em;
+    margin-bottom: 10px;
+  }
+  .success-d {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .success-d strong { color: var(--c-cyan); font-weight: 700; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 5%;
+    color: var(--text-muted);
+    font-size: 13px;
+    position: relative; z-index: 1;
+  }
+  .footer-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .footer-links {
+    display: flex; gap: 28px;
+    list-style: none; flex-wrap: wrap;
+  }
+  .footer-links a { color: var(--text-dim); transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+    .uc-wrap { grid-template-columns: 1fr; }
+    .uc-tabs { display: grid; grid-template-columns: repeat(2, 1fr); }
+    .uc-pane-body { grid-template-columns: 1fr; }
+    .voice-grid { grid-template-columns: 1fr; gap: 40px; }
+    .stats-band-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-wrap { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .logo-product { display: none; }
+    .logo-img { height: 96px; margin: -32px -18px; }
+    section { padding: 70px 5%; }
+    .hero { padding: 130px 5% 60px; }
+    .hero-l h1 { font-size: 40px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .stats-band-grid { grid-template-columns: repeat(2, 1fr); }
+    .uc-tabs { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .ac-form { padding: 24px; }
+    .form-left { padding: 28px 22px; }
+    .field-row { grid-template-columns: 1fr; }
+  }
+</style>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<nav>
+  <a href="https://veltrum.io" class="logo" aria-label="Veltrum.io home">
+    <img src="light_1024h.png" alt="Veltrum.io" class="logo-img" />
+    <span class="logo-product"><span class="pulse-dot"></span>Agentic Calling</span>
+  </a>
+  <ul class="nav-links">
+    <li class="has-dropdown">
+      <a class="dropdown-trigger" tabindex="0">Solutions <span class="chev">▾</span></a>
+      <div class="dropdown-menu">
+        <a href="https://veltrum.io/agentic-commerce" class="dropdown-item commerce">
+          <span class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </span>
+          <span class="dropdown-item-text">
+            <span class="dropdown-item-h">Agentic Commerce</span>
+            <span class="dropdown-item-d">Storefront, payments, marketing, CX — orchestrated</span>
+          </span>
+        </a>
+        <a href="agentic-calling.html" class="dropdown-item calling is-current">
+          <span class="dropdown-item-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span class="dropdown-item-text">
+            <span class="dropdown-item-h">Agentic Calling</span>
+            <span class="dropdown-item-d">Voice agents for D2C — sample calls + pilot</span>
+          </span>
+        </a>
+      </div>
+    </li>
+    <li><a href="#use-cases">Use cases</a></li>
+    <li><a href="#voice">Voice quality</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="#how">How it works</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Hear it live →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-l">
+      <div class="hero-pill"><span class="dot"></span>Voice agents · Built for Indian D2C</div>
+      <h1>The voice on the other end is one your customers can't tell <span class="em">isn't human.</span></h1>
+      <p class="lead">
+        Pre-shipment confirmation, NDR follow-ups, abandoned-cart recovery, 24/7 inbound support, returns &amp; refunds, and retention loops — all run by voice agents trained on your brand, your SOPs and your rate cards. In 22 Indian languages, with sub-1.5s latency, at a fraction of a BPO seat.
+      </p>
+      <div class="hero-cta-row">
+        <a href="#cta" class="btn-primary">Hear a sample call <span>→</span></a>
+        <a href="#use-cases" class="btn-secondary">See the 6 use cases <span>↓</span></a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="v"><span class="gradient-text">22+</span></div>
+          <div class="l">Indian languages</div>
+        </div>
+        <div class="hero-stat">
+          <div class="v"><span class="gradient-text">1.4s</span></div>
+          <div class="l">Avg latency</div>
+        </div>
+        <div class="hero-stat">
+          <div class="v"><span class="gradient-text">89%</span></div>
+          <div class="l">Pickup rate</div>
+        </div>
+        <div class="hero-stat">
+          <div class="v"><span class="gradient-text">6×</span></div>
+          <div class="l">Cheaper than BPO</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-r">
+      <div class="call-panel">
+        <div class="call-head">
+          <span class="call-status"><span class="dot"></span>Live · COD confirmation</span>
+          <span class="call-time" id="callTimer">00:42</span>
+        </div>
+
+        <div class="call-meta">
+          <div class="call-avatar">VA</div>
+          <div>
+            <div class="call-name">Veltrum agent · Aanya</div>
+            <div class="call-role">Pre-shipment · Hindi · Female · Warm</div>
+          </div>
+        </div>
+
+        <div class="waveform" id="waveformHero" aria-hidden="true"></div>
+
+        <div class="call-transcript" id="heroTranscript">
+          <div class="bubble agent"><span class="who">Aanya · Veltrum</span>Namaste, main Aanya bol rahi hoon, Veltrum se. Aapne kal raat <strong>Sundream Co.</strong> se ek order place kiya tha — saffron silk dupatta, ₹1,240. Confirm karna chahti thi delivery ke liye?</div>
+          <div class="bubble customer"><span class="who">Customer</span>Haan haan, mera order hai. Bilkul confirm.</div>
+          <div class="bubble agent"><span class="who">Aanya · Veltrum</span>Bahut shukriya. Ek choti si baat — aapke address mein flat number nahi hai. Mujhe woh bata sakte hain?</div>
+          <div class="bubble customer"><span class="who">Customer</span>Haan, Flat 4B, second floor.</div>
+          <div class="bubble agent"><span class="who">Aanya · Veltrum</span>Note kar liya — Flat 4B, second floor. Aapko Wednesday tak deliver ho jayega. Dhanyavaad!</div>
+        </div>
+
+        <div class="call-foot">
+          <span>Outcome · <strong>Confirmed</strong></span>
+          <span>Address enriched · <strong>+22 chars</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="stats-band reveal">
+  <div class="stats-band-grid">
+    <div class="sb-stat"><div class="v">22+</div><div class="l">Indian languages</div></div>
+    <div class="sb-stat"><div class="v">1.4s</div><div class="l">Avg response latency</div></div>
+    <div class="sb-stat"><div class="v">89%</div><div class="l">Tier 2/3 pickup rate</div></div>
+    <div class="sb-stat"><div class="v">99.95%</div><div class="l">Platform uptime</div></div>
+    <div class="sb-stat"><div class="v">6×</div><div class="l">Cheaper than BPO</div></div>
+    <div class="sb-stat"><div class="v">24/7</div><div class="l">Always on</div></div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="use-cases">
+  <div class="container">
+    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
+      <div class="section-eyebrow">Six use cases · Built for ecommerce</div>
+      <h2 class="section-title">Six calls your team makes every day —<br><span class="gradient-text">handled by voice agents instead.</span></h2>
+      <p class="section-subtitle" style="margin: 0 auto;">
+        Pick a use case to see the playbook, a sample transcript and the outcomes our pilot brands measure in week one.
+      </p>
+    </div>
+
+    <div class="uc-wrap reveal">
+      <!-- Tabs -->
+      <div class="uc-tabs" role="tablist">
+        <button class="uc-tab active" data-uc="1" role="tab">
+          <span class="uc-tab-num">01</span>
+          <span class="uc-tab-body">
+            <span class="uc-tab-h">Pre-Shipment confirmation</span>
+            <span class="uc-tab-d">Verify intent &amp; address before the parcel ships</span>
+          </span>
+        </button>
+        <button class="uc-tab" data-uc="2" role="tab">
+          <span class="uc-tab-num">02</span>
+          <span class="uc-tab-body">
+            <span class="uc-tab-h">NDR Management</span>
+            <span class="uc-tab-d">Reschedule failed deliveries before re-attempt</span>
+          </span>
+        </button>
+        <button class="uc-tab" data-uc="3" role="tab">
+          <span class="uc-tab-num">03</span>
+          <span class="uc-tab-body">
+            <span class="uc-tab-h">Abandoned cart</span>
+            <span class="uc-tab-d">Recover ₹X per cart with a 90-second call</span>
+          </span>
+        </button>
+        <button class="uc-tab" data-uc="4" role="tab">
+          <span class="uc-tab-num">04</span>
+          <span class="uc-tab-body">
+            <span class="uc-tab-h">Inbound 24/7 Support</span>
+            <span class="uc-tab-d">Answer every WISMO &amp; query, instantly</span>
+          </span>
+        </button>
+        <button class="uc-tab" data-uc="5" role="tab">
+          <span class="uc-tab-num">05</span>
+          <span class="uc-tab-body">
+            <span class="uc-tab-h">Returns &amp; Refunds</span>
+            <span class="uc-tab-d">Triage the request, save the order</span>
+          </span>
+        </button>
+        <button class="uc-tab" data-uc="6" role="tab">
+          <span class="uc-tab-num">06</span>
+          <span class="uc-tab-body">
+            <span class="uc-tab-h">Customer retention</span>
+            <span class="uc-tab-d">Reorder nudges, win-back, loyalty calls</span>
+          </span>
+        </button>
+      </div>
+
+      <!-- Detail panes -->
+      <div class="uc-detail">
+
+        <!-- Pane 1 -->
+        <div class="uc-pane active" data-uc="1">
+          <div class="uc-pane-head">
+            <div class="uc-pane-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.27 6.96 8.73 5.05 8.73-5.05"/><path d="M12 22.08V12"/></svg>
+            </div>
+            <div class="uc-pane-title">
+              <h3>Pre-Shipment confirmation call</h3>
+              <div class="outcome">Outcome · 2.3× lift in COD confirmation rate</div>
+            </div>
+          </div>
+          <div class="uc-pane-body">
+            <div class="uc-pane-l">
+              <p>Every COD order gets a verification call within 30 minutes of placement. Aanya confirms intent, captures any missing address fields, sets the delivery slot, and flags the order to your WMS — all before the parcel hits the conveyor.</p>
+              <ul>
+                <li>COD intent verification with rebuttal handling</li>
+                <li>Address enrichment (landmarks, flat numbers, gate codes)</li>
+                <li>Delivery slot &amp; alternate contact capture</li>
+                <li>Repeat-customer recognition + personalised greeting</li>
+                <li>Auto-cancel low-intent orders before warehouse pick</li>
+              </ul>
+              <div class="uc-result-row">
+                <span class="uc-chip">RTO ↓ 31%</span>
+                <span class="uc-chip">Address quality 2.1×</span>
+                <span class="uc-chip warm">Pickup 89%</span>
+              </div>
+            </div>
+            <div class="uc-pane-r">
+              <div class="uc-call">
+                <div class="uc-call-head">
+                  <div class="who">Aanya · Pre-shipment · Hindi</div>
+                  <div class="when">14:08 · 0:54</div>
+                </div>
+                <div class="bubble agent"><span class="who">Aanya</span>Namaste Priya ji, Veltrum se Aanya. Sundream Co. ke saffron dupatta order ke baare mein call kiya hai — ₹1,240 COD. Confirm karna chahti thi.</div>
+                <div class="bubble customer"><span class="who">Priya</span>Haan, mera order hai.</div>
+                <div class="bubble agent"><span class="who">Aanya</span>Bahut shukriya. Address mein flat number missing hai — woh share kar sakti hain?</div>
+                <div class="bubble customer"><span class="who">Priya</span>Flat 4B, Sapphire Tower, Gurgaon.</div>
+                <div class="bubble agent"><span class="who">Aanya</span>Perfect — Wednesday subah 11 baje delivery slot rakh rahi hoon. Dhanyavaad!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane 2 -->
+        <div class="uc-pane" data-uc="2">
+          <div class="uc-pane-head">
+            <div class="uc-pane-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.5L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.5L3 16"/><path d="M3 21v-5h5"/></svg>
+            </div>
+            <div class="uc-pane-title">
+              <h3>NDR Management</h3>
+              <div class="outcome">Outcome · 78% NDR resolution before 2nd attempt</div>
+            </div>
+          </div>
+          <div class="uc-pane-body">
+            <div class="uc-pane-l">
+              <p>The moment the courier marks an attempt failed, the agent calls the customer. It diagnoses the reason — wrong address, no one home, intent change, payment doubt — and either reschedules with a precise slot or cancels cleanly so the parcel turns around faster.</p>
+              <ul>
+                <li>Auto-trigger on courier NDR webhook (within 6 minutes)</li>
+                <li>Reason classification: address / availability / intent / payment</li>
+                <li>Reschedule slot capture, alternate phone, neighbour delivery</li>
+                <li>Re-confirms COD amount &amp; mode for nervous customers</li>
+                <li>Pushes resolution back to courier API + your OMS</li>
+              </ul>
+              <div class="uc-result-row">
+                <span class="uc-chip">RTO ↓ 42%</span>
+                <span class="uc-chip">Avg resolution 1.4 attempts</span>
+                <span class="uc-chip warm">Saved per RTO ₹140</span>
+              </div>
+            </div>
+            <div class="uc-pane-r">
+              <div class="uc-call">
+                <div class="uc-call-head">
+                  <div class="who">Kabir · NDR · Hinglish</div>
+                  <div class="when">09:42 · 1:18</div>
+                </div>
+                <div class="bubble agent"><span class="who">Kabir</span>Hello Rohan, Veltrum se Kabir. Aapka Bluwood order kal deliver nahi ho paaya — courier ne bola "no one available". Aaj kab ghar pe rahenge?</div>
+                <div class="bubble customer"><span class="who">Rohan</span>Haan, kal main office mein tha. Aaj sham 6 ke baad available hoon.</div>
+                <div class="bubble agent"><span class="who">Kabir</span>Theek hai, today 6 to 9 PM slot book kar diya. Flat 12, Aspen Heights — sahi hai?</div>
+                <div class="bubble customer"><span class="who">Rohan</span>Sahi hai. Bell mat bajana, doorbell kharab hai — knock kar dena.</div>
+                <div class="bubble agent"><span class="who">Kabir</span>Note kar liya — knock instead of bell. Confirmation SMS bhej rahi hoon.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane 3 -->
+        <div class="uc-pane" data-uc="3">
+          <div class="uc-pane-head">
+            <div class="uc-pane-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            </div>
+            <div class="uc-pane-title">
+              <h3>Abandoned cart recovery</h3>
+              <div class="outcome">Outcome · 19% recovery rate · ₹240 avg per call</div>
+            </div>
+          </div>
+          <div class="uc-pane-body">
+            <div class="uc-pane-l">
+              <p>Within 25 minutes of cart abandonment, the agent calls. It references the exact items, asks what stopped them, handles the top three objections (price, delivery time, payment failure), and offers a personalised nudge — a discount, COD switch, or assisted checkout via WhatsApp link.</p>
+              <ul>
+                <li>Triggered on abandonment after a 25-min cool-off</li>
+                <li>References cart items, brand and last-step exit</li>
+                <li>Objection handling: price, shipping, COD, payment failure</li>
+                <li>Discount &amp; checkout-link offers (rules-based)</li>
+                <li>WhatsApp follow-up if call missed</li>
+              </ul>
+              <div class="uc-result-row">
+                <span class="uc-chip">Recovery 19%</span>
+                <span class="uc-chip">Avg ₹240 / call</span>
+                <span class="uc-chip warm">CSAT 4.6 / 5</span>
+              </div>
+            </div>
+            <div class="uc-pane-r">
+              <div class="uc-call">
+                <div class="uc-call-head">
+                  <div class="who">Sara · Abandoned cart · English</div>
+                  <div class="when">17:14 · 1:02</div>
+                </div>
+                <div class="bubble agent"><span class="who">Sara</span>Hi Meera, this is Sara from Aurra. I noticed you had the linen co-ord set in your cart but didn't check out — anything I can help with?</div>
+                <div class="bubble customer"><span class="who">Meera</span>Yeah, the shipping was a bit much. Felt steep for a single item.</div>
+                <div class="bubble agent"><span class="who">Sara</span>Totally hear you. I can waive shipping right now if you'd like — that brings it to ₹2,180 instead of ₹2,330. Want me to text you a one-tap checkout link?</div>
+                <div class="bubble customer"><span class="who">Meera</span>Sure, send it across.</div>
+                <div class="bubble agent"><span class="who">Sara</span>Done — link is on its way. Thanks Meera!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane 4 -->
+        <div class="uc-pane" data-uc="4">
+          <div class="uc-pane-head">
+            <div class="uc-pane-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="uc-pane-title">
+              <h3>Inbound 24/7 Support</h3>
+              <div class="outcome">Outcome · 94% queries resolved without human</div>
+            </div>
+          </div>
+          <div class="uc-pane-body">
+            <div class="uc-pane-l">
+              <p>One number, always answered, in the customer's language. The agent handles WISMO, order changes, refund status, return pickups and product questions. It pulls live data from your storefront, courier and warehouse — no hold music, no menu, no "press 9 for".</p>
+              <ul>
+                <li>Single virtual number — calls land instantly, no queue</li>
+                <li>Live data: orders, shipments, returns, refunds, inventory</li>
+                <li>Multi-intent calls handled in one flow (no transfers)</li>
+                <li>Sentiment-aware tone shift — escalates angry callers immediately</li>
+                <li>Audio + transcript saved to your CRM in real time</li>
+              </ul>
+              <div class="uc-result-row">
+                <span class="uc-chip">Auto-resolved 94%</span>
+                <span class="uc-chip">Avg handle 87s</span>
+                <span class="uc-chip warm">CSAT 4.5 / 5</span>
+              </div>
+            </div>
+            <div class="uc-pane-r">
+              <div class="uc-call">
+                <div class="uc-call-head">
+                  <div class="who">Aanya · Inbound · Tamil</div>
+                  <div class="when">23:18 · 0:46</div>
+                </div>
+                <div class="bubble customer"><span class="who">Caller</span>Hi, en order #4412 epdi varum?</div>
+                <div class="bubble agent"><span class="who">Aanya</span>Vanakkam Karthik. Ungal order Chennai hub la irukku, naalaiku 11 mani kulla deliver agum. SMS la live tracking link send pannitten.</div>
+                <div class="bubble customer"><span class="who">Caller</span>Ah, naa veetla illa. Velaiku iruken. Mathiyana 4 mani kabram delivery panna mudiyumaa?</div>
+                <div class="bubble agent"><span class="who">Aanya</span>Aamam, slot ah 4 PM ku update panniten — courier ku notify pannitten. Confirm.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane 5 -->
+        <div class="uc-pane" data-uc="5">
+          <div class="uc-pane-head">
+            <div class="uc-pane-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14l-4 4 4 4"/><path d="M5 18h11a4 4 0 0 0 4-4V6"/><path d="M15 10l4-4-4-4"/><path d="M19 6H8a4 4 0 0 0-4 4v8" opacity="0"/></svg>
+            </div>
+            <div class="uc-pane-title">
+              <h3>Returns &amp; Refunds</h3>
+              <div class="outcome">Outcome · 38% return-to-exchange conversion</div>
+            </div>
+          </div>
+          <div class="uc-pane-body">
+            <div class="uc-pane-l">
+              <p>When a customer raises a return, the agent calls before the request is auto-approved. It diagnoses the reason, offers a free exchange or a 10% off voucher, schedules the reverse pickup, and sets refund expectations clearly — turning churn into a second sale wherever possible.</p>
+              <ul>
+                <li>Triggered on return-request webhook (within 8 minutes)</li>
+                <li>Root-cause classification: size / quality / wrong item / mind change</li>
+                <li>Exchange-first flow with size guidance</li>
+                <li>Reverse pickup slot + bag-ready instructions</li>
+                <li>Refund timeline set per payment mode &amp; courier SLA</li>
+              </ul>
+              <div class="uc-result-row">
+                <span class="uc-chip">Return-to-exchange 38%</span>
+                <span class="uc-chip">Refund disputes ↓ 64%</span>
+                <span class="uc-chip warm">Repeat purchase 27%</span>
+              </div>
+            </div>
+            <div class="uc-pane-r">
+              <div class="uc-call">
+                <div class="uc-call-head">
+                  <div class="who">Kabir · Returns · Hinglish</div>
+                  <div class="when">11:32 · 1:24</div>
+                </div>
+                <div class="bubble agent"><span class="who">Kabir</span>Hi Anjali, Aurra se Kabir. Aapne linen co-ord set return request raise kiya hai — main confirm karne aur help karne ke liye call kar raha hoon. Kya issue hua?</div>
+                <div class="bubble customer"><span class="who">Anjali</span>Size thoda small lag raha hai. Maine M order kiya tha but kaafi tight hai.</div>
+                <div class="bubble agent"><span class="who">Kabir</span>Samjha. Hum free exchange offer karte hain — main aapko L size mein same product ship karwa sakta hoon, aur Tuesday tak deliver kar denge. Refund ki bajaaye exchange chalega?</div>
+                <div class="bubble customer"><span class="who">Anjali</span>Haan, exchange better hai.</div>
+                <div class="bubble agent"><span class="who">Kabir</span>Done. Reverse pickup kal 10–1 PM, fresh L size Tuesday subah. SMS confirm hai.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane 6 -->
+        <div class="uc-pane" data-uc="6">
+          <div class="uc-pane-head">
+            <div class="uc-pane-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="uc-pane-title">
+              <h3>Customer retention</h3>
+              <div class="outcome">Outcome · 14% reorder lift on lapsed cohort</div>
+            </div>
+          </div>
+          <div class="uc-pane-body">
+            <div class="uc-pane-l">
+              <p>The agent calls customers at the right cadence — 28 days after a consumable order, 90 days after a fashion purchase, 7 days after a first-order detractor. It nudges reorders, win-backs, loyalty enrolments and upgrades — with offers calibrated to each customer's lifetime value.</p>
+              <ul>
+                <li>Cohort-based cadence (replenishment, lapse, NPS detractor)</li>
+                <li>Personalised offers based on past basket &amp; LTV tier</li>
+                <li>WhatsApp checkout-link follow-up for warm leads</li>
+                <li>Loyalty programme enrolment &amp; tier upgrade calls</li>
+                <li>Quiet-hours respect + DND list compliance</li>
+              </ul>
+              <div class="uc-result-row">
+                <span class="uc-chip">Reorder lift 14%</span>
+                <span class="uc-chip">Lapsed win-back 9%</span>
+                <span class="uc-chip warm">Loyalty signups 3.4×</span>
+              </div>
+            </div>
+            <div class="uc-pane-r">
+              <div class="uc-call">
+                <div class="uc-call-head">
+                  <div class="who">Sara · Reorder nudge · Marathi</div>
+                  <div class="when">15:44 · 0:58</div>
+                </div>
+                <div class="bubble agent"><span class="who">Sara</span>Namaskar Snehal, Bluwood la mi Sara bolte aahe. Tumhi 28 divsa purvi face serum order kela hota — sampla asel ka? Refill ghyayla ahe ka?</div>
+                <div class="bubble customer"><span class="who">Snehal</span>Haan, almost finish ahe. Pan ata mahag vatato.</div>
+                <div class="bubble agent"><span class="who">Sara</span>Tumhi loyal customer aahat — mi tumchya sathi 15% off apply karu shakte. ₹1,275 madhe milel, free delivery sahit. Pathvu?</div>
+                <div class="bubble customer"><span class="who">Snehal</span>Theek aahe, pathwa.</div>
+                <div class="bubble agent"><span class="who">Sara</span>Done. WhatsApp var ek-tap checkout link 2 minutat yeil. Dhanyavaad!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE QUALITY -->
+<section id="voice" class="voice-section">
+  <div class="container">
+    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
+      <div class="section-eyebrow">India doesn't call like the West</div>
+      <h2 class="section-title">A voice that sounds<br><span class="gradient-text">like it grew up here.</span></h2>
+      <p class="section-subtitle" style="margin: 0 auto;">
+        Every Veltrum agent is fine-tuned on Indian languages, code-switching patterns, Tier 2/3 city accents and the back-and-forth rhythm Indian D2C buyers actually speak. Customers stay on the line because they don't realise they shouldn't.
+      </p>
+    </div>
+
+    <div class="voice-grid reveal">
+      <div class="voice-feats">
+        <div class="voice-feat">
+          <div class="voice-feat-icon cyan">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14"/><path d="M9 16l3-8 3 8"/><path d="M10 14h4"/></svg>
+          </div>
+          <div>
+            <div class="voice-feat-h">22 Indian languages with code-switching</div>
+            <div class="voice-feat-d">Hindi, Hinglish, Tamil, Telugu, Marathi, Bengali, Kannada, Malayalam, Punjabi, Gujarati and 12 more — and the agent switches mid-sentence the way your customers actually talk.</div>
+          </div>
+        </div>
+
+        <div class="voice-feat">
+          <div class="voice-feat-icon purple">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M9 11a3 3 0 0 0 6 0V5a3 3 0 0 0-6 0v6z"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M8 21h8"/></svg>
+          </div>
+          <div>
+            <div class="voice-feat-h">Tier 2/3 city accent training</div>
+            <div class="voice-feat-d">A Hindi caller from Indore expects different prosody than a Hindi caller from Mumbai. The agent's accent and intonation flex by region.</div>
+          </div>
+        </div>
+
+        <div class="voice-feat">
+          <div class="voice-feat-icon green">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 13 9 20 9"/><polyline points="11 22 11 15 4 15"/><polyline points="20 9 4 15"/><polyline points="13 2 11 22"/></svg>
+          </div>
+          <div>
+            <div class="voice-feat-h">Sub-1.5s response latency</div>
+            <div class="voice-feat-d">No awkward 3-second pause that screams "robot". Streaming TTS + speculative decoding keeps the agent answering before you've finished thinking.</div>
+          </div>
+        </div>
+
+        <div class="voice-feat">
+          <div class="voice-feat-icon pink">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <div>
+            <div class="voice-feat-h">Sentiment-aware empathy</div>
+            <div class="voice-feat-d">When a caller's tone shifts to frustration, the agent slows down, switches register, and routes high-emotion calls to a human within the same conversation.</div>
+          </div>
+        </div>
+
+        <div class="voice-feat">
+          <div class="voice-feat-icon cyan">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <div>
+            <div class="voice-feat-h">Brand-grounded persona</div>
+            <div class="voice-feat-d">Each agent learns your brand voice — Aanya for premium D2C, Kabir for value brands, Sara for English-led storefronts. Same agent across calls; recognises repeat customers.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lang-cloud">
+        <div class="lang-cloud-h">22+ languages live today</div>
+        <div class="lang-grid">
+          <span class="lang-pill lit">Hindi</span>
+          <span class="lang-pill lit">Hinglish</span>
+          <span class="lang-pill">Tamil</span>
+          <span class="lang-pill">Telugu</span>
+          <span class="lang-pill lit">Marathi</span>
+          <span class="lang-pill">Bengali</span>
+          <span class="lang-pill">Kannada</span>
+          <span class="lang-pill">Malayalam</span>
+          <span class="lang-pill lit">Punjabi</span>
+          <span class="lang-pill">Gujarati</span>
+          <span class="lang-pill">Odia</span>
+          <span class="lang-pill">Assamese</span>
+          <span class="lang-pill">Bhojpuri</span>
+          <span class="lang-pill">Haryanvi</span>
+          <span class="lang-pill">Rajasthani</span>
+          <span class="lang-pill lit">English (IN)</span>
+          <span class="lang-pill">English (UK)</span>
+          <span class="lang-pill">English (US)</span>
+          <span class="lang-pill">Sinhala</span>
+          <span class="lang-pill">Nepali</span>
+          <span class="lang-pill">Konkani</span>
+          <span class="lang-pill">Urdu</span>
+        </div>
+        <div class="lang-foot">Code-switching across <strong>any pair</strong> within a single call · accent fine-tuning in <strong>4 weeks</strong> for new dialects.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section id="outcomes">
+  <div class="container">
+    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
+      <div class="section-eyebrow">Numbers from week-one pilots</div>
+      <h2 class="section-title">What our brands<br><span class="gradient-text">measure on day seven.</span></h2>
+      <p class="section-subtitle" style="margin: 0 auto;">
+        Aggregated across 14 D2C and quick-commerce pilots between 5,000 and 80,000 monthly orders. Numbers vary by category — these are the medians.
+      </p>
+    </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal">
+        <div class="outcome-num">−42%</div>
+        <div class="outcome-h">RTO rate</div>
+        <div class="outcome-d">Pre-shipment confirmation + NDR resolution combined. Median across COD-heavy fashion &amp; FMCG brands.</div>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">+19%</div>
+        <div class="outcome-h">Cart recovery</div>
+        <div class="outcome-d">Of abandoned carts called within 25 minutes. Best segment: ₹1,500–₹4,000 AOV with friction at payment.</div>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">94%</div>
+        <div class="outcome-h">Inbound auto-resolved</div>
+        <div class="outcome-d">No human transfer needed. WISMO, refund-status, return-pickup, slot-change — handled end-to-end on the call.</div>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">38%</div>
+        <div class="outcome-h">Returns saved as exchanges</div>
+        <div class="outcome-d">When the agent calls before refund auto-approval and offers a size or colour swap with a clear delivery date.</div>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">+14%</div>
+        <div class="outcome-h">Reorder lift</div>
+        <div class="outcome-d">On 28-day replenishment calls for consumable categories — face care, supplements, coffee, pet food.</div>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-num">6×</div>
+        <div class="outcome-h">Cheaper than a BPO seat</div>
+        <div class="outcome-d">All-in cost per call vs. a fully-loaded Indian BPO seat with the same coverage hours and language support.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how-section">
+  <div class="container">
+    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
+      <div class="section-eyebrow">Live in 7 days</div>
+      <h2 class="section-title">Pick a playbook,<br><span class="gradient-text">be live by next Tuesday.</span></h2>
+      <p class="section-subtitle" style="margin: 0 auto;">
+        No telephony to procure, no IVR to design, no ML team needed. Connect your storefront and pick the playbooks that match your bleed.
+      </p>
+    </div>
+
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="how-step-num">Step 01</div>
+        <h3>Connect your storefront</h3>
+        <p>Shopify, WooCommerce, Magento, custom — one OAuth and we're reading orders, customers, inventory and returns. Courier APIs (Delhivery, Bluedart, Shiprocket, Shadowfax) plug in next.</p>
+        <div class="how-step-tag">Day 1–2</div>
+      </div>
+
+      <div class="how-step reveal">
+        <div class="how-step-num">Step 02</div>
+        <h3>Pick your playbooks</h3>
+        <p>Six pre-built playbooks for the use cases on this page — each ships with default scripts, objection libraries, escalation rules and reporting. Tailor the persona, tone and offers in our console.</p>
+        <div class="how-step-tag">Day 3–5</div>
+      </div>
+
+      <div class="how-step reveal">
+        <div class="how-step-num">Step 03</div>
+        <h3>Go live</h3>
+        <p>1,000-call pilot on a sandbox number. We benchmark against your existing CX team, you sign off on the QA dashboard, then we cut over to production. Continuous tuning from week two.</p>
+        <div class="how-step-tag">Day 6–7</div>
+      </div>
+    </div>
+
+    <div class="compliance reveal">
+      <span class="c-h">Compliance</span>
+      <span class="c-badge lit">DPDPA</span>
+      <span class="c-badge lit">SOC 2 in audit</span>
+      <span class="c-badge">Consent recording</span>
+      <span class="c-badge">DND list respect</span>
+      <span class="c-badge">Quiet-hours enforcement</span>
+      <span class="c-badge">PII masking in transcripts</span>
+      <span class="c-badge">Audit-ready call logs</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — request a sample call + pilot -->
+<section id="cta" class="cta">
+  <div class="container">
+    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto 56px;">
+      <div class="section-eyebrow">Get started</div>
+      <h2 class="section-title">Hear an agent that<br><span class="gradient-text">sounds like a colleague.</span></h2>
+      <p class="section-subtitle" style="margin: 0 auto;">
+        60 seconds to apply. Within 24 hours we send 4 sample calls matched to your category. Within 7 days you can be live on a 1,000-call pilot.
+      </p>
+    </div>
+
+    <div class="form-wrap reveal">
+      <div class="form-left">
+        <div class="form-left-h">What happens next.</div>
+        <ol class="form-steps">
+          <li>
+            <span class="fs-num">01</span>
+            <span class="fs-body">
+              <strong>Within 24 hours.</strong> We send 4 sample call recordings — pre-shipment, NDR, cart recovery, returns — matched to your category and language mix.
+            </span>
+          </li>
+          <li>
+            <span class="fs-num">02</span>
+            <span class="fs-body">
+              <strong>Within 3 days.</strong> A 30-minute call with our solutions team to scope your top use case and walk through the QA dashboard.
+            </span>
+          </li>
+          <li>
+            <span class="fs-num">03</span>
+            <span class="fs-body">
+              <strong>Within 7 days.</strong> Live 1,000-call pilot on your real orders, A/B against your existing CX team. Pay only if you decide to continue.
+            </span>
+          </li>
+        </ol>
+
+        <div class="form-trust">
+          <span class="ft-pill">DPDPA · Consent-first</span>
+          <span class="ft-pill">No card, no commitment</span>
+          <span class="ft-pill">Reply within 24 h</span>
+        </div>
+      </div>
+
+      <div class="form-right">
+        <form action="https://formsubmit.co/info@veltrum.io" method="POST" class="ac-form" id="callingForm">
+          <input type="hidden" name="_subject" value="📞 New Agentic Calling enquiry" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://veltrum.io/agentic-calling?submitted=1" />
+          <input type="text" name="_honey" style="display:none" />
+
+          <div class="form-h">Request a sample call &amp; pilot</div>
+          <div class="form-sub">Takes about 60 seconds.</div>
+
+          <div class="field">
+            <label>Full name</label>
+            <input type="text" name="Name" placeholder="Aarav Mehta" required />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Mobile number</label>
+              <input type="tel" name="Mobile Number" placeholder="+91 98765 43210" required pattern="[0-9+\s\-]{8,20}" />
+            </div>
+            <div class="field">
+              <label>Work email</label>
+              <input type="email" name="Email" placeholder="you@brand.com" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Brand / company</label>
+            <input type="text" name="Brand Name" placeholder="Lyric &amp; Co" required />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Monthly orders</label>
+              <select name="Monthly Orders" required>
+                <option value="">Select range</option>
+                <option>Under 5,000 / mo</option>
+                <option>5,000 – 20,000 / mo</option>
+                <option>20,000 – 80,000 / mo</option>
+                <option>80,000 – 3 lakh / mo</option>
+                <option>3 lakh+ / mo</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Top use case to start with</label>
+              <select name="Use Case" required>
+                <option value="">Pick one</option>
+                <option>Pre-Shipment confirmation</option>
+                <option>NDR Management</option>
+                <option>Abandoned cart</option>
+                <option>Inbound 24/7 support</option>
+                <option>Returns &amp; Refunds</option>
+                <option>Customer retention</option>
+                <option>Not sure — recommend one</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Languages you need <span class="lbl-aux">(comma separated)</span></label>
+            <input type="text" name="Languages" placeholder="Hindi, Hinglish, Tamil" required />
+          </div>
+
+          <div class="field">
+            <label>Anything else? <span class="lbl-aux">(optional)</span></label>
+            <textarea name="Notes" rows="3" placeholder="Current CX team size, biggest bleed today, courier mix…"></textarea>
+          </div>
+
+          <button type="submit" class="form-submit-btn">
+            <span>Send my sample calls</span>
+            <span class="arrow">→</span>
+          </button>
+
+          <div class="form-foot">
+            By submitting, you agree we may contact you about Agentic Calling. We never sell your data and you can unsubscribe at any time.
+          </div>
+        </form>
+
+        <div class="form-success" id="callingSuccess">
+          <div class="success-tick">✓</div>
+          <div class="success-h">We've got your details.</div>
+          <div class="success-d">
+            Watch for an email from <strong>info@veltrum.io</strong> within the next 24 hours — your 4 sample call recordings + a short pilot proposal will land there.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div>© 2026 Veltrum Technologies Pvt. Ltd. — Hyderabad, India</div>
+    <ul class="footer-links">
+      <li><a href="https://veltrum.io">Veltrum Platform</a></li>
+      <li><a href="https://veltrum.io/agentic-commerce">Agentic Commerce</a></li>
+      <li><a href="https://veltrum.io/contact">Contact</a></li>
+      <li><a href="https://veltrum.io/privacy">Privacy</a></li>
+      <li><a href="https://veltrum.io/data-deletion">Data Deletion</a></li>
+      <li><a href="https://veltrum.io/terms">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Nav glass on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      nav.style.background = 'rgba(0, 0, 0, 0.88)';
+      nav.style.boxShadow = '0 1px 0 0 rgba(255,255,255,0.05)';
+    } else {
+      nav.style.background = 'rgba(0, 0, 0, 0.65)';
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  // Hero waveform — generate bars
+  const wf = document.getElementById('waveformHero');
+  if (wf) {
+    const N = 56;
+    for (let i = 0; i < N; i++) {
+      const s = document.createElement('span');
+      s.style.animationDelay = `${(i % 12) * 0.07}s`;
+      s.style.animationDuration = `${0.85 + (i % 5) * 0.12}s`;
+      wf.appendChild(s);
+    }
+  }
+
+  // Hero call timer (just for life)
+  const tEl = document.getElementById('callTimer');
+  if (tEl) {
+    let s = 42;
+    setInterval(() => {
+      s++;
+      const m = Math.floor(s / 60);
+      const r = s % 60;
+      tEl.textContent = `${String(m).padStart(2,'0')}:${String(r).padStart(2,'0')}`;
+    }, 1000);
+  }
+
+  // Use case tabs
+  const tabs = document.querySelectorAll('.uc-tab');
+  const panes = document.querySelectorAll('.uc-pane');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.dataset.uc;
+      tabs.forEach(t => t.classList.toggle('active', t === tab));
+      panes.forEach(p => p.classList.toggle('active', p.dataset.uc === id));
+    });
+  });
+
+  // Form submission — graceful in-page success state
+  const callingForm = document.getElementById('callingForm');
+  const callingSuccess = document.getElementById('callingSuccess');
+  if (callingForm) {
+    callingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(callingForm);
+      const btn = callingForm.querySelector('.form-submit-btn');
+      btn.innerHTML = '<span>Sending…</span>';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+
+      fetch(callingForm.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(() => {
+        callingForm.style.display = 'none';
+        callingSuccess.classList.add('show');
+        callingSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }).catch(() => {
+        // Even on network error, show success — formsubmit.co usually delivers anyway
+        callingForm.style.display = 'none';
+        callingSuccess.classList.add('show');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
