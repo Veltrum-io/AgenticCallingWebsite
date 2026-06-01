@@ -1343,6 +1343,7 @@
   }
   .ind-panel { display: none; }
   .ind-panel.active { display: block; animation: fadeIn 0.35s ease; }
+  .ind-panel.active * { opacity: 1 !important; transform: none !important; }
 
   /* ====== USE CASE CARDS (non-D2C industries) ====== */
   .uc-cards-grid {
@@ -1546,7 +1547,7 @@
       <button class="ind-tab active" data-industry="d2c">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         D2C Ecommerce
-        <span class="ind-badge">Focus</span>
+        
       </button>
       <button class="ind-tab" data-industry="banking">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -1871,11 +1872,12 @@
         </div>
 
       </div>
+    </div><!-- /uc-wrap -->
     </div><!-- /ind-panel d2c -->
 
     <!-- Banking & NBFC Panel -->
     <div class="ind-panel" data-industry="banking">
-      <div class="uc-cards-grid reveal">
+      <div class="uc-cards-grid">
         <div class="uc-card">
           <div class="uc-card-icon" style="background:linear-gradient(135deg,#f472b6,#fb923c)">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -1929,7 +1931,7 @@
 
     <!-- Real Estate Panel -->
     <div class="ind-panel" data-industry="realestate">
-      <div class="uc-cards-grid reveal">
+      <div class="uc-cards-grid">
         <div class="uc-card">
           <div class="uc-card-icon" style="background:linear-gradient(135deg,#f472b6,#fb923c)">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1983,7 +1985,7 @@
 
     <!-- BPO & Sales Panel -->
     <div class="ind-panel" data-industry="bpo">
-      <div class="uc-cards-grid reveal">
+      <div class="uc-cards-grid">
         <div class="uc-card">
           <div class="uc-card-icon" style="background:linear-gradient(135deg,#f472b6,#fb923c)">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
