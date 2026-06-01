@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wnxypgoluz");
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terms &amp; Conditions — Converz.io</title>
+<meta name="description" content="Converz.io terms of service governing use of the platform, APIs and connected services." />
+<link rel="icon" type="image/svg+xml" href="favicon_icon_220x220.svg" />
+<link rel="apple-touch-icon" href="favicon_icon_220x220.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000; --bg-2: #050505; --surface: #0c0c0c; --surface-2: #141414;
+    --border: rgba(255,255,255,0.08); --border-strong: rgba(255,255,255,0.22);
+    --text: #ffffff; --text-dim: #b0b0b0; --text-muted: #6a6a6a;
+    --primary: #8b5cf6; --primary-2: #a78bfa; --accent: #22d3ee;
+    --pink: #f472b6; --green: #34d399; --orange: #fb923c;
+    --gradient: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
+    --gradient-2: linear-gradient(135deg, #f472b6 0%, #8b5cf6 50%, #22d3ee 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  a { color: var(--primary-2); text-decoration: none; }
+  a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .grid-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at top, black 10%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at top, black 10%, transparent 70%); }
+  .blob { position: fixed; border-radius: 50%; filter: blur(140px); opacity: 0.18; z-index: 0; pointer-events: none; }
+  .blob-1 { width: 600px; height: 600px; background: #22d3ee; top: -250px; right: -200px; opacity: 0.14; }
+  .blob-2 { width: 500px; height: 500px; background: #f472b6; top: 30%; left: -200px; opacity: 0.10; }
+  nav { position: sticky; top: 0; z-index: 50; padding: 16px 5%; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background: rgba(0, 0, 0, 0.7); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.02em; color: #fff; text-decoration: none; }
+  .logo-img { height: 54px; width: auto; display: block; }
+  .nav-links { display: flex; gap: 30px; list-style: none; }
+  .nav-links a { color: var(--text-dim); font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  .nav-cta { padding: 9px 18px; background: #ffffff; color: #000 !important; border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 0 20px rgba(255,255,255,0.18); }
+  .nav-cta:hover { text-decoration: none; transform: translateY(-1px); background: #f0f0f0; }
+  .doc-head { position: relative; z-index: 1; padding: 80px 5% 50px; border-bottom: 1px solid var(--border); }
+  .doc-head-wrap { max-width: 1180px; margin: 0 auto; }
+  .crumb { color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 18px; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 10px; }
+  .crumb a { color: var(--text-muted); }
+  .crumb-sep { opacity: 0.5; }
+  .doc-h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 16px; }
+  .doc-h1 .gradient { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .doc-meta { display: flex; gap: 24px; flex-wrap: wrap; color: var(--text-muted); font-size: 13px; font-family: 'JetBrains Mono', monospace; }
+  .doc-meta strong { color: var(--text-dim); font-weight: 500; }
+  .doc-wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 60px 5% 100px; display: grid; grid-template-columns: 240px 1fr; gap: 64px; }
+  .toc { position: sticky; top: 100px; align-self: start; max-height: calc(100vh - 120px); overflow-y: auto; }
+  .toc-h { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-muted); margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .toc ol { list-style: none; counter-reset: toc-c; }
+  .toc li { counter-increment: toc-c; margin-bottom: 4px; }
+  .toc a { display: block; padding: 6px 0 6px 28px; color: var(--text-dim); font-size: 13px; border-left: 1px solid var(--border); position: relative; transition: all 0.2s; }
+  .toc a::before { content: counter(toc-c, decimal-leading-zero); position: absolute; left: 10px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+  .toc a:hover { color: var(--text); border-left-color: var(--primary-2); text-decoration: none; }
+  .toc a.active { color: var(--text); border-left-color: var(--primary); font-weight: 600; }
+  .toc a.active::before { color: var(--primary-2); }
+  .content { max-width: 720px; min-width: 0; }
+  .content p { color: var(--text-dim); margin-bottom: 16px; }
+  .content h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.015em; margin: 56px 0 18px; line-height: 1.25; scroll-margin-top: 90px; display: flex; align-items: baseline; gap: 14px; }
+  .content h2:first-child { margin-top: 0; }
+  .content h2 .num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--primary-2); font-weight: 500; flex-shrink: 0; width: 36px; }
+  .content h3 { font-size: 17px; font-weight: 700; margin: 28px 0 10px; color: var(--text); }
+  .content ul, .content ol { margin: 0 0 18px 22px; color: var(--text-dim); }
+  .content ul li, .content ol li { margin-bottom: 8px; }
+  .content ul li::marker { color: var(--primary-2); }
+  .content strong { color: var(--text); font-weight: 600; }
+  .callout { background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)); border: 1px solid rgba(255,255,255,0.25); border-left: 3px solid var(--primary); padding: 18px 22px; border-radius: 12px; margin: 24px 0; color: var(--text-dim); font-size: 14px; }
+  .callout strong { color: var(--text); }
+  .callout-h { color: var(--primary-2); font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; font-weight: 600; }
+  .legal-block { background: var(--surface-2); border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 10px; padding: 16px 20px; color: var(--text-dim); font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.7; font-family: 'JetBrains Mono', monospace; margin: 18px 0; }
+  .legal-block strong { color: var(--text); font-weight: 700; }
+  footer { border-top: 1px solid var(--border); padding: 40px 5%; text-align: center; color: var(--text-muted); font-size: 13px; position: relative; z-index: 1; }
+  footer ul { display: flex; gap: 24px; list-style: none; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+  footer ul a { color: var(--text-dim); }
+  @media (max-width: 900px) {
+    .doc-wrap { grid-template-columns: 1fr; gap: 32px; padding: 40px 6% 80px; }
+    .toc { position: static; max-height: none; padding: 18px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; }
+    .nav-links { display: none; }
+    .logo-img { height: 44px; }
+    .doc-head { padding: 60px 6% 40px; }
+    .content h2 { font-size: 22px; }
+  }
+</style>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<nav>
+  <a href="index.html" class="logo" aria-label="Converz.io home">
+    <img src="nav_logo_full_560x90.svg" alt="Converz.io" class="logo-img" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#use-cases">Use cases</a></li>
+    <li><a href="index.html#voice">Voice quality</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+  </ul>
+  <a href="index.html#cta" class="nav-cta">Hear it live →</a>
+</nav>
+
+<header class="doc-head">
+  <div class="doc-head-wrap">
+    <div class="crumb">
+      <a href="index.html">Converz</a>
+      <span class="crumb-sep">/</span>
+      <span>Legal</span>
+      <span class="crumb-sep">/</span>
+      <span>Terms</span>
+    </div>
+    <h1 class="doc-h1">Terms &amp; <span class="gradient">Conditions</span></h1>
+    <div class="doc-meta">
+      <span><strong>Effective:</strong> April 1, 2026</span>
+      <span><strong>Last updated:</strong> April 26, 2026</span>
+      <span><strong>Version:</strong> 1.2</span>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap">
+  <aside class="toc" aria-label="Table of contents">
+    <div class="toc-h">On this page</div>
+    <ol>
+      <li><a href="#acceptance">Acceptance of terms</a></li>
+      <li><a href="#definitions">Definitions</a></li>
+      <li><a href="#account">Your account</a></li>
+      <li><a href="#use">Acceptable use</a></li>
+      <li><a href="#agents">Use of AI agents</a></li>
+      <li><a href="#connectors">Connectors &amp; third parties</a></li>
+      <li><a href="#data">Customer data</a></li>
+      <li><a href="#fees">Fees &amp; billing</a></li>
+      <li><a href="#trial">Free trial &amp; beta</a></li>
+      <li><a href="#ip">Intellectual property</a></li>
+      <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#confidentiality">Confidentiality</a></li>
+      <li><a href="#warranties">Warranties</a></li>
+      <li><a href="#liability">Limitation of liability</a></li>
+      <li><a href="#indemnity">Indemnity</a></li>
+      <li><a href="#term">Term &amp; termination</a></li>
+      <li><a href="#suspension">Suspension</a></li>
+      <li><a href="#law">Governing law</a></li>
+      <li><a href="#changes">Changes to terms</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </aside>
+
+  <article class="content">
+
+    <p style="font-size: 15px;"><strong>These Terms govern your access to and use of Converz.io.</strong> By creating an account, clicking "I accept", or using the service in any way, you agree to these Terms. If you are entering into them on behalf of a company or other organisation, you represent that you have authority to bind that entity, and "you" refers to that entity.</p>
+
+    <div class="callout">
+      <div class="callout-h">In short</div>
+      Use Converz to automate your calling operations. Don't break the law with it. Pay the bills. We provide the service "as is" — though we'll work hard to make it excellent. If something goes wrong, our liability is capped at what you paid us in the last 12 months.
+    </div>
+
+    <h2 id="acceptance"><span class="num">01</span><span>Acceptance of terms</span></h2>
+    <p>These Terms form a binding agreement between Veltrum Technologies Pvt. Ltd. ("<strong>Converz</strong>", "<strong>we</strong>", "<strong>our</strong>", "<strong>us</strong>") and the person or entity using the service ("<strong>you</strong>", "<strong>customer</strong>"). They apply together with the Order Form you sign (if any), our Privacy Policy, and any product-specific terms we post.</p>
+
+    <h2 id="definitions"><span class="num">02</span><span>Definitions</span></h2>
+    <ul>
+      <li><strong>Service:</strong> the Converz platform, APIs, dashboards, voice agents, connectors, documentation, and related software.</li>
+      <li><strong>Workspace:</strong> an isolated tenant created for your organisation in the Service.</li>
+      <li><strong>Customer Data:</strong> data you, your users, or your connected systems submit to or generate inside the Service.</li>
+      <li><strong>Agents:</strong> automated voice agents we provide that place and receive calls on your behalf, under your authorisation and playbook configuration.</li>
+      <li><strong>Connector:</strong> an integration that links your Workspace to a third-party system (e.g. Shopify, Delhivery, Shiprocket).</li>
+    </ul>
+
+    <h2 id="account"><span class="num">03</span><span>Your account</span></h2>
+    <p>To use Converz you must create an account using accurate information and keep it up to date. You are responsible for everything that happens under your account, for the security of your credentials, and for the actions of users you invite.</p>
+    <p>You must be at least 18 years old to register. Converz is a B2B product not designed for consumer use.</p>
+
+    <h2 id="use"><span class="num">04</span><span>Acceptable use</span></h2>
+    <p>You may use Converz only for lawful business purposes. You agree not to:</p>
+    <ul>
+      <li>Use the Service in violation of any law, including DPDPA, TRAI regulations, TCPA, export, sanctions, anti-spam, or consumer protection laws.</li>
+      <li>Place calls without proper consent as required by Indian telecommunications law and DPDPA.</li>
+      <li>Disregard DND (Do-Not-Disturb) registrations or quiet-hours restrictions.</li>
+      <li>Reverse-engineer, decompile, or attempt to extract the source code of the Service, except where applicable law permits.</li>
+      <li>Resell, sublicense, or expose the Service to third parties as a stand-alone offering without our written consent.</li>
+      <li>Use the Service to build a competing product, train a competing model, or benchmark in bad faith.</li>
+      <li>Upload malware, infringing content, or content that is unlawful, hateful, harassing, or defamatory.</li>
+    </ul>
+
+    <h2 id="agents"><span class="num">05</span><span>Use of AI agents</span></h2>
+    <p>Voice agents place and receive calls on your behalf. You acknowledge that:</p>
+    <ul>
+      <li>Agents make decisions based on the playbooks and data you configure. Output may contain errors. You remain responsible for reviewing critical actions and for the consequences of decisions you authorise.</li>
+      <li>You are responsible for ensuring that end-customers have provided appropriate consent to receive AI-placed calls, as required by applicable law.</li>
+      <li>We will not deliberately use your Customer Data or call recordings to train foundation models. Where agents send prompts to third-party LLM providers, we use their non-training endpoints whenever available.</li>
+      <li>Agents do not provide legal, medical, tax, or financial advice. Don't use them as a substitute for licensed professional judgement.</li>
+    </ul>
+
+    <h2 id="connectors"><span class="num">06</span><span>Connectors &amp; third parties</span></h2>
+    <p>The Service connects to third-party platforms you authorise. Those platforms have their own terms, rate limits, and data handling rules. You are responsible for complying with them. We are not liable for third-party platform downtime, policy changes, or API breakage that affects how Converz operates.</p>
+
+    <h2 id="data"><span class="num">07</span><span>Customer data</span></h2>
+    <p>You retain all rights, title and interest in your Customer Data. You grant Converz a worldwide, royalty-free licence to host, process, transmit, display and modify Customer Data solely as needed to provide the Service.</p>
+    <p>We may produce aggregated and de-identified statistics from Customer Data ("<strong>Service Analytics</strong>") for the purpose of improving the Service and product research. Service Analytics will not identify you or your customers and remain our property.</p>
+
+    <h2 id="fees"><span class="num">08</span><span>Fees &amp; billing</span></h2>
+    <ul>
+      <li>Fees are set out in your Order Form or on our pricing page in effect at the time you sign up.</li>
+      <li>Subscriptions auto-renew for successive terms equal to the original term unless either party gives 30 days' notice of non-renewal.</li>
+      <li>Invoices are payable within 15 days of issue. Late payments accrue interest at 1.5% per month or the maximum permitted by law.</li>
+      <li>Fees are exclusive of taxes; you are responsible for applicable GST/VAT/sales tax, except taxes on our income.</li>
+      <li>Except as expressly stated, fees are non-refundable.</li>
+    </ul>
+
+    <h2 id="trial"><span class="num">09</span><span>Free trial &amp; beta</span></h2>
+    <p>We may make features available for free, in trial, or in beta. Such features are provided "as is" without warranty, may be modified or discontinued at any time, and may have additional usage limits. To the maximum extent permitted by law, our liability for free, trial, or beta features is limited to ₹100 in aggregate.</p>
+
+    <h2 id="ip"><span class="num">10</span><span>Intellectual property</span></h2>
+    <p>The Service, including the platform, agent designs, voice models, dashboards, documentation, and our trademarks, is owned by Veltrum Technologies Pvt. Ltd. and protected by intellectual property laws. We grant you a limited, non-exclusive, non-transferable, revocable licence to use the Service during the term, in line with these Terms.</p>
+
+    <h2 id="feedback"><span class="num">11</span><span>Feedback</span></h2>
+    <p>If you send us suggestions, ideas, or feedback, you grant us a perpetual, irrevocable, worldwide, royalty-free licence to use it without restriction. We are not obliged to keep feedback confidential or to compensate you for it.</p>
+
+    <h2 id="confidentiality"><span class="num">12</span><span>Confidentiality</span></h2>
+    <p>Each party may receive non-public information from the other. The recipient will protect confidential information using at least the same degree of care it uses for its own confidential information (and no less than reasonable care), use it only to perform under these Terms, and disclose it only to employees and contractors who need to know and are bound by equivalent confidentiality obligations.</p>
+
+    <h2 id="warranties"><span class="num">13</span><span>Warranties &amp; disclaimers</span></h2>
+    <p>We warrant that we will provide the Service in a professional manner and in accordance with our published documentation. We will use commercially reasonable efforts to maintain the Service availability described in the Order Form or SLA.</p>
+    <div class="legal-block">
+      <strong>Except for the warranties expressly stated above, the Service is provided "as is" and "as available". To the maximum extent permitted by law, Converz disclaims all other warranties, whether express, implied, statutory or otherwise, including any implied warranties of merchantability, fitness for a particular purpose, title, non-infringement, and any warranty arising out of course of dealing or usage of trade.</strong>
+    </div>
+
+    <h2 id="liability"><span class="num">14</span><span>Limitation of liability</span></h2>
+    <div class="legal-block">
+      To the maximum extent permitted by law, in no event will either party be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages, or for any loss of profits, revenue, data, or goodwill, even if advised of the possibility. <strong>Each party's total liability arising out of or related to these Terms will not exceed the fees paid or payable by the customer to Converz in the twelve months immediately preceding the event giving rise to the claim.</strong>
+    </div>
+    <p>The above limits do not apply to: (a) breaches of confidentiality, (b) infringement of the other party's intellectual property, (c) the customer's obligation to pay fees, or (d) liability that cannot be excluded under applicable law.</p>
+
+    <h2 id="indemnity"><span class="num">15</span><span>Indemnity</span></h2>
+    <p>You will defend and indemnify Converz against any third-party claim arising out of: (a) your Customer Data; (b) your or your users' use of the Service in violation of these Terms; or (c) your violation of any law or third-party right, including calling regulations.</p>
+    <p>Converz will defend and indemnify you against any third-party claim that the Service, when used in line with these Terms, infringes that third party's intellectual property rights, and pay damages and costs finally awarded by a court or in settlement we approve.</p>
+
+    <h2 id="term"><span class="num">16</span><span>Term &amp; termination</span></h2>
+    <p>These Terms remain in effect for the duration of your subscription. Either party may terminate for material breach if the breach is not cured within 30 days of written notice (or immediately, in the case of unpaid fees over 30 days late).</p>
+    <p>Upon termination: (i) your right to use the Service ends, (ii) you may export Customer Data for 30 days, after which we may delete it, and (iii) clauses that by their nature should survive (IP, confidentiality, fees accrued, liability, governing law) survive.</p>
+
+    <h2 id="suspension"><span class="num">17</span><span>Suspension</span></h2>
+    <p>We may suspend access to the Service, with or without notice, if we reasonably believe: (a) the Service is being used in a way that threatens its integrity, performance or availability; (b) there is suspected unauthorised access to your account; (c) you are in breach of these Terms; or (d) suspension is required by law or telecommunications regulation. We will lift the suspension as soon as the underlying issue is resolved.</p>
+
+    <h2 id="law"><span class="num">18</span><span>Governing law &amp; disputes</span></h2>
+    <p>These Terms are governed by the laws of India, without regard to conflict-of-laws principles. The parties submit to the exclusive jurisdiction of the courts of Hyderabad, Telangana, except that either party may seek injunctive relief in any court of competent jurisdiction to protect its intellectual property.</p>
+    <p>Before filing a claim, the parties agree to attempt to resolve the dispute in good faith for at least 30 days, including a senior-level call.</p>
+
+    <h2 id="changes"><span class="num">19</span><span>Changes to these terms</span></h2>
+    <p>We may update these Terms from time to time. If we make material changes, we will notify active customers at least 30 days in advance by email or in-product notice. Continued use of the Service after the change takes effect constitutes acceptance.</p>
+
+    <h2 id="contact"><span class="num">20</span><span>Contact</span></h2>
+    <p>For any legal or contractual questions, contact:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:info@veltrum.io">info@veltrum.io</a></li>
+      <li><strong>Postal:</strong> Veltrum Technologies Pvt. Ltd., Hyderabad, Telangana, India</li>
+    </ul>
+
+  </article>
+</main>
+
+<footer>
+  <div>© 2026 Veltrum Technologies Pvt. Ltd. — Hyderabad, India</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="data-deletion.html">Data Deletion</a></li>
+  </ul>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('.content h2[id]');
+  const tocLinks = document.querySelectorAll('.toc a');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.toc a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

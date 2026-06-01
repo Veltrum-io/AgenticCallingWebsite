@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wnxypgoluz");
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy — Converz.io</title>
+<meta name="description" content="Converz.io privacy policy — how we collect, use, store, and protect personal data." />
+<link rel="icon" type="image/svg+xml" href="favicon_icon_220x220.svg" />
+<link rel="apple-touch-icon" href="favicon_icon_220x220.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --bg-2: #050505;
+    --surface: #0c0c0c;
+    --surface-2: #141414;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.22);
+    --text: #ffffff;
+    --text-dim: #b0b0b0;
+    --text-muted: #6a6a6a;
+    --primary: #8b5cf6;
+    --primary-2: #a78bfa;
+    --accent: #22d3ee;
+    --pink: #f472b6;
+    --green: #34d399;
+    --gradient: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
+    --gradient-2: linear-gradient(135deg, #f472b6 0%, #8b5cf6 50%, #22d3ee 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  a { color: var(--primary-2); text-decoration: none; }
+  a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  .grid-bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at top, black 10%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at top, black 10%, transparent 70%);
+  }
+  .blob {
+    position: fixed; border-radius: 50%; filter: blur(140px); opacity: 0.18; z-index: 0; pointer-events: none;
+  }
+  .blob-1 { width: 600px; height: 600px; background: #8b5cf6; top: -250px; left: -200px; }
+  .blob-2 { width: 500px; height: 500px; background: #22d3ee; top: 20%; right: -200px; opacity: 0.12; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    padding: 16px 5%;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 18px; letter-spacing: -0.02em;
+    color: #fff; text-decoration: none;
+  }
+  .logo-img { height: 54px; width: auto; display: block; }
+  .nav-links { display: flex; gap: 30px; list-style: none; }
+  .nav-links a { color: var(--text-dim); font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  .nav-cta {
+    padding: 9px 18px; background: #ffffff; color: #000 !important;
+    border-radius: 8px; font-weight: 600; font-size: 13px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.18);
+  }
+  .nav-cta:hover { text-decoration: none; transform: translateY(-1px); background: #f0f0f0; }
+
+  .doc-head {
+    position: relative; z-index: 1;
+    padding: 80px 5% 50px;
+    border-bottom: 1px solid var(--border);
+  }
+  .doc-head-wrap { max-width: 1180px; margin: 0 auto; }
+  .crumb {
+    color: var(--text-muted); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 18px; font-family: 'JetBrains Mono', monospace;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .crumb a { color: var(--text-muted); }
+  .crumb-sep { opacity: 0.5; }
+  .doc-h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .doc-h1 .gradient {
+    background: var(--gradient);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .doc-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    color: var(--text-muted); font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .doc-meta strong { color: var(--text-dim); font-weight: 500; }
+
+  .doc-wrap {
+    position: relative; z-index: 1;
+    max-width: 1180px; margin: 0 auto;
+    padding: 60px 5% 100px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 64px;
+  }
+
+  .toc {
+    position: sticky; top: 100px; align-self: start;
+    max-height: calc(100vh - 120px); overflow-y: auto;
+  }
+  .toc-h {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc ol { list-style: none; counter-reset: toc-c; }
+  .toc li { counter-increment: toc-c; margin-bottom: 4px; }
+  .toc a {
+    display: block;
+    padding: 6px 0 6px 28px;
+    color: var(--text-dim);
+    font-size: 13px;
+    border-left: 1px solid var(--border);
+    margin-left: 0;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .toc a::before {
+    content: counter(toc-c, decimal-leading-zero);
+    position: absolute;
+    left: 10px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+  }
+  .toc a:hover { color: var(--text); border-left-color: var(--primary-2); text-decoration: none; }
+  .toc a.active { color: var(--text); border-left-color: var(--primary); font-weight: 600; }
+  .toc a.active::before { color: var(--primary-2); }
+
+  .content { max-width: 720px; min-width: 0; }
+  .content p { color: var(--text-dim); margin-bottom: 16px; }
+  .content h2 {
+    font-size: 26px; font-weight: 700; letter-spacing: -0.015em;
+    margin: 56px 0 18px; line-height: 1.25;
+    scroll-margin-top: 90px;
+    display: flex; align-items: baseline; gap: 14px;
+  }
+  .content h2:first-child { margin-top: 0; }
+  .content h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--primary-2);
+    font-weight: 500;
+    flex-shrink: 0;
+    width: 36px;
+  }
+  .content h3 { font-size: 17px; font-weight: 700; margin: 28px 0 10px; color: var(--text); }
+  .content ul, .content ol { margin: 0 0 18px 22px; color: var(--text-dim); }
+  .content ul li, .content ol li { margin-bottom: 8px; }
+  .content ul li::marker { color: var(--primary-2); }
+  .content strong { color: var(--text); font-weight: 600; }
+
+  .callout {
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.25);
+    border-left: 3px solid var(--primary);
+    padding: 18px 22px;
+    border-radius: 12px;
+    margin: 24px 0;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  .callout strong { color: var(--text); }
+  .callout-h {
+    color: var(--primary-2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 24px;
+    font-size: 13px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  table.data th, table.data td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table.data th {
+    background: var(--surface-2);
+    color: var(--text);
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  table.data td { color: var(--text-dim); background: var(--surface); }
+  table.data tr:last-child td { border-bottom: none; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 5%;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    position: relative; z-index: 1;
+  }
+  footer ul {
+    display: flex; gap: 24px; list-style: none;
+    justify-content: center; margin-top: 14px; flex-wrap: wrap;
+  }
+  footer ul a { color: var(--text-dim); }
+
+  @media (max-width: 900px) {
+    .doc-wrap { grid-template-columns: 1fr; gap: 32px; padding: 40px 6% 80px; }
+    .toc { position: static; max-height: none; padding: 18px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; }
+    .nav-links { display: none; }
+    .logo-img { height: 44px; }
+    .doc-head { padding: 60px 6% 40px; }
+    .content h2 { font-size: 22px; }
+  }
+</style>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<nav>
+  <a href="index.html" class="logo" aria-label="Converz.io home">
+    <img src="nav_logo_full_560x90.svg" alt="Converz.io" class="logo-img" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#use-cases">Use cases</a></li>
+    <li><a href="index.html#voice">Voice quality</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="privacy.html" style="color:#fff">Privacy</a></li>
+  </ul>
+  <a href="index.html#cta" class="nav-cta">Hear it live →</a>
+</nav>
+
+<header class="doc-head">
+  <div class="doc-head-wrap">
+    <div class="crumb">
+      <a href="index.html">Converz</a>
+      <span class="crumb-sep">/</span>
+      <span>Legal</span>
+      <span class="crumb-sep">/</span>
+      <span>Privacy</span>
+    </div>
+    <h1 class="doc-h1">Privacy <span class="gradient">Policy</span></h1>
+    <div class="doc-meta">
+      <span><strong>Effective:</strong> April 1, 2026</span>
+      <span><strong>Last updated:</strong> April 26, 2026</span>
+      <span><strong>Version:</strong> 1.2</span>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap">
+  <aside class="toc" aria-label="Table of contents">
+    <div class="toc-h">On this page</div>
+    <ol>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#who">Who we are</a></li>
+      <li><a href="#data">Data we collect</a></li>
+      <li><a href="#use">How we use data</a></li>
+      <li><a href="#legal-basis">Legal basis</a></li>
+      <li><a href="#sharing">Sharing &amp; disclosure</a></li>
+      <li><a href="#subprocessors">Sub-processors</a></li>
+      <li><a href="#retention">Retention</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#transfers">International transfers</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#cookies">Cookies &amp; tracking</a></li>
+      <li><a href="#children">Children's privacy</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </aside>
+
+  <article class="content">
+
+    <h2 id="intro"><span class="num">01</span><span>Introduction</span></h2>
+    <p>Veltrum Technologies Pvt. Ltd. ("<strong>Converz</strong>", "<strong>we</strong>", "<strong>our</strong>", or "<strong>us</strong>") operates the Converz.io AI agentic calling platform — a software-as-a-service product that helps Indian D2C brands automate calling workflows with voice AI agents. This Privacy Policy explains what personal data we collect, how we use it, who we share it with, and the rights you have over it.</p>
+    <p>This policy applies to <strong>converz.io</strong>, our customer dashboard, our APIs, and any product, page or interaction that links to it. It does not apply to third-party services we integrate with — those are governed by their own privacy policies.</p>
+    <div class="callout">
+      <div class="callout-h">In short</div>
+      We only collect what we need to run the product. We never sell your data. You can ask us to export or delete it at any time by emailing <a href="mailto:info@veltrum.io">info@veltrum.io</a>.
+    </div>
+
+    <h2 id="who"><span class="num">02</span><span>Who we are</span></h2>
+    <p>Veltrum Technologies Pvt. Ltd. is incorporated in India, with its registered office in Hyderabad, Telangana. For the purposes of EU/UK GDPR, we act as a <strong>data controller</strong> with respect to information collected through our marketing site and account onboarding, and as a <strong>data processor</strong> with respect to data processed inside our customers' Converz workspaces on their behalf.</p>
+
+    <h2 id="data"><span class="num">03</span><span>Data we collect</span></h2>
+    <p>We collect information in three categories:</p>
+
+    <h3>3.1 Information you give us</h3>
+    <ul>
+      <li><strong>Account data:</strong> name, work email, phone number, brand name, monthly order volume, team size.</li>
+      <li><strong>Billing data:</strong> billing contact, GST/VAT number, billing address, last four digits of payment instrument (full instrument is held by our payment processor).</li>
+      <li><strong>Communications:</strong> emails, support tickets, calls and any content you send us.</li>
+    </ul>
+
+    <h3>3.2 Information generated when you use Converz</h3>
+    <ul>
+      <li><strong>Workspace data:</strong> agent configurations, playbook definitions, audit logs, call analytics and transcripts.</li>
+      <li><strong>Connector data:</strong> the data you authorise Converz to read from connected systems (Shopify, Delhivery, Shiprocket, etc.) — only the fields needed to run the agents you have deployed.</li>
+      <li><strong>Telemetry:</strong> page views, feature usage, browser type, IP address, device identifiers, error reports.</li>
+      <li><strong>Call data:</strong> voice recordings, transcripts, and outcome metadata from calls placed or received by Converz agents on your behalf.</li>
+    </ul>
+
+    <h3>3.3 Information from third parties</h3>
+    <ul>
+      <li><strong>Identity providers</strong> (Google, Microsoft) when you sign in via SSO — name, email, profile photo.</li>
+      <li><strong>Commerce platforms</strong> — order data, customer profiles, and fulfilment data from your connected storefront, used solely to operate calling workflows you've configured.</li>
+    </ul>
+
+    <h2 id="use"><span class="num">04</span><span>How we use data</span></h2>
+    <table class="data">
+      <thead>
+        <tr><th>Purpose</th><th>Examples</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Provide the service</td><td>Run voice agents, sync connectors, generate call transcripts, render dashboards.</td></tr>
+        <tr><td>Improve the service</td><td>Aggregated, de-identified analytics; debugging; A/B tests of agent voice quality.</td></tr>
+        <tr><td>Communicate</td><td>Onboarding emails, product updates, security advisories, billing notices.</td></tr>
+        <tr><td>Sales &amp; marketing</td><td>Reach out to prospects who requested a pilot; targeted advertising for lookalike audiences.</td></tr>
+        <tr><td>Compliance</td><td>Anti-abuse, anti-fraud, audit trails, DPDPA compliance, responding to lawful requests.</td></tr>
+      </tbody>
+    </table>
+    <p>We do <strong>not</strong> use customer workspace data or call recordings to train foundation models, and we do <strong>not</strong> sell personal data to third parties.</p>
+
+    <h2 id="legal-basis"><span class="num">05</span><span>Legal basis (EEA / UK)</span></h2>
+    <p>Where GDPR applies, we rely on the following lawful bases:</p>
+    <ul>
+      <li><strong>Contract</strong> — to deliver Converz to you under our customer agreement.</li>
+      <li><strong>Legitimate interest</strong> — to keep Converz secure, prevent abuse, and improve the product.</li>
+      <li><strong>Consent</strong> — for non-essential cookies, marketing emails to non-customers, and any sensitive processing where consent is required.</li>
+      <li><strong>Legal obligation</strong> — to comply with tax, accounting, DPDPA, or court orders.</li>
+    </ul>
+
+    <h2 id="sharing"><span class="num">06</span><span>Sharing &amp; disclosure</span></h2>
+    <p>We share data only with the following categories of recipients, and only when needed:</p>
+    <ul>
+      <li><strong>Sub-processors</strong> who run parts of our infrastructure (see <a href="#subprocessors">section 7</a>).</li>
+      <li><strong>Connectors you authorise.</strong> When you connect Shopify, Delhivery, etc., Converz reads from and writes to those services on your behalf.</li>
+      <li><strong>Professional advisers</strong> (lawyers, auditors, accountants) under confidentiality.</li>
+      <li><strong>Acquirers</strong> in the event of a merger, acquisition or asset sale — with prior notice and equivalent protection.</li>
+      <li><strong>Authorities</strong> when compelled by valid legal process, with the narrowest scope possible and notice to you where lawful.</li>
+    </ul>
+
+    <h2 id="subprocessors"><span class="num">07</span><span>Sub-processors</span></h2>
+    <p>An always-current list of our sub-processors is available from <a href="mailto:info@veltrum.io?subject=Sub-processors%20list">info@veltrum.io</a> on request. Today they include:</p>
+    <table class="data">
+      <thead>
+        <tr><th>Vendor</th><th>Purpose</th><th>Region</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Amazon Web Services</td><td>Hosting, compute, storage</td><td>ap-south-1, us-east-1</td></tr>
+        <tr><td>Cloudflare</td><td>CDN, DDoS, WAF</td><td>Global</td></tr>
+        <tr><td>Stripe / Razorpay</td><td>Payments</td><td>US / IN</td></tr>
+        <tr><td>Anthropic, OpenAI</td><td>LLM inference</td><td>US</td></tr>
+        <tr><td>Postmark</td><td>Transactional email</td><td>US</td></tr>
+        <tr><td>Sentry</td><td>Error monitoring</td><td>US</td></tr>
+        <tr><td>PostHog</td><td>Product analytics</td><td>EU</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="retention"><span class="num">08</span><span>Retention</span></h2>
+    <ul>
+      <li>Account data: retained while your workspace is active and for 90 days after deletion.</li>
+      <li>Call recordings &amp; transcripts: retained for 12 months by default; configurable per your data policy.</li>
+      <li>Connector data: refreshed continuously; cached up to 30 days after disconnect.</li>
+      <li>Audit logs: 12 months by default, configurable up to 7 years on Enterprise plans.</li>
+      <li>Marketing leads: 24 months from last interaction.</li>
+      <li>Tax &amp; billing records: as long as required by Indian tax law (currently 8 years).</li>
+    </ul>
+
+    <h2 id="security"><span class="num">09</span><span>Security</span></h2>
+    <p>Controls include:</p>
+    <ul>
+      <li>Encryption in transit (TLS 1.2+) and at rest (AES-256).</li>
+      <li>SSO + SCIM, MFA enforcement, role-based access control.</li>
+      <li>Dedicated VPC, network segmentation, private subnets for data plane.</li>
+      <li>Annual third-party penetration tests; SOC 2 Type II in progress.</li>
+      <li>24/7 security monitoring with on-call rotation; documented incident response plan.</li>
+      <li>DPDPA-aligned consent recording and DND list enforcement for all outbound calls.</li>
+    </ul>
+    <p>If you suspect a vulnerability, please email <a href="mailto:info@veltrum.io">info@veltrum.io</a>. We aim to acknowledge reports within 24 hours.</p>
+
+    <h2 id="transfers"><span class="num">10</span><span>International transfers</span></h2>
+    <p>Converz is operated from India and the United States. When personal data leaves your country of residence, we rely on Standard Contractual Clauses, the UK IDTA, and equivalent transfer mechanisms. A copy of the relevant clauses is available on request.</p>
+
+    <h2 id="rights"><span class="num">11</span><span>Your rights</span></h2>
+    <p>Depending on where you live, you may have the right to:</p>
+    <ul>
+      <li>Access the personal data we hold about you.</li>
+      <li>Correct inaccurate or incomplete data.</li>
+      <li>Delete your data ("right to be forgotten").</li>
+      <li>Object to or restrict certain processing.</li>
+      <li>Port your data to another provider.</li>
+      <li>Withdraw consent at any time.</li>
+      <li>Lodge a complaint with your supervisory authority.</li>
+    </ul>
+    <p>To exercise any of these, email <a href="mailto:info@veltrum.io">info@veltrum.io</a>. We aim to respond within 30 days.</p>
+
+    <h2 id="cookies"><span class="num">12</span><span>Cookies &amp; tracking</span></h2>
+    <p>We use first-party cookies for essential functions (auth, CSRF, session) and a small set of third-party analytics tools (PostHog, Microsoft Clarity) to understand how the product is used. You can opt out via the cookie banner on first visit, or by adjusting your browser settings.</p>
+    <p>We do not run third-party advertising trackers inside the authenticated Converz dashboard.</p>
+
+    <h2 id="children"><span class="num">13</span><span>Children's privacy</span></h2>
+    <p>Converz is a B2B product not directed at children. We do not knowingly collect data from anyone under 18. If you believe a minor has used our service, please contact us and we will delete the relevant information.</p>
+
+    <h2 id="changes"><span class="num">14</span><span>Changes to this policy</span></h2>
+    <p>We may update this policy as the product evolves. Material changes will be communicated by email to active customers at least 30 days before they take effect. The version and "last updated" date at the top of this page will always reflect the current revision.</p>
+
+    <h2 id="contact"><span class="num">15</span><span>Contact</span></h2>
+    <p>For any privacy questions, requests, or concerns, contact our Data Protection team:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:info@veltrum.io">info@veltrum.io</a></li>
+      <li><strong>Postal:</strong> Veltrum Technologies Pvt. Ltd., Hyderabad, Telangana, India</li>
+    </ul>
+    <div class="callout">
+      <div class="callout-h">EU representative</div>
+      For EEA &amp; UK residents, we will appoint an Article 27 representative when our user base crosses the relevant thresholds. Until then, please write to <a href="mailto:info@veltrum.io">info@veltrum.io</a>.
+    </div>
+
+  </article>
+</main>
+
+<footer>
+  <div>© 2026 Veltrum Technologies Pvt. Ltd. — Hyderabad, India</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="data-deletion.html">Data Deletion</a></li>
+  </ul>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('.content h2[id]');
+  const tocLinks = document.querySelectorAll('.toc a');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.toc a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
