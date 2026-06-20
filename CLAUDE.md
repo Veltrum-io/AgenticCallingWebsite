@@ -4,7 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Converz landing page — a single-file static HTML page for an AI voice model product (private beta). No build system, no package manager, no external JS dependencies. Everything lives in `index.html`.
+Converz landing page for an AI voice model product (private beta). No build system, no package manager, no external JS dependencies. Three static HTML files:
+- `index.html` — full landing page (all interactive content)
+- `privacy.html` — Privacy Policy (static prose, same design tokens/navbar as index)
+- `terms.html` — Terms of Service (same structure as privacy.html)
 
 ## Running
 
@@ -15,29 +18,40 @@ npx serve .
 python3 -m http.server
 ```
 
+## Deployment
+
+Deployed on Vercel. `vercel.json` contains a single rewrite routing `/` → `/index.html`.
+
 ## Architecture
 
 The entire page is one file with three logical sections inside `<script>`:
 
 ### 1. Data constants (top of script)
 All page content is defined as JS constants before any rendering logic:
-- `MARQUEE_ITEMS`, `FEATURES`, `INDUSTRIES`, `ARCH_NODES`, `ARCH_CHIPS`, `ENTERPRISE_CARDS` — arrays that drive rendered sections
+- `MARQUEE_ITEMS`, `FEATURES`, `INDUSTRIES`, `ENTERPRISE_CARDS` — arrays that drive their respective rendered sections
+- `HIGHLIGHTS_ROWS` — three rows with `{title, desc, viz}` where `viz` is a key (`'latency'`, `'voice'`, `'turns'`) selecting which inline visualization to render
 - `VOICES_INDUSTRIES`, `VOICES_LIST` — state data for the interactive voice demo
+
+The analytics section (`<!-- ANALYTICS -->`) is **static HTML** — not driven by a data constant.
 
 To add/edit content in any section, edit only these constants — the render functions read from them.
 
 ### 2. Render IIFEs (one per section)
-Each page section is rendered by a self-contained IIFE that writes `innerHTML` into a container element. Order in script:
-- Wave canvas animation (Hero background)
-- Navbar scroll blur effect
-- Rise-in animations (`[data-rise]` attribute)
-- Marquee (logo strip)
-- Features grid
-- Industry tabs + panel
-- Architecture pipeline + chips
-- Enterprise cards
-- CTA decorative bars
-- Voices interactive demo (most complex — see below)
+Each page section is rendered by a self-contained IIFE that writes `innerHTML` into a container element. HTML section order (top to bottom):
+
+1. Ambient blobs (fixed, CSS-only)
+2. Navbar
+3. Hero (wave canvas + rise-in animations)
+4. **Voices interactive demo** (see below) — `#experience`
+5. Features grid — `#features`
+6. Industry tabs + panel — `#industries`
+7. Analytics — static HTML, no IIFE
+8. Highlights rows (`HIGHLIGHTS_ROWS`) — `#highlights`
+9. Enterprise cards — `#enterprise`
+10. CTA section
+11. Footer
+
+IIFE execution order in `<script>` follows the same sequence. Each IIFE is delimited by a `// ─── SECTION NAME ───` comment.
 
 ### 3. Voices demo (stateful IIFE)
 The most interactive section. State: `selInd` (selected industry), `selVoice` (selected voice), `playing` (bool). Uses:
@@ -62,9 +76,11 @@ Fonts loaded from Google Fonts: `Geist` (body) and `Geist Mono` (unused in curre
 
 ## CSS conventions
 
-All CSS is in a single `<style>` block, minified inline. Sections are demarcated by `/* SECTION NAME */` comments. Class names use BEM-lite prefixes per section (`nav-*`, `hero-*`, `feature-*`, `ind-*`, `arch-*`, `dash-*`, `int-*`, `ent-*`, `cta-*`).
+All CSS is in a single `<style>` block, minified inline. Sections are demarcated by `/* SECTION NAME */` comments. Class names use BEM-lite prefixes per section (`nav-*`, `hero-*`, `feature-*`, `ind-*`, `arch-*`, `dash-*`, `int-*`, `ent-*`, `cta-*`, `hl-*`, `vl-*`).
 
 State classes are always `on` / `off` (active/inactive toggles on tabs and buttons).
+
+`privacy.html` and `terms.html` duplicate the global reset, ambient, and navbar CSS from `index.html` — when updating shared styles, update all three files.
 
 ## Animations
 
