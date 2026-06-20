@@ -1,2473 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wnxypgoluz");
-</script>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Converz.io — AI Voice Agents for Indian Ecommerce</title>
-<meta name="description" content="AI voice agents that sound human and run your ecommerce calling — pre-shipment confirmation, NDR resolution, abandoned cart, 24/7 inbound support, returns and retention. Built for Indian D2C." />
-<link rel="icon" type="image/svg+xml" href="favicon_icon_220x220.svg" />
-<link rel="apple-touch-icon" href="favicon_icon_220x220.svg" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Converz — Human-like AI Voice Models</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #000000;
-    --bg-2: #050505;
-    --surface: #0c0c0c;
-    --surface-2: #141414;
-    --surface-3: #1c1c1c;
-    --border: rgba(255,255,255,0.08);
-    --border-strong: rgba(255,255,255,0.22);
-    --text: #ffffff;
-    --text-dim: #b0b0b0;
-    --text-muted: #6a6a6a;
-    --primary: #ffffff;
-    --primary-2: #d4d4d4;
-    --accent: #22d3ee;
-    /* accent palette */
-    --c-purple: #8b5cf6;
-    --c-violet: #a78bfa;
-    --c-cyan:   #22d3ee;
-    --c-teal:   #14b8a6;
-    --c-pink:   #f472b6;
-    --c-orange: #fb923c;
-    --c-amber:  #facc15;
-    --c-green:  #34d399;
-    --c-red:    #f87171;
-    --green:  var(--c-green);
-    --pink:   var(--c-pink);
-    --orange: var(--c-orange);
-    --gradient: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
-    --gradient-2: linear-gradient(135deg, #f472b6 0%, #8b5cf6 50%, #22d3ee 100%);
-    --gradient-cool: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
-    --gradient-warm: linear-gradient(135deg, #fb923c 0%, #f472b6 100%);
-    --gradient-voice: linear-gradient(135deg, #22d3ee 0%, #14b8a6 100%);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-  }
-  .mono { font-family: 'JetBrains Mono', monospace; }
-  a { color: inherit; text-decoration: none; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Geist',-apple-system,BlinkMacSystemFont,sans-serif;background:#F5F1EE;color:#111827;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:#EBC9BC;color:#111827}
+button{background:none;border:none;cursor:pointer;font-family:inherit}
+a{text-decoration:none}
 
-  /* Background ambience */
-  .grid-bg {
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background-image:
-      linear-gradient(rgba(34, 211, 238, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(34, 211, 238, 0.06) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
-  }
-  .blob {
-    position: fixed; border-radius: 50%; filter: blur(140px); opacity: 0.20; z-index: 0; pointer-events: none;
-    animation: float 22s ease-in-out infinite;
-  }
-  .blob-1 { width: 600px; height: 600px; background: #22d3ee; top: -200px; left: -150px; }
-  .blob-2 { width: 520px; height: 520px; background: #14b8a6; top: 25%; right: -200px; animation-delay: -8s; }
-  .blob-3 { width: 700px; height: 700px; background: #8b5cf6; bottom: -300px; left: 30%; opacity: 0.14; animation-delay: -15s; }
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(40px, -40px) scale(1.08); }
-    66% { transform: translate(-30px, 40px) scale(0.95); }
-  }
+@keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(4%,-6%) scale(1.08)}}
+@keyframes floaty2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-5%,5%) scale(1.05)}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes flow{to{stroke-dashoffset:-24}}
+@keyframes czspin{to{transform:rotate(360deg)}}
+@keyframes czpulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.32);opacity:0}}
+@keyframes czfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes hlwave{0%,100%{transform:scaleY(.18);opacity:.5}50%{transform:scaleY(1);opacity:1}}
 
-  /* ====== NAV ====== */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 0 5%;
-    height: 72px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: rgba(5, 5, 5, 0.82);
-    border-bottom: 1px solid rgba(255,255,255,0.09);
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 1px 40px rgba(0,0,0,0.5);
-  }
-  nav::after {
-    content: '';
-    position: absolute; bottom: 0; left: 5%; right: 5%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(34,211,238,0.35), transparent);
-    pointer-events: none;
-  }
-  .logo {
-    display: flex; align-items: center;
-    text-decoration: none; flex-shrink: 0;
-  }
-  .logo-img { height: 54px; width: auto; display: block; }
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-  .nav-links {
-    display: flex; gap: 4px; list-style: none; align-items: center;
-  }
-  .nav-links a {
-    color: var(--text-dim); font-size: 13.5px; font-weight: 500;
-    padding: 7px 13px; border-radius: 8px;
-    transition: color 0.2s, background 0.2s;
-    white-space: nowrap;
-  }
-  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
-  .nav-links a.active { color: var(--text); background: rgba(255,255,255,0.07); }
-  .nav-links .nav-pill {
-    color: var(--c-cyan);
-    background: rgba(34,211,238,0.08);
-    border: 1px solid rgba(34,211,238,0.22);
-  }
-  .nav-links .nav-pill:hover {
-    background: rgba(34,211,238,0.14);
-    color: var(--c-cyan);
-  }
-  .nav-cta {
-    padding: 9px 20px;
-    background: linear-gradient(135deg, #22d3ee, #14b8a6);
-    color: #000;
-    border-radius: 9px; font-weight: 700; font-size: 13px;
-    box-shadow: 0 0 22px rgba(34,211,238,0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: inline-flex; align-items: center; gap: 7px;
-    white-space: nowrap; flex-shrink: 0;
-    margin-left: 8px;
-  }
-  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(34,211,238,0.55); }
+/* AMBIENT */
+.ambient-field{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.ambient-1{position:absolute;top:-12%;right:-8%;width:46vw;height:46vw;background:radial-gradient(circle at center,rgba(243,218,209,.9),rgba(243,218,209,0) 68%);filter:blur(8px);animation:floaty 18s ease-in-out infinite}
+.ambient-2{position:absolute;top:34%;left:-12%;width:40vw;height:40vw;background:radial-gradient(circle at center,rgba(235,201,188,.55),rgba(235,201,188,0) 70%);filter:blur(8px);animation:floaty2 22s ease-in-out infinite}
 
-  section { padding: 110px 5%; position: relative; z-index: 1; }
-  .container { max-width: 1280px; margin: 0 auto; }
+/* NAVBAR */
+#cz-nav{position:fixed;top:0;left:0;right:0;z-index:50;border-bottom:1px solid transparent;background:transparent;transition:background .35s,box-shadow .35s,border-color .35s}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{display:flex;align-items:center}
+.nav-logo img{height:34px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:14.5px;color:#4B5563;font-weight:450;transition:color .2s}
+.nav-links a:hover{color:#111827}
+.nav-actions{display:flex;align-items:center;gap:16px}
+.nav-signin{font-size:14.5px;color:#111827;font-weight:500;white-space:nowrap;transition:color .2s}
+.nav-signin:hover{color:#4B5563}
+.nav-cta{font-size:14.5px;font-weight:550;color:#fff;background:#1b1b1f;padding:10px 18px;border-radius:12px;white-space:nowrap;box-shadow:0 1px 2px rgba(17,24,39,.18),0 8px 20px -8px rgba(17,24,39,.4);transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 2px 4px rgba(17,24,39,.2),0 14px 26px -8px rgba(17,24,39,.45)}
 
-  .section-eyebrow {
-    color: var(--c-cyan);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; text-transform: uppercase;
-    letter-spacing: 0.18em; font-weight: 600;
-    margin-bottom: 14px;
-  }
-  .section-title {
-    font-size: clamp(36px, 5vw, 60px);
-    font-weight: 800; letter-spacing: -0.025em; line-height: 1.05;
-    margin-bottom: 22px;
-  }
-  .section-subtitle {
-    color: var(--text-dim); font-size: 17px; line-height: 1.65;
-    max-width: 720px;
-  }
-  .gradient-text {
-    background: var(--gradient-2);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
+/* HERO */
+.hero{position:relative;z-index:1;overflow:hidden}
+.hero-canvas-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;width:100%;height:100%}
+#wave-canvas{display:block;width:100%;height:100%}
+.hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:140px 32px 0;min-height:100vh;display:flex;flex-direction:column}
+.hero-grid{flex:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid rgba(17,24,39,.08);backdrop-filter:blur(8px);padding:7px 14px 7px 10px;border-radius:999px;margin-bottom:28px}
+.hero-badge-new{display:inline-flex;align-items:center;gap:5px;background:#1b1b1f;color:#F3DAD1;font-size:11px;font-weight:600;letter-spacing:.04em;padding:3px 8px;border-radius:999px}
+.hero-badge-text{font-size:13px;color:#4B5563;font-weight:450}
+.hero-h1{font-size:clamp(40px,5.4vw,68px);line-height:1.03;letter-spacing:-.03em;font-weight:600;color:#111827;max-width:14ch}
+.h1-warm{background:linear-gradient(135deg,#C9603A 0%,#D97C52 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h1-cool{color:#5E86B8}
+.hero-p{margin-top:24px;font-size:18px;line-height:1.65;color:#4B5563;max-width:50ch;font-weight:400}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero-cta-primary{display:inline-flex;align-items:center;gap:8px;font-size:15.5px;font-weight:550;color:#fff;background:#1b1b1f;padding:14px 24px;border-radius:14px;box-shadow:0 1px 2px rgba(17,24,39,.18),0 10px 24px -8px rgba(17,24,39,.4);transition:transform .2s,box-shadow .2s}
+.hero-cta-primary:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(17,24,39,.2),0 18px 34px -10px rgba(17,24,39,.45)}
+.hero-cta-secondary{display:inline-flex;align-items:center;gap:9px;font-size:15.5px;font-weight:550;color:#111827;background:rgba(255,255,255,.8);border:1px solid rgba(17,24,39,.1);backdrop-filter:blur(8px);padding:14px 22px;border-radius:14px;transition:transform .2s,background .2s}
+.hero-cta-secondary:hover{transform:translateY(-2px);background:#fff}
+.hero-trust-items{display:flex;flex-wrap:wrap;gap:22px;margin-top:40px}
+.hero-trust-item{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:#6B7280;font-weight:450}
+.hero-strip{margin-top:auto;padding-bottom:28px}
+.hero-strip-label{text-align:center;font-size:14px;color:#4B5563;font-weight:500;margin-bottom:20px}
+.marquee-wrap{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;gap:64px;width:max-content;animation:marquee 32s linear infinite}
+.marquee-item{display:inline-flex;align-items:center;gap:10px;font-size:18px;font-weight:550;letter-spacing:-.01em;color:#7c6f66;white-space:nowrap}
 
-  /* Buttons */
-  .btn-primary {
-    padding: 14px 28px;
-    background: #ffffff;
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 0 28px rgba(255,255,255,0.45);
-    display: inline-flex; align-items: center; gap: 10px;
-    transition: transform 0.2s;
-    font-family: inherit;
-  }
-  .btn-primary:hover { transform: translateY(-2px); }
-  .btn-secondary {
-    padding: 14px 28px;
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border-strong);
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    display: inline-flex; align-items: center; gap: 10px;
-    transition: all 0.2s;
-    font-family: inherit;
-  }
-  .btn-secondary:hover { background: rgba(255,255,255,0.04); border-color: var(--primary); }
+/* FEATURES */
+.features{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:96px 32px}
+.section-head{text-align:center;max-width:42ch;margin:0 auto 56px}
+.section-tag{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#D9B3A3;font-weight:600;margin-bottom:14px}
+.section-h2{font-size:clamp(32px,4vw,50px);line-height:1.05;letter-spacing:-.025em;font-weight:600;color:#111827}
+.section-p{margin-top:18px;font-size:17px;line-height:1.6;color:#4B5563}
+.features .section-head{text-align:left;max-width:none;margin:0 0 56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.feature-card{position:relative;background:#fff;border:1px solid rgba(17,24,39,.08);border-radius:24px;padding:32px;box-shadow:0 1px 3px rgba(17,24,39,.04),0 4px 14px -4px rgba(17,24,39,.07);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,#EBC9BC,#D9B3A3,transparent);opacity:0;transition:opacity .28s}
+.feature-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#EBC9BC 40%,#D9B3A3 60%,transparent);opacity:0;transition:opacity .28s}
+.feature-card:hover{transform:translateY(-3px);box-shadow:0 2px 6px rgba(17,24,39,.06),0 22px 48px -22px rgba(17,24,39,.24);border-color:rgba(217,179,163,.35)}
+.feature-card:hover::before,.feature-card:hover::after{opacity:1}
+.feature-num{position:absolute;top:28px;right:28px;font-size:11px;font-weight:650;letter-spacing:.12em;color:#EBC9BC}
+.feature-card-head{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-bottom:24px}
+.feature-icon{display:inline-flex;width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#F3DAD1,#FAF7F5);border:1px solid rgba(17,24,39,.06);align-items:center;justify-content:center;flex-shrink:0;margin-bottom:18px;box-shadow:0 2px 8px -4px rgba(201,96,58,.1)}
+.feature-title{font-size:20px;font-weight:650;letter-spacing:-.02em;color:#111827}
+.feature-items{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(17,24,39,.06);padding-top:4px}
+.feature-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(17,24,39,.04);font-size:14px;color:#4B5563;font-weight:450;line-height:1.45}
+.feature-item:last-child{border-bottom:none;padding-bottom:0}
 
-  /* ====== HERO ====== */
-  .hero {
-    min-height: 100vh;
-    padding: 116px 5% 80px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    gap: 72px;
-    align-items: center;
-    width: 100%;
-  }
-  .hero-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 14px;
-    background: rgba(34, 211, 238, 0.10);
-    border: 1px solid rgba(34, 211, 238, 0.35);
-    border-radius: 100px;
-    font-size: 11px;
-    color: var(--c-cyan);
-    font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-weight: 600;
-    margin-bottom: 22px;
-  }
-  .hero-pill .dot {
-    width: 6px; height: 6px;
-    background: var(--c-cyan);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--c-cyan);
-    animation: pulse-dot 1.6s ease-in-out infinite;
-  }
-  .hero-l h1 {
-    font-size: clamp(44px, 6vw, 76px);
-    font-weight: 900; letter-spacing: -0.03em;
-    line-height: 1.0;
-    margin-bottom: 26px;
-  }
-  .hero-l h1 .em {
-    display: inline-block;
-    color: transparent;
-    background: var(--gradient-voice);
-    -webkit-background-clip: text; background-clip: text;
-  }
-  .hero-l p.lead {
-    font-size: 18px; color: var(--text-dim);
-    margin-bottom: 32px; max-width: 580px;
-    line-height: 1.65;
-  }
-  .hero-cta-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-    padding-top: 30px;
-    border-top: 1px solid var(--border);
-    max-width: 600px;
-  }
-  .hero-stat .v { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
-  .hero-stat .l { font-size: 11px; color: var(--text-muted); margin-top: 4px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; }
+/* VOICES */
+.voices-section{position:relative;z-index:1;overflow:hidden;padding:108px 32px 120px;background:linear-gradient(105deg,#F3DAD1 0%,#F5F1EE 46%,#EDF0F4 100%)}
+.voices-header{text-align:center;margin:0 auto 64px}
+.voices-tag{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#D9663F;font-weight:600;margin-bottom:16px}
+.voices-h2{font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-.03em;font-weight:600;color:#111827;max-width:14ch;margin:0 auto}
+.voices-p{margin:18px auto 0;font-size:17px;line-height:1.6;color:#4B5563;max-width:52ch}
+.voices-layout{position:relative;width:1100px;height:440px;margin:0 auto}
+.voices-svg{position:absolute;inset:0;width:1100px;height:440px;pointer-events:none;overflow:visible}
+.voices-col-label{position:absolute;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#9A8E85;font-weight:600;top:72px}
+#vl-ind-label{left:0}
+#vl-voice-label{right:0;text-align:right;width:260px}
+#vl-ind-col{position:absolute;left:0;top:107px;display:flex;flex-direction:column;gap:14px}
+#vl-voice-col{position:absolute;right:0;top:107px;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.ind-btn{display:flex;align-items:center;gap:10px;width:220px;height:46px;padding:0 18px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.02em;cursor:pointer;text-align:left;transition:background .25s,color .25s,box-shadow .25s;border:1px solid transparent}
+.ind-btn.on{background:#1b1b1f;color:#fff;border-color:#1b1b1f;box-shadow:0 12px 26px -12px rgba(17,24,39,.5)}
+.ind-btn.off{background:rgba(255,255,255,.72);color:#4B5563;border-color:rgba(17,24,39,.08)}
+.ind-sel{display:inline-flex;width:18px;height:18px;border-radius:50%;background:#C9603A;align-items:center;justify-content:center;flex-shrink:0}
+.ind-sel span{width:6px;height:6px;border-radius:50%;background:#fff}
+.voice-btn{display:flex;align-items:center;gap:8px;width:248px;height:46px;padding:0 20px;border-radius:999px;font-size:14px;cursor:pointer;transition:background .25s,color .25s,box-shadow .25s;border:1px solid transparent}
+.voice-btn.on{background:#1b1b1f;color:#fff;border-color:#1b1b1f;box-shadow:0 12px 26px -12px rgba(17,24,39,.5)}
+.voice-btn.off{background:rgba(255,255,255,.72);color:#1b1b1f;border-color:rgba(17,24,39,.08)}
+.voice-name{font-weight:700;letter-spacing:.03em}
+.voice-tag{opacity:.55;font-weight:500}
+.voice-toggle{display:inline-flex;width:22px;height:14px;border-radius:999px;background:rgba(94,134,184,.3);align-items:center;justify-content:flex-end;padding:0 2px;flex-shrink:0;margin-left:auto}
+.voice-toggle span{width:10px;height:10px;border-radius:50%;background:#5E86B8}
+.voices-orb-wrap{position:absolute;left:440px;top:110px;width:220px;height:220px;animation:czfloat 7s ease-in-out infinite}
+.orb-ring{position:absolute;left:-20px;top:-20px;width:260px;height:260px;animation:czspin 30s linear infinite}
+.orb-sphere{position:absolute;inset:16px;border-radius:50%;background:linear-gradient(140deg,#EFCFC2 0%,#E3D1CC 42%,#BBD0DE 100%);box-shadow:inset 0 6px 22px rgba(255,255,255,.55),inset 0 -10px 30px rgba(120,140,160,.25),0 24px 54px -18px rgba(17,24,39,.34)}
+.orb-pulse{position:absolute;inset:16px;border-radius:50%;border:2px solid rgba(217,140,110,.55);animation:czpulse 1.7s ease-out infinite;display:none}
+.orb-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.orb-btn-inner{display:flex;align-items:center;justify-content:center;width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.55);backdrop-filter:blur(4px);box-shadow:0 8px 20px -8px rgba(17,24,39,.3)}
+.play-icon{display:none}
+.pause-icon{display:none}
+.pause-bars{display:flex;gap:6px}
+.pause-bars i{display:block;width:5px;height:20px;border-radius:2px;background:#1b1b1f}
 
-  /* Hero right: live call panel */
-  .hero-r { position: relative; }
-  .call-panel {
-    background: linear-gradient(180deg, rgba(34, 211, 238, 0.06), rgba(139, 92, 246, 0.04));
-    border: 1px solid var(--border-strong);
-    border-radius: 22px;
-    padding: 26px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 100px rgba(34, 211, 238, 0.1);
-    position: relative;
-    overflow: hidden;
-  }
-  .call-panel::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at top, rgba(34, 211, 238, 0.10), transparent 65%);
-    pointer-events: none;
-  }
-  .call-head {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 18px;
-    position: relative; z-index: 1;
-  }
-  .call-status {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 5px 12px;
-    background: rgba(52, 211, 153, 0.12);
-    color: var(--c-green);
-    border: 1px solid rgba(52, 211, 153, 0.35);
-    border-radius: 100px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .call-status .dot {
-    width: 6px; height: 6px;
-    background: var(--c-green); border-radius: 50%;
-    animation: pulse-dot 1.4s ease-in-out infinite;
-  }
-  .call-time {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; color: var(--text-dim);
-  }
-  .call-meta {
-    display: flex; align-items: center; gap: 14px;
-    margin-bottom: 18px;
-    position: relative; z-index: 1;
-  }
-  .call-avatar {
-    width: 46px; height: 46px;
-    border-radius: 50%;
-    background: var(--gradient-voice);
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-weight: 800; font-size: 16px;
-    box-shadow: 0 0 22px rgba(34, 211, 238, 0.35);
-    position: relative;
-  }
-  .call-avatar::after {
-    content: '';
-    position: absolute;
-    inset: -8px; border-radius: 50%;
-    border: 1px solid rgba(34, 211, 238, 0.35);
-    animation: ripple 1.8s ease-out infinite;
-  }
-  .call-avatar::before {
-    content: '';
-    position: absolute;
-    inset: -14px; border-radius: 50%;
-    border: 1px solid rgba(34, 211, 238, 0.20);
-    animation: ripple 1.8s ease-out infinite 0.6s;
-  }
-  @keyframes ripple {
-    0% { opacity: 1; transform: scale(0.8); }
-    100% { opacity: 0; transform: scale(1.4); }
-  }
-  .call-name { font-weight: 700; font-size: 15px; }
-  .call-role { color: var(--text-muted); font-size: 12px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+/* INDUSTRIES */
+.industries{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:104px 32px}
+.ind-tabs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:40px}
+.ind-tab{font-size:13.5px;font-weight:550;padding:9px 17px;border-radius:999px;transition:all .25s;cursor:pointer}
+.ind-tab.on{background:#1b1b1f;color:#fff;border:1px solid transparent;box-shadow:0 8px 20px -10px rgba(17,24,39,.5)}
+.ind-tab.off{background:rgba(255,255,255,.6);color:#4B5563;border:1px solid rgba(17,24,39,.1)}
+.ind-panel{background:rgba(255,255,255,.78);backdrop-filter:blur(10px);border:1px solid rgba(17,24,39,.08);border-radius:24px;box-shadow:0 2px 6px rgba(17,24,39,.04),0 28px 56px -28px rgba(17,24,39,.18);overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+.ind-left{padding:40px}
+.ind-badge{display:inline-flex;align-items:center;gap:9px;background:#FAF7F5;border:1px solid rgba(17,24,39,.07);padding:6px 13px;border-radius:999px;margin-bottom:20px;font-size:13px;font-weight:600;color:#111827}
+.ind-h3{font-size:26px;font-weight:600;letter-spacing:-.02em;color:#111827;line-height:1.15}
+.ind-desc{margin-top:14px;font-size:15.5px;line-height:1.6;color:#4B5563}
+.ind-benefits{display:flex;flex-direction:column;gap:13px;margin-top:26px}
+.ind-benefit{display:flex;align-items:center;gap:11px;font-size:14.5px;color:#111827;font-weight:450}
+.ind-flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.ind-chip{display:inline-flex;align-items:center;gap:7px;background:#F5F1EE;border:1px solid rgba(17,24,39,.07);padding:7px 12px;border-radius:10px;font-size:12.5px;font-weight:500;color:#4B5563}
+.ind-right{background:linear-gradient(160deg,#F3DAD1,#FAF7F5);border-left:1px solid rgba(17,24,39,.06);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.convo-label-txt{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#6B7280;font-weight:600;margin-bottom:2px}
+.convo-row{display:flex}
+.convo-row.agent{justify-content:flex-start}
+.convo-row.caller{justify-content:flex-end}
+.convo-bubble{max-width:86%;padding:11px 15px;border-radius:15px;font-size:14px;line-height:1.5;border:1px solid rgba(17,24,39,.06);box-shadow:0 8px 20px -14px rgba(17,24,39,.3)}
+.convo-bubble.agent{background:#1b1b1f;color:#fff}
+.convo-bubble.caller{background:#fff;color:#111827}
+.convo-who{display:block;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;opacity:.5;margin-bottom:3px}
 
-  .waveform {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    height: 60px;
-    margin: 8px 0 18px;
-    position: relative; z-index: 1;
-  }
-  .waveform span {
-    display: block;
-    width: 3px;
-    background: linear-gradient(180deg, #22d3ee, #14b8a6);
-    border-radius: 3px;
-    animation: wave 1.1s ease-in-out infinite;
-  }
-  @keyframes wave {
-    0%, 100% { height: 8px; opacity: 0.4; }
-    50% { height: 60%; opacity: 1; }
-  }
+/* ANALYTICS */
+.analytics{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:104px 32px}
+.analytics-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
+.analytics-h2{font-size:clamp(30px,3.6vw,46px);line-height:1.07;letter-spacing:-.025em;font-weight:600;color:#111827}
+.analytics-p{margin-top:18px;font-size:17px;line-height:1.65;color:#4B5563}
+.analytics-pts{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.analytics-pt{display:flex;align-items:flex-start;gap:11px;font-size:15px;line-height:1.5;color:#4B5563}
+.dashboard{background:#fff;border:1px solid rgba(17,24,39,.08);border-radius:22px;box-shadow:0 2px 6px rgba(17,24,39,.05),0 30px 60px -30px rgba(17,24,39,.22);overflow:hidden}
+.dash-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(17,24,39,.06)}
+.dash-title{font-size:14px;font-weight:600;color:#111827}
+.dash-period{font-size:11.5px;color:#6B7280;background:#FAF7F5;border:1px solid rgba(17,24,39,.07);padding:4px 10px;border-radius:8px}
+.dash-body{padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dash-card{background:#FAF7F5;border:1px solid rgba(17,24,39,.06);border-radius:14px;padding:16px}
+.dash-card.wide{grid-column:1/3}
+.dash-lbl{font-size:11px;color:#6B7280;font-weight:550;letter-spacing:.03em;text-transform:uppercase}
+.dash-val{font-size:26px;font-weight:600;letter-spacing:-.02em;color:#111827;margin-top:6px}
+.dash-delta{font-size:12px;color:#5BB98C;font-weight:600;margin-top:2px}
+.chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.chart-sub{font-size:11.5px;color:#9CA3AF}
+.chart-bars{display:flex;align-items:flex-end;gap:9px;height:84px}
+.chart-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.chart-bar{width:100%;background:linear-gradient(#D9B3A3,#EBC9BC);border-radius:6px 6px 3px 3px}
+.chart-day{font-size:10px;color:#9CA3AF}
+.sentiment-lbl{font-size:12px;color:#6B7280;font-weight:550;letter-spacing:.03em;text-transform:uppercase;margin-bottom:12px}
+.sentiment-bar{display:flex;height:12px;border-radius:999px;overflow:hidden;gap:2px}
+.sentiment-leg{display:flex;gap:18px;margin-top:11px;font-size:12px;color:#4B5563}
+.sentiment-leg-item{display:inline-flex;align-items:center;gap:6px}
+.sentiment-dot{width:8px;height:8px;border-radius:2px}
 
-  .call-transcript {
-    background: rgba(0,0,0,0.35);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px;
-    display: flex; flex-direction: column; gap: 10px;
-    position: relative; z-index: 1;
-    min-height: 200px;
-  }
-  .bubble {
-    max-width: 85%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-  .bubble.agent {
-    align-self: flex-start;
-    background: rgba(139, 92, 246, 0.12);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    color: var(--text);
-    border-top-left-radius: 4px;
-  }
-  .bubble.customer {
-    align-self: flex-end;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--border);
-    color: var(--text);
-    border-top-right-radius: 4px;
-  }
-  .bubble .who {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 4px;
-    opacity: 0.6;
-  }
-  .call-foot {
-    margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; color: var(--text-muted);
-    letter-spacing: 0.06em;
-    position: relative; z-index: 1;
-  }
-  .call-foot strong { color: var(--c-cyan); font-weight: 700; }
+/* HIGHLIGHTS */
+.highlights{position:relative;z-index:1;background:#fff;padding:120px 0}
+.hl-inner{max-width:1200px;margin:0 auto;padding:0 64px}
+.hl-hero{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding-bottom:80px;border-bottom:1px solid rgba(17,24,39,.07)}
+.hl-h2{font-size:clamp(32px,3.8vw,52px);line-height:1.07;letter-spacing:-.03em;font-weight:600;color:#111827;margin-top:18px}
+.hl-p{margin-top:20px;font-size:17px;line-height:1.7;color:#4B5563;max-width:44ch}
+.hl-hero-visual{background:linear-gradient(145deg,#F7EDE8,#F0EBE8);border-radius:24px;overflow:hidden;aspect-ratio:16/11;border:1px solid rgba(217,179,163,.25);box-shadow:0 2px 8px rgba(17,24,39,.05),0 32px 64px -32px rgba(17,24,39,.18);display:flex;align-items:center;justify-content:center;padding:28px}
+.hl-call-card{width:100%;background:#fff;border-radius:16px;border:1px solid rgba(17,24,39,.07);box-shadow:0 4px 20px -8px rgba(17,24,39,.2);overflow:hidden}
+.hl-call-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#1b1b1f}
+.hl-call-status{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#EBC9BC}
+.hl-live-dot{width:8px;height:8px;border-radius:50%;background:#5BB98C;box-shadow:0 0 0 3px rgba(91,185,140,.25)}
+.hl-call-timer{font-size:12px;font-weight:500;color:rgba(235,201,188,.6);font-variant-numeric:tabular-nums;letter-spacing:.05em}
+.hl-call-body{padding:18px 18px 20px}
+.hl-call-agent{font-size:13.5px;font-weight:600;color:#111827;margin-bottom:3px}
+.hl-call-role{font-size:11.5px;color:#9CA3AF;margin-bottom:16px}
+.hl-wave{display:flex;align-items:center;gap:2px;height:40px;margin-bottom:18px}
+.hl-wave-bar{flex:1;max-width:5px;height:28px;border-radius:2px;background:linear-gradient(to top,#EBC9BC,#D9B3A3);animation:hlwave 1.4s ease-in-out infinite;transform-origin:center bottom}
+.hl-call-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hl-metric{background:#FAF7F5;border-radius:10px;padding:10px 12px;border:1px solid rgba(17,24,39,.05)}
+.hl-metric-lbl{font-size:10px;color:#9CA3AF;font-weight:550;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.hl-metric-val{font-size:13.5px;font-weight:650;color:#111827;letter-spacing:-.01em}
+.hl-metric-sub{font-size:10px;color:#5BB98C;font-weight:600;margin-top:2px}
+.hl-rows{border-top:1px solid rgba(17,24,39,.07)}
+.hl-row{display:grid;grid-template-columns:1fr 1.8fr .85fr;gap:56px;align-items:center;padding:52px 0;border-bottom:1px solid rgba(17,24,39,.07)}
+.hl-row-num{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#D9B3A3;margin-bottom:10px}
+.hl-row-title{font-size:21px;font-weight:620;letter-spacing:-.015em;color:#111827;line-height:1.2}
+.hl-row-desc{font-size:15.5px;line-height:1.72;color:#4B5563}
+.hl-visual-wrap{background:linear-gradient(145deg,#F8F4F1,#F3EDE9);border-radius:16px;padding:24px;border:1px solid rgba(217,179,163,.2);display:flex;align-items:center;justify-content:center;min-height:120px}
 
-  /* ====== STATS BAR ====== */
-  .stats-band {
-    padding: 70px 5%;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(180deg, rgba(34, 211, 238, 0.03), transparent);
-  }
-  .stats-band-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 28px;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-  .sb-stat { text-align: center; }
-  .sb-stat .v {
-    font-size: clamp(28px, 3.4vw, 40px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    background: var(--gradient-voice);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .sb-stat .l {
-    margin-top: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-  }
+/* ENTERPRISE */
+.enterprise{position:relative;z-index:1;background:#F5F1EE;padding:120px 0;overflow:hidden}
+.enterprise::before{content:'';position:absolute;top:-100px;right:-60px;width:540px;height:540px;background:radial-gradient(circle,rgba(235,201,188,.32) 0%,transparent 65%);pointer-events:none}
+.enterprise-inner{max-width:1200px;margin:0 auto;padding:0 64px;display:grid;grid-template-columns:.85fr 1.15fr;gap:96px;align-items:center}
+.enterprise-tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#D9B3A3;font-weight:600;margin-bottom:20px}
+.enterprise-h2{font-size:clamp(32px,3.8vw,50px);line-height:1.08;letter-spacing:-.03em;font-weight:600;color:#111827}
+.enterprise-p{margin-top:28px;font-size:17px;line-height:1.75;color:#4B5563;max-width:38ch}
+.enterprise-trust{display:flex;flex-direction:column;gap:10px;margin-top:32px}
+.ent-trust-item{display:inline-flex;align-items:center;gap:11px;font-size:14px;color:#374151;font-weight:500}
+.ent-trust-dot{display:inline-flex;width:20px;height:20px;border-radius:50%;background:linear-gradient(140deg,#1b1b1f,#2d2d33);align-items:center;justify-content:center;flex-shrink:0}
+.enterprise-cta{display:inline-flex;align-items:center;gap:10px;margin-top:36px;font-size:15px;font-weight:600;color:#111827;background:#fff;border:1.5px solid rgba(17,24,39,.13);padding:13px 22px;border-radius:14px;transition:background .25s,color .25s,border-color .25s,box-shadow .25s,gap .2s;box-shadow:0 1px 3px rgba(17,24,39,.06),0 4px 12px -4px rgba(17,24,39,.08)}
+.enterprise-cta:hover{background:#1b1b1f;color:#fff;border-color:#1b1b1f;gap:15px;box-shadow:0 8px 28px -10px rgba(17,24,39,.38)}
+.enterprise-cta:hover .ent-cta-arrow{stroke:#EBC9BC}
+.ent-cta-arrow{transition:stroke .25s}
+.enterprise-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ent-card{position:relative;background:#fff;border:1px solid rgba(17,24,39,.07);border-radius:20px;padding:28px 24px;box-shadow:0 1px 3px rgba(17,24,39,.05),0 4px 12px -4px rgba(17,24,39,.06);transition:box-shadow .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),border-color .3s}
+.ent-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:20px 20px 0 0;background:linear-gradient(90deg,#EBC9BC,#D9B3A3);opacity:0;transition:opacity .3s}
+.ent-card:hover{box-shadow:0 2px 4px rgba(17,24,39,.06),0 22px 50px -22px rgba(17,24,39,.22);transform:translateY(-3px);border-color:rgba(217,179,163,.35)}
+.ent-card:hover::after{opacity:1}
+.ent-card-icon{display:inline-flex;width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,#F3DAD1,#FAF7F5);border:1px solid rgba(17,24,39,.06);align-items:center;justify-content:center;margin-bottom:18px}
+.ent-card-title{font-size:16px;font-weight:650;letter-spacing:-.01em;color:#111827;margin-bottom:7px}
+.ent-card-desc{font-size:13.5px;line-height:1.65;color:#6B7280}
 
-  /* ====== USE CASES (TABBED) ====== */
-  .uc-wrap {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 32px;
-    margin-top: 50px;
-  }
-  .uc-tabs {
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .uc-tab {
-    display: flex; align-items: flex-start; gap: 14px;
-    padding: 16px 18px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.25s;
-    text-align: left;
-  }
-  .uc-tab:hover { border-color: var(--border-strong); }
-  .uc-tab.active {
-    background: linear-gradient(135deg, rgba(34, 211, 238, 0.10), rgba(139, 92, 246, 0.06));
-    border-color: rgba(34, 211, 238, 0.45);
-    box-shadow: 0 8px 26px rgba(34, 211, 238, 0.10);
-  }
-  .uc-tab-num {
-    flex-shrink: 0;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--c-cyan);
-    background: rgba(34, 211, 238, 0.12);
-    border: 1px solid rgba(34, 211, 238, 0.3);
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-  }
-  .uc-tab-body { flex: 1; min-width: 0; }
-  .uc-tab-h { font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 3px; letter-spacing: -0.005em; }
-  .uc-tab-d { color: var(--text-muted); font-size: 12px; line-height: 1.45; }
-  .uc-tab.active .uc-tab-d { color: var(--text-dim); }
+/* CTA */
+.cta-section{position:relative;z-index:1;padding:40px 32px 96px}
+.cta-box{position:relative;max-width:1100px;margin:0 auto;border-radius:32px;overflow:hidden;background:linear-gradient(150deg,#F3DAD1 0%,#EBC9BC 48%,#FAF7F5 100%);border:1px solid rgba(17,24,39,.08);box-shadow:0 30px 80px -40px rgba(17,24,39,.3)}
+.cta-bars-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:5px;opacity:.22;pointer-events:none}
+.cta-bar{display:block;width:4px;height:140px;border-radius:4px;background:#D9B3A3;transform-origin:center}
+.cta-content{position:relative;text-align:center;padding:80px 32px}
+.cta-h2{font-size:clamp(32px,4.4vw,56px);line-height:1.04;letter-spacing:-.03em;font-weight:600;color:#111827;max-width:18ch;margin:0 auto}
+.cta-p{margin:20px auto 0;font-size:17.5px;line-height:1.6;color:#4B5563;max-width:54ch}
+.cta-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:36px}
+.cta-btn-primary{display:inline-flex;align-items:center;gap:8px;font-size:15.5px;font-weight:550;color:#fff;background:#1b1b1f;padding:15px 26px;border-radius:14px;box-shadow:0 1px 2px rgba(17,24,39,.18),0 12px 28px -10px rgba(17,24,39,.45);transition:transform .2s,box-shadow .2s}
+.cta-btn-primary:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(17,24,39,.2),0 20px 38px -12px rgba(17,24,39,.5)}
+.cta-btn-secondary{display:inline-flex;align-items:center;gap:8px;font-size:15.5px;font-weight:550;color:#111827;background:rgba(255,255,255,.85);border:1px solid rgba(17,24,39,.1);padding:15px 24px;border-radius:14px;transition:transform .2s,background .2s}
+.cta-btn-secondary:hover{transform:translateY(-2px);background:#fff}
 
-  .uc-detail {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
-    min-height: 540px;
-  }
-  .uc-detail::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 60%);
-    pointer-events: none;
-  }
-  .uc-pane { display: none; position: relative; z-index: 1; }
-  .uc-pane.active { display: block; animation: fadeIn 0.45s ease; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .uc-pane-head {
-    display: flex; align-items: center; gap: 16px;
-    margin-bottom: 22px;
-    padding-bottom: 22px;
-    border-bottom: 1px solid var(--border);
-  }
-  .uc-pane-icon {
-    width: 52px; height: 52px;
-    border-radius: 13px;
-    background: var(--gradient-voice);
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(34, 211, 238, 0.25);
-    flex-shrink: 0;
-  }
-  .uc-pane-title h3 {
-    font-size: 24px; font-weight: 800; letter-spacing: -0.015em;
-    margin-bottom: 4px;
-  }
-  .uc-pane-title .outcome {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--c-green);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-  }
-
-  .uc-pane-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-  }
-  .uc-pane-l p {
-    color: var(--text-dim);
-    font-size: 14px;
-    line-height: 1.65;
-    margin-bottom: 16px;
-  }
-  .uc-pane-l ul {
-    list-style: none;
-    margin: 0; padding: 0;
-  }
-  .uc-pane-l li {
-    display: flex; gap: 10px; align-items: flex-start;
-    color: var(--text-dim);
-    font-size: 13px;
-    margin-bottom: 8px;
-    line-height: 1.55;
-  }
-  .uc-pane-l li::before {
-    content: '✓';
-    color: var(--c-cyan);
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-  .uc-result-row {
-    display: flex; flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
-  }
-  .uc-chip {
-    padding: 5px 11px;
-    border-radius: 100px;
-    background: rgba(52, 211, 153, 0.12);
-    border: 1px solid rgba(52, 211, 153, 0.3);
-    color: var(--c-green);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
-  .uc-chip.warm {
-    background: rgba(251, 146, 60, 0.12);
-    border-color: rgba(251, 146, 60, 0.3);
-    color: var(--c-orange);
-  }
-
-  /* Sample call mock inside detail */
-  .uc-call {
-    background: rgba(0,0,0,0.35);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px;
-    display: flex; flex-direction: column; gap: 8px;
-    max-height: 360px;
-    overflow: hidden;
-    position: relative;
-  }
-  .uc-call-head {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 6px;
-  }
-  .uc-call-head .who {
-    font-weight: 600; font-size: 12px; color: var(--text);
-  }
-  .uc-call-head .when {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; color: var(--text-muted);
-    letter-spacing: 0.06em;
-  }
-  .uc-call .bubble { font-size: 12.5px; padding: 8px 11px; }
-  .uc-call .bubble .who { font-size: 8px; }
-
-  /* ====== VOICE QUALITY (India-built) ====== */
-  .voice-section { background: var(--bg-2); }
-  .voice-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    margin-top: 40px;
-  }
-  .voice-feats {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .voice-feat {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px 24px;
-    display: flex; gap: 16px; align-items: flex-start;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .voice-feat:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-  .voice-feat-icon {
-    flex-shrink: 0;
-    width: 42px; height: 42px;
-    border-radius: 11px;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-  }
-  .voice-feat-icon.purple { background: linear-gradient(135deg, #8b5cf6, #a78bfa); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.25); }
-  .voice-feat-icon.cyan   { background: linear-gradient(135deg, #22d3ee, #14b8a6); box-shadow: 0 8px 20px rgba(34, 211, 238, 0.25); }
-  .voice-feat-icon.pink   { background: linear-gradient(135deg, #f472b6, #fb923c); box-shadow: 0 8px 20px rgba(244, 114, 182, 0.25); }
-  .voice-feat-icon.green  { background: linear-gradient(135deg, #34d399, #22d3ee); box-shadow: 0 8px 20px rgba(52, 211, 153, 0.25); }
-  .voice-feat-h { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
-  .voice-feat-d { color: var(--text-dim); font-size: 13px; line-height: 1.55; }
-
-  .lang-cloud {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 30px;
-    position: relative;
-    overflow: hidden;
-  }
-  .lang-cloud::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at center, rgba(34, 211, 238, 0.10), transparent 65%);
-    pointer-events: none;
-  }
-  .lang-cloud-h {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--c-cyan);
-    margin-bottom: 18px;
-    position: relative; z-index: 1;
-  }
-  .lang-grid {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    position: relative; z-index: 1;
-  }
-  .lang-pill {
-    padding: 7px 14px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    font-size: 13px;
-    color: var(--text-dim);
-    transition: all 0.2s;
-  }
-  .lang-pill:hover, .lang-pill.lit {
-    background: rgba(34, 211, 238, 0.1);
-    border-color: rgba(34, 211, 238, 0.4);
-    color: var(--c-cyan);
-  }
-  .lang-foot {
-    margin-top: 18px; padding-top: 18px;
-    border-top: 1px solid var(--border);
-    color: var(--text-muted); font-size: 12px;
-    font-family: 'JetBrains Mono', monospace;
-    position: relative; z-index: 1;
-  }
-  .lang-foot strong { color: var(--text); font-weight: 600; }
-
-  /* ====== OUTCOMES ====== */
-  .outcomes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-    margin-top: 50px;
-  }
-  .outcome-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 30px;
-    transition: border-color 0.3s, transform 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .outcome-card:hover { border-color: var(--border-strong); transform: translateY(-4px); }
-  .outcome-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 60%);
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .outcome-card:hover::before { opacity: 1; }
-  .outcome-num {
-    font-size: clamp(40px, 4.5vw, 56px);
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    background: var(--gradient-voice);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-    margin-bottom: 14px;
-  }
-  .outcome-h { font-weight: 700; font-size: 16px; margin-bottom: 6px; position: relative; z-index: 1; }
-  .outcome-d { color: var(--text-dim); font-size: 13px; line-height: 1.55; position: relative; z-index: 1; }
-
-  /* ====== HOW IT WORKS ====== */
-  .how-section { background: var(--bg-2); }
-  .how-steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 50px;
-    position: relative;
-  }
-  .how-step {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 30px;
-    position: relative;
-  }
-  .how-step-num {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--c-cyan);
-    background: rgba(34, 211, 238, 0.12);
-    border: 1px solid rgba(34, 211, 238, 0.3);
-    padding: 5px 11px;
-    border-radius: 6px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    margin-bottom: 16px;
-  }
-  .how-step h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
-  .how-step p { color: var(--text-dim); font-size: 14px; line-height: 1.6; }
-  .how-step-tag {
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
-    color: var(--text-muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  /* ====== COMPLIANCE STRIP ====== */
-  .compliance {
-    margin-top: 60px;
-    padding: 24px 28px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
-    justify-content: center;
-  }
-  .compliance .c-h {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    margin-right: 4px;
-  }
-  .c-badge {
-    padding: 6px 14px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
-  }
-  .c-badge.lit { color: var(--c-cyan); border-color: rgba(34, 211, 238, 0.35); }
-
-  /* ====== DUAL CTA ====== */
-  .cta { text-align: center; padding: 100px 5%; position: relative; z-index: 1; }
-  .cta-box {
-    max-width: 980px;
-    margin: 0 auto;
-    background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 24px;
-    padding: 60px 48px;
-    position: relative;
-    overflow: hidden;
-  }
-  .cta-box h2 {
-    font-size: clamp(32px, 4.5vw, 48px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 18px;
-    line-height: 1.1;
-  }
-  .cta-box p {
-    color: var(--text-dim);
-    font-size: 17px;
-    max-width: 600px;
-    margin: 0 auto 30px;
-  }
-  .cta-dual {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-    margin-top: 32px;
-    text-align: left;
-  }
-  .cta-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    transition: transform 0.3s, border-color 0.3s;
-  }
-  .cta-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
-  .cta-card-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--c-cyan);
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    margin-bottom: 10px;
-  }
-  .cta-card.warm .cta-card-eyebrow { color: var(--c-violet); }
-  .cta-card-h {
-    font-size: 20px; font-weight: 700; color: var(--text);
-    margin-bottom: 10px; letter-spacing: -0.015em;
-  }
-  .cta-card-d { color: var(--text-dim); font-size: 14px; margin-bottom: 22px; line-height: 1.55; }
-  .cta-card-cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-weight: 600; font-size: 14px;
-    padding: 11px 20px;
-    border-radius: 9px;
-    background: #ffffff; color: #000;
-    transition: transform 0.2s, background 0.2s;
-  }
-  .cta-card-cta:hover { transform: translateX(4px); background: #f0f0f0; }
-  .cta-card.warm .cta-card-cta {
-    background: transparent;
-    border: 1px solid var(--border-strong);
-    color: var(--text);
-  }
-  .cta-card.warm .cta-card-cta:hover { background: rgba(255,255,255,0.06); }
-
-  /* ====== CTA FORM ====== */
-  .form-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1.05fr;
-    gap: 36px;
-    max-width: 1100px;
-    margin: 0 auto;
-    align-items: stretch;
-  }
-  .form-left {
-    background: linear-gradient(180deg, rgba(34, 211, 238, 0.06), rgba(139, 92, 246, 0.04));
-    border: 1px solid var(--border-strong);
-    border-radius: 22px;
-    padding: 38px 34px;
-    position: relative;
-    overflow: hidden;
-  }
-  .form-left::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at top, rgba(34, 211, 238, 0.10), transparent 65%);
-    pointer-events: none;
-  }
-  .form-left-h {
-    font-size: 22px; font-weight: 800;
-    letter-spacing: -0.015em;
-    margin-bottom: 26px;
-    position: relative; z-index: 1;
-  }
-  .form-steps {
-    list-style: none; margin: 0; padding: 0;
-    display: flex; flex-direction: column; gap: 22px;
-    position: relative; z-index: 1;
-  }
-  .form-steps li {
-    display: flex; gap: 14px; align-items: flex-start;
-  }
-  .fs-num {
-    flex-shrink: 0;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--c-cyan);
-    background: rgba(34, 211, 238, 0.12);
-    border: 1px solid rgba(34, 211, 238, 0.3);
-    padding: 5px 10px;
-    border-radius: 6px;
-    letter-spacing: 0.06em;
-    margin-top: 1px;
-  }
-  .fs-body {
-    color: var(--text-dim);
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .fs-body strong { color: var(--text); font-weight: 700; }
-  .form-trust {
-    margin-top: 30px;
-    padding-top: 22px;
-    border-top: 1px solid var(--border);
-    display: flex; flex-wrap: wrap; gap: 8px;
-    position: relative; z-index: 1;
-  }
-  .ft-pill {
-    padding: 6px 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .form-right {
-    position: relative;
-    min-height: 540px;
-  }
-  .ac-form {
-    background: var(--surface);
-    border: 1px solid var(--border-strong);
-    border-radius: 22px;
-    padding: 34px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-    transition: opacity 0.3s, transform 0.3s;
-  }
-  .form-h {
-    font-size: 18px; font-weight: 800;
-    letter-spacing: -0.01em;
-    margin-bottom: 4px;
-  }
-  .form-sub {
-    color: var(--text-muted);
-    font-size: 13px;
-    font-family: 'JetBrains Mono', monospace;
-    margin-bottom: 22px;
-  }
-  .field { display: flex; flex-direction: column; margin-bottom: 14px; }
-  .field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 14px;
-  }
-  .field-row .field { margin-bottom: 0; }
-  .field label {
-    font-size: 12px;
-    color: var(--text-dim);
-    margin-bottom: 6px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-  }
-  .field .lbl-aux {
-    color: var(--text-muted);
-    font-weight: 400;
-    margin-left: 4px;
-  }
-  .field input,
-  .field select,
-  .field textarea {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 11px 14px;
-    color: var(--text);
-    font-size: 14px;
-    font-family: inherit;
-    transition: border-color 0.2s, background 0.2s;
-    width: 100%;
-    outline: none;
-  }
-  .field textarea { resize: vertical; min-height: 78px; }
-  .field input::placeholder,
-  .field textarea::placeholder { color: var(--text-muted); }
-  .field input:focus,
-  .field select:focus,
-  .field textarea:focus {
-    border-color: var(--c-cyan);
-    background: var(--surface-3);
-    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
-  }
-  .field select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='none' stroke='%23a8a8a8' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M3 5l3 3 3-3'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
-
-  .form-submit-btn {
-    width: 100%;
-    margin-top: 6px;
-    padding: 15px 22px;
-    background: var(--gradient-voice);
-    color: #fff;
-    border: none;
-    border-radius: 11px;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    box-shadow: 0 0 30px rgba(34, 211, 238, 0.35);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
-    font-family: inherit;
-  }
-  .form-submit-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 36px rgba(34, 211, 238, 0.5); }
-  .form-submit-btn .arrow { font-size: 16px; }
-
-  .form-foot {
-    margin-top: 14px;
-    color: var(--text-muted);
-    font-size: 11px;
-    line-height: 1.55;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .form-success {
-    display: none;
-    background: var(--surface);
-    border: 1px solid rgba(52, 211, 153, 0.4);
-    border-radius: 22px;
-    padding: 50px 34px;
-    text-align: center;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 60px rgba(52, 211, 153, 0.10);
-  }
-  .form-success.show { display: block; animation: fadeIn 0.5s ease; }
-  .success-tick {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #34d399, #22d3ee);
-    color: #fff;
-    font-size: 30px;
-    font-weight: 800;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 22px;
-    box-shadow: 0 8px 30px rgba(52, 211, 153, 0.4);
-  }
-  .success-h {
-    font-size: 22px; font-weight: 800;
-    letter-spacing: -0.015em;
-    margin-bottom: 10px;
-  }
-  .success-d {
-    color: var(--text-dim);
-    font-size: 14px;
-    line-height: 1.6;
-    max-width: 380px;
-    margin: 0 auto;
-  }
-  .success-d strong { color: var(--c-cyan); font-weight: 700; }
-
-  /* Footer */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 5%;
-    color: var(--text-muted);
-    font-size: 13px;
-    position: relative; z-index: 1;
-  }
-  .footer-content {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 18px;
-  }
-  .footer-links {
-    display: flex; gap: 28px;
-    list-style: none; flex-wrap: wrap;
-  }
-  .footer-links a { color: var(--text-dim); transition: color 0.2s; }
-  .footer-links a:hover { color: var(--text); }
-
-
-  /* ====== PRICING ====== */
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-top: 52px;
-    align-items: start;
-  }
-  .price-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 30px 26px 28px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    display: flex; flex-direction: column; gap: 0;
-  }
-  .price-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
-  .price-card.featured {
-    border-color: rgba(34,211,238,0.55);
-    background: linear-gradient(180deg, rgba(34,211,238,0.07) 0%, rgba(139,92,246,0.04) 100%);
-    box-shadow: 0 0 0 1px rgba(34,211,238,0.2), 0 24px 60px rgba(34,211,238,0.12);
-  }
-  .price-card.featured:hover { box-shadow: 0 0 0 1px rgba(34,211,238,0.35), 0 32px 80px rgba(34,211,238,0.18); }
-  .price-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at top, rgba(34,211,238,0.07), transparent 65%);
-    pointer-events: none;
-  }
-  .price-badge {
-    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-    padding: 4px 14px;
-    background: var(--gradient-voice);
-    color: #000;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    border-radius: 0 0 10px 10px;
-  }
-  .price-tier {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.14em;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-  }
-  .price-card.featured .price-tier { color: var(--c-cyan); }
-  .price-name {
-    font-size: 22px; font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--text); margin-bottom: 6px;
-  }
-  .price-tagline {
-    font-size: 13px; color: var(--text-muted);
-    line-height: 1.5; margin-bottom: 22px;
-    min-height: 36px;
-  }
-  .price-amount {
-    display: flex; align-items: baseline; gap: 4px;
-    margin-bottom: 4px;
-  }
-  .price-amount .currency { font-size: 22px; font-weight: 700; color: var(--text-dim); line-height: 1; }
-  .price-amount .amount {
-    font-size: 48px; font-weight: 900;
-    letter-spacing: -0.04em; line-height: 1;
-    background: var(--gradient-voice);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .price-amount .per { font-size: 14px; color: var(--text-muted); font-weight: 500; }
-  .price-card.enterprise .price-amount .amount {
-    font-size: 34px;
-    background: linear-gradient(135deg, #a78bfa, #f472b6);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .price-volume {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; color: var(--c-cyan);
-    letter-spacing: 0.06em;
-    background: rgba(34,211,238,0.10);
-    border: 1px solid rgba(34,211,238,0.25);
-    border-radius: 6px; padding: 5px 10px;
-    display: inline-block;
-    margin-bottom: 22px;
-  }
-  .price-card.enterprise .price-volume {
-    color: var(--c-violet);
-    background: rgba(167,139,250,0.10);
-    border-color: rgba(167,139,250,0.25);
-  }
-  .price-divider {
-    height: 1px; background: var(--border);
-    margin-bottom: 20px;
-  }
-  .price-features {
-    list-style: none; margin: 0; padding: 0;
-    display: flex; flex-direction: column; gap: 10px;
-    flex: 1;
-    margin-bottom: 26px;
-  }
-  .price-features li {
-    display: flex; gap: 10px; align-items: flex-start;
-    color: var(--text-dim); font-size: 13px; line-height: 1.5;
-  }
-  .price-features li .check {
-    flex-shrink: 0; width: 16px; height: 16px;
-    border-radius: 50%;
-    background: rgba(34,211,238,0.15);
-    border: 1px solid rgba(34,211,238,0.3);
-    display: flex; align-items: center; justify-content: center;
-    margin-top: 1px;
-    font-size: 9px; color: var(--c-cyan); font-weight: 700;
-  }
-  .price-card.enterprise .price-features li .check {
-    background: rgba(167,139,250,0.15);
-    border-color: rgba(167,139,250,0.3);
-    color: var(--c-violet);
-  }
-  .price-btn {
-    display: block; text-align: center;
-    padding: 13px 20px;
-    border-radius: 10px;
-    font-weight: 700; font-size: 14px;
-    transition: all 0.2s;
-    text-decoration: none;
-    border: 1px solid var(--border-strong);
-    color: var(--text);
-    background: transparent;
-  }
-  .price-btn:hover { background: rgba(255,255,255,0.07); border-color: var(--primary); }
-  .price-card.featured .price-btn {
-    background: var(--gradient-voice);
-    border-color: transparent;
-    color: #000;
-    box-shadow: 0 0 24px rgba(34,211,238,0.35);
-  }
-  .price-card.featured .price-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 30px rgba(34,211,238,0.5); }
-  .price-card.enterprise .price-btn {
-    background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(244,114,182,0.10));
-    border-color: rgba(167,139,250,0.4);
-    color: var(--c-violet);
-  }
-  .price-card.enterprise .price-btn:hover { background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(244,114,182,0.18)); }
-  .price-note {
-    text-align: center;
-    margin-top: 28px;
-    color: var(--text-muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11.5px;
-    letter-spacing: 0.04em;
-  }
-  .price-note strong { color: var(--text-dim); font-weight: 600; }
-
-
-  /* ====== HERO INDUSTRIES STRIP ====== */
-  .hero-industries {
-    display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
-    margin-top: 24px; padding-top: 22px;
-    border-top: 1px solid var(--border);
-  }
-  .hi-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em;
-    color: var(--text-muted); margin-right: 4px;
-  }
-  .hi-chip {
-    padding: 5px 12px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    font-size: 12px; font-weight: 500;
-    color: var(--text-muted);
-    transition: all 0.2s;
-    text-decoration: none;
-  }
-  .hi-chip:hover { color: var(--text-dim); border-color: var(--border-strong); background: rgba(255,255,255,0.07); }
-  .hi-chip.hi-active {
-    color: var(--c-cyan);
-    background: rgba(34,211,238,0.10);
-    border-color: rgba(34,211,238,0.35);
-  }
-
-  /* ====== INDUSTRY TABS ====== */
-  .industry-tabs {
-    display: flex; gap: 8px; flex-wrap: wrap;
-    margin-top: 42px; margin-bottom: 28px;
-  }
-  .ind-tab {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    cursor: pointer; font-size: 14px; font-weight: 600;
-    color: var(--text-dim);
-    transition: all 0.25s;
-    font-family: inherit;
-  }
-  .ind-tab:hover { border-color: var(--border-strong); color: var(--text); }
-  .ind-tab.active {
-    background: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(139,92,246,0.06));
-    border-color: rgba(34,211,238,0.5);
-    color: var(--text);
-  }
-  .ind-badge {
-    font-size: 9px; font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;
-    color: var(--c-cyan);
-    background: rgba(34,211,238,0.14);
-    border: 1px solid rgba(34,211,238,0.3);
-    padding: 2px 8px; border-radius: 100px;
-  }
-  .ind-panel { display: none; }
-  .ind-panel.active { display: block; animation: fadeIn 0.35s ease; }
-  .ind-panel.active * { opacity: 1 !important; transform: none !important; }
-
-  /* ====== USE CASE CARDS (non-D2C industries) ====== */
-  .uc-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px; margin-top: 8px;
-  }
-  .uc-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px; padding: 26px;
-    transition: border-color 0.3s, transform 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .uc-card:hover { border-color: var(--border-strong); transform: translateY(-3px); }
-  .uc-card::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at top right, rgba(34,211,238,0.06), transparent 60%);
-    opacity: 0; transition: opacity 0.3s; pointer-events: none;
-  }
-  .uc-card:hover::before { opacity: 1; }
-  .uc-card-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; margin-bottom: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  }
-  .uc-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
-  .uc-card p { color: var(--text-dim); font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
-  .uc-card-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-
-  /* Reveal animations */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.in {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Responsive */
-  @media (max-width: 1100px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 50px; }
-    .uc-wrap { grid-template-columns: 1fr; }
-    .uc-cards-grid { grid-template-columns: repeat(2, 1fr); }
-    .uc-tabs { display: grid; grid-template-columns: repeat(2, 1fr); }
-    .uc-pane-body { grid-template-columns: 1fr; }
-    .voice-grid { grid-template-columns: 1fr; gap: 40px; }
-    .stats-band-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
-    .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
-    .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-    .form-wrap { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 760px) {
-    .nav-links { display: none; }
-    .logo-product { display: none; }
-    .logo-img { height: 44px; }
-    section { padding: 70px 5%; }
-    .hero { padding: 100px 5% 60px; }
-    .hero-l h1 { font-size: 40px; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); }
-    .stats-band-grid { grid-template-columns: repeat(2, 1fr); }
-    .uc-tabs { grid-template-columns: 1fr; }
-    .uc-cards-grid { grid-template-columns: 1fr; }
-    .industry-tabs { gap: 6px; }
-    .ind-tab { padding: 8px 14px; font-size: 13px; }
-    .how-steps { grid-template-columns: 1fr; }
-    .outcomes-grid { grid-template-columns: 1fr; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .ac-form { padding: 24px; }
-    .form-left { padding: 28px 22px; }
-    .field-row { grid-template-columns: 1fr; }
-  }
+/* FOOTER */
+footer{position:relative;z-index:1;background:#27201A;color:#fff;border-radius:20px 20px 0 0;padding:72px 0 0;overflow:hidden}
+.footer-top{max-width:1200px;margin:0 auto;padding:0 64px 72px;display:flex;align-items:flex-start;justify-content:space-between}
+.footer-brand{}
+.footer-logo{display:flex;align-items:center;margin-bottom:18px}
+.footer-logo img{height:44px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.88}
+.footer-nav{display:flex;gap:96px}
+.footer-col{display:flex;flex-direction:column;gap:20px}
+.footer-link{font-size:15px;color:rgba(255,255,255,.72);transition:color .2s}
+.footer-link:hover{color:#EBC9BC}
+.footer-socials{display:flex;gap:14px;margin-top:8px}
+.social-btn{display:inline-flex;width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);align-items:center;justify-content:center;transition:background .2s}
+.social-btn:hover{background:rgba(255,255,255,.14)}
+.footer-bottom{max-width:1200px;margin:0 auto;padding:22px 64px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer-copy{font-size:13.5px;color:rgba(255,255,255,.45)}
+.footer-legal{display:flex;align-items:center;gap:10px}
+.footer-legal-link{font-size:13.5px;color:rgba(255,255,255,.45);transition:color .2s}
+.footer-legal-link:hover{color:rgba(255,255,255,.75)}
+.footer-legal-sep{color:rgba(255,255,255,.2);font-size:13px}
+.footer-badges{display:flex;gap:10px;align-items:center}
+.footer-badge{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.badge-main{font-size:9.5px;font-weight:700;letter-spacing:.04em;color:#fff;line-height:1}
+.badge-sub{font-size:7px;color:rgba(255,255,255,.45);letter-spacing:.03em;line-height:1}
 </style>
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
-<div class="grid-bg"></div>
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
+<!-- AMBIENT FIELD -->
+<div class="ambient-field">
+  <div class="ambient-1"></div>
+  <div class="ambient-2"></div>
+</div>
 
-<nav>
-  <a href="/" class="logo" aria-label="Converz.io home">
-    <img src="nav_logo_full_560x90.svg" alt="Converz.io" class="logo-img" />
-  </a>
-  <ul class="nav-links">
-    <li><a href="#use-cases">Use cases</a></li>
-    <li><a href="#voice">Voice quality</a></li>
-    <li><a href="#outcomes">Outcomes</a></li>
-    <li><a href="#how">How it works</a></li>
-    <li><a href="#pricing" class="nav-pill">Pricing</a></li>
-  </ul>
-  <a href="#cta" class="nav-cta">Hear it live →</a>
+<!-- NAVBAR -->
+<nav id="cz-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">
+      <img src="https://converz-public-assets.s3.ap-south-2.amazonaws.com/image/logo.png" alt="Converz" width="111" height="34">
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#industries">Solutions</a>
+      <a href="#enterprise">Enterprise</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#docs">Docs</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#" class="nav-signin">Sign In</a>
+      <a href="#cta" class="nav-cta">Join Beta Waitlist</a>
+    </div>
+  </div>
 </nav>
 
+<div id="top"></div>
+
 <!-- HERO -->
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-l">
-      <div class="hero-pill"><span class="dot"></span>Voice agents · For every Indian business</div>
-      <h1>The voice on the other end is one your customers can't tell <span class="em">isn't human.</span></h1>
-      <p class="lead">
-        From D2C ecommerce and banking collections, to real estate lead qualification and BPO sales dialing — Converz voice agents handle any outbound or inbound calling workflow, trained on your brand, your SOPs and your rate cards. In 22 Indian languages, with sub-1.5s latency, at a fraction of a human agent's cost.
-      </p>
-      <div class="hero-cta-row">
-        <a href="#cta" class="btn-primary">Hear a sample call <span>→</span></a>
-        <a href="#use-cases" class="btn-secondary">Explore use cases <span>↓</span></a>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="v"><span class="gradient-text">22+</span></div>
-          <div class="l">Indian languages</div>
+<header class="hero">
+  <div class="hero-canvas-wrap">
+    <canvas id="wave-canvas"></canvas>
+  </div>
+  <div class="hero-content">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge" data-rise>
+          <span class="hero-badge-new">NEW</span>
+          <span class="hero-badge-text">Conversational voice models, now in private beta</span>
         </div>
-        <div class="hero-stat">
-          <div class="v"><span class="gradient-text">1.4s</span></div>
-          <div class="l">Avg latency</div>
-        </div>
-        <div class="hero-stat">
-          <div class="v"><span class="gradient-text">89%</span></div>
-          <div class="l">Pickup rate</div>
-        </div>
-        <div class="hero-stat">
-          <div class="v"><span class="gradient-text">6×</span></div>
-          <div class="l">Cheaper than BPO</div>
+        <h1 class="hero-h1" data-rise style="animation-delay:.06s">Human-like <span class="h1-warm">AI voice</span> <span class="h1-cool">models</span> built for real conversations.</h1>
+        <p class="hero-p" data-rise style="animation-delay:.14s">Deploy natural AI voice agents for inbound and outbound calls — with interruption handling, multilingual conversations, contextual intelligence, and enterprise-grade infrastructure.</p>
+        <div class="hero-ctas" data-rise style="animation-delay:.22s">
+          <a href="#cta" class="hero-cta-primary">
+            Join Beta Waitlist
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EBC9BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#experience" class="hero-cta-secondary">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z" fill="#111827" stroke="none"/></svg>
+            Watch Demo
+          </a>
         </div>
       </div>
-      <div class="hero-industries">
-        <span class="hi-label">Built for</span>
-        <a href="#use-cases" class="hi-chip hi-active" data-goto="d2c">D2C Ecommerce</a>
-        <a href="#use-cases" class="hi-chip" data-goto="banking">Banking &amp; NBFC</a>
-        <a href="#use-cases" class="hi-chip" data-goto="realestate">Real Estate</a>
-        <a href="#use-cases" class="hi-chip" data-goto="bpo">BPO &amp; Sales</a>
-      </div>
+      <div aria-hidden="true"></div>
     </div>
-
-    <div class="hero-r">
-      <div class="call-panel">
-        <div class="call-head">
-          <span class="call-status"><span class="dot"></span>Live · COD confirmation</span>
-          <span class="call-time" id="callTimer">00:42</span>
-        </div>
-
-        <div class="call-meta">
-          <div class="call-avatar">VA</div>
-          <div>
-            <div class="call-name">Converz agent · Aanya</div>
-            <div class="call-role">Pre-shipment · Hindi · Female · Warm</div>
-          </div>
-        </div>
-
-        <div class="waveform" id="waveformHero" aria-hidden="true"></div>
-
-        <div class="call-transcript" id="heroTranscript">
-          <div class="bubble agent"><span class="who">Aanya · Converz</span>Namaste, main Aanya bol rahi hoon, Converz se. Aapne kal raat <strong>Sundream Co.</strong> se ek order place kiya tha — saffron silk dupatta, ₹1,240. Confirm karna chahti thi delivery ke liye?</div>
-          <div class="bubble customer"><span class="who">Customer</span>Haan haan, mera order hai. Bilkul confirm.</div>
-          <div class="bubble agent"><span class="who">Aanya · Converz</span>Bahut shukriya. Ek choti si baat — aapke address mein flat number nahi hai. Mujhe woh bata sakte hain?</div>
-          <div class="bubble customer"><span class="who">Customer</span>Haan, Flat 4B, second floor.</div>
-          <div class="bubble agent"><span class="who">Aanya · Converz</span>Note kar liya — Flat 4B, second floor. Aapko Wednesday tak deliver ho jayega. Dhanyavaad!</div>
-        </div>
-
-        <div class="call-foot">
-          <span>Outcome · <strong>Confirmed</strong></span>
-          <span>Address enriched · <strong>+22 chars</strong></span>
-        </div>
+    <div class="hero-strip" data-rise style="animation-delay:.34s">
+      <div class="marquee-wrap">
+        <div class="marquee-track" id="marquee-track"></div>
       </div>
     </div>
   </div>
-</section>
+</header>
 
-<!-- STATS BAND -->
-<section class="stats-band reveal">
-  <div class="stats-band-grid">
-    <div class="sb-stat"><div class="v">22+</div><div class="l">Indian languages</div></div>
-    <div class="sb-stat"><div class="v">1.4s</div><div class="l">Avg response latency</div></div>
-    <div class="sb-stat"><div class="v">89%</div><div class="l">Tier 2/3 pickup rate</div></div>
-    <div class="sb-stat"><div class="v">99.95%</div><div class="l">Platform uptime</div></div>
-    <div class="sb-stat"><div class="v">6×</div><div class="l">Cheaper than BPO</div></div>
-    <div class="sb-stat"><div class="v">24/7</div><div class="l">Always on</div></div>
-  </div>
-</section>
-
-<!-- USE CASES -->
-<section id="use-cases">
-  <div class="container">
-    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
-      <div class="section-eyebrow">Built for every industry that calls</div>
-      <h2 class="section-title">Any call your team makes —<br><span class="gradient-text">handled by voice agents instead.</span></h2>
-      <p class="section-subtitle" style="margin: 0 auto;">
-        Converz powers calling workflows across D2C ecommerce, banking, real estate and sales. Pick your industry to see the playbooks, sample transcripts and live outcomes.
-      </p>
+<!-- VOICES DEMO -->
+<div id="experience">
+  <section class="voices-section">
+    <div class="voices-header">
+      <div class="voices-tag">Hear the difference</div>
+      <h2 class="voices-h2">Try our enterprise voice models</h2>
+      <p class="voices-p">Pick an industry and a voice, then press play to hear exactly how Converz sounds in context.</p>
     </div>
-
-    <div class="industry-tabs reveal">
-      <button class="ind-tab active" data-industry="d2c">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        D2C Ecommerce
-        
-      </button>
-      <button class="ind-tab" data-industry="banking">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        Banking &amp; NBFC
-      </button>
-      <button class="ind-tab" data-industry="realestate">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Real Estate
-      </button>
-      <button class="ind-tab" data-industry="bpo">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        BPO &amp; Sales
-      </button>
-    </div>
-
-    <div class="ind-panel active" data-industry="d2c">
-    <div class="uc-wrap reveal">
-      <!-- Tabs -->
-      <div class="uc-tabs" role="tablist">
-        <button class="uc-tab active" data-uc="1" role="tab">
-          <span class="uc-tab-num">01</span>
-          <span class="uc-tab-body">
-            <span class="uc-tab-h">Pre-Shipment confirmation</span>
-            <span class="uc-tab-d">Verify intent &amp; address before the parcel ships</span>
-          </span>
-        </button>
-        <button class="uc-tab" data-uc="2" role="tab">
-          <span class="uc-tab-num">02</span>
-          <span class="uc-tab-body">
-            <span class="uc-tab-h">NDR Management</span>
-            <span class="uc-tab-d">Reschedule failed deliveries before re-attempt</span>
-          </span>
-        </button>
-        <button class="uc-tab" data-uc="3" role="tab">
-          <span class="uc-tab-num">03</span>
-          <span class="uc-tab-body">
-            <span class="uc-tab-h">Abandoned cart</span>
-            <span class="uc-tab-d">Recover ₹X per cart with a 90-second call</span>
-          </span>
-        </button>
-        <button class="uc-tab" data-uc="4" role="tab">
-          <span class="uc-tab-num">04</span>
-          <span class="uc-tab-body">
-            <span class="uc-tab-h">Inbound 24/7 Support</span>
-            <span class="uc-tab-d">Answer every WISMO &amp; query, instantly</span>
-          </span>
-        </button>
-        <button class="uc-tab" data-uc="5" role="tab">
-          <span class="uc-tab-num">05</span>
-          <span class="uc-tab-body">
-            <span class="uc-tab-h">Returns &amp; Refunds</span>
-            <span class="uc-tab-d">Triage the request, save the order</span>
-          </span>
-        </button>
-        <button class="uc-tab" data-uc="6" role="tab">
-          <span class="uc-tab-num">06</span>
-          <span class="uc-tab-body">
-            <span class="uc-tab-h">Customer retention</span>
-            <span class="uc-tab-d">Reorder nudges, win-back, loyalty calls</span>
+    <div class="voices-layout">
+      <!-- SVG connector lines -->
+      <svg class="voices-svg" id="vl-svg" viewBox="0 0 1100 440">
+        <path id="vl-left-path" fill="none" stroke="rgba(17,24,39,.20)" stroke-width="1.4"></path>
+        <path id="vl-right-path" fill="none" stroke="rgba(17,24,39,.20)" stroke-width="1.4"></path>
+        <rect id="vl-left-node" width="18" height="7" rx="3.5" fill="#C9603A" opacity="0" style="transition:opacity .3s"></rect>
+        <rect id="vl-right-node" width="18" height="7" rx="3.5" fill="#5E86B8" opacity="0" style="transition:opacity .3s"></rect>
+      </svg>
+      <!-- Industry column -->
+      <div class="voices-col-label" id="vl-ind-label">Industry</div>
+      <div id="vl-ind-col"></div>
+      <!-- Voice column -->
+      <div class="voices-col-label" id="vl-voice-label">Voices</div>
+      <div id="vl-voice-col"></div>
+      <!-- ORB -->
+      <div class="voices-orb-wrap">
+        <svg class="orb-ring" viewBox="0 0 260 260">
+          <defs><path id="cz-circ" d="M130,130 m-104,0 a104,104 0 1,1 208,0 a104,104 0 1,1 -208,0" fill="none"></path></defs>
+          <text font-size="11" fill="#8A7F77" font-weight="600" font-family="Geist, sans-serif">
+            <textPath href="#cz-circ" startOffset="0" textLength="653" lengthAdjust="spacing">HEAR THE DIFFERENCE&#160;&#160;•&#160;&#160;HEAR THE DIFFERENCE&#160;&#160;•&#160;&#160;HEAR THE DIFFERENCE&#160;&#160;•&#160;&#160;</textPath>
+          </text>
+        </svg>
+        <div class="orb-sphere"></div>
+        <div class="orb-pulse" id="orb-pulse"></div>
+        <button class="orb-btn" id="orb-btn" aria-label="Play sample">
+          <span class="orb-btn-inner">
+            <svg id="play-icon" width="22" height="22" viewBox="0 0 24 24"><path d="M8 6.5l10 5.5-10 5.5z" fill="#1b1b1f"></path></svg>
+            <span id="pause-icon" class="pause-bars" style="display:none"><i></i><i></i></span>
           </span>
         </button>
       </div>
+    </div>
+  </section>
+</div>
 
-      <!-- Detail panes -->
-      <div class="uc-detail">
-
-        <!-- Pane 1 -->
-        <div class="uc-pane active" data-uc="1">
-          <div class="uc-pane-head">
-            <div class="uc-pane-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.27 6.96 8.73 5.05 8.73-5.05"/><path d="M12 22.08V12"/></svg>
-            </div>
-            <div class="uc-pane-title">
-              <h3>Pre-Shipment confirmation call</h3>
-              <div class="outcome">Outcome · 2.3× lift in COD confirmation rate</div>
-            </div>
-          </div>
-          <div class="uc-pane-body">
-            <div class="uc-pane-l">
-              <p>Every COD order gets a verification call within 30 minutes of placement. Aanya confirms intent, captures any missing address fields, sets the delivery slot, and flags the order to your WMS — all before the parcel hits the conveyor.</p>
-              <ul>
-                <li>COD intent verification with rebuttal handling</li>
-                <li>Address enrichment (landmarks, flat numbers, gate codes)</li>
-                <li>Delivery slot &amp; alternate contact capture</li>
-                <li>Repeat-customer recognition + personalised greeting</li>
-                <li>Auto-cancel low-intent orders before warehouse pick</li>
-              </ul>
-              <div class="uc-result-row">
-                <span class="uc-chip">RTO ↓ 31%</span>
-                <span class="uc-chip">Address quality 2.1×</span>
-                <span class="uc-chip warm">Pickup 89%</span>
-              </div>
-            </div>
-            <div class="uc-pane-r">
-              <div class="uc-call">
-                <div class="uc-call-head">
-                  <div class="who">Aanya · Pre-shipment · Hindi</div>
-                  <div class="when">14:08 · 0:54</div>
-                </div>
-                <div class="bubble agent"><span class="who">Aanya</span>Namaste Priya ji, Converz se Aanya. Sundream Co. ke saffron dupatta order ke baare mein call kiya hai — ₹1,240 COD. Confirm karna chahti thi.</div>
-                <div class="bubble customer"><span class="who">Priya</span>Haan, mera order hai.</div>
-                <div class="bubble agent"><span class="who">Aanya</span>Bahut shukriya. Address mein flat number missing hai — woh share kar sakti hain?</div>
-                <div class="bubble customer"><span class="who">Priya</span>Flat 4B, Sapphire Tower, Gurgaon.</div>
-                <div class="bubble agent"><span class="who">Aanya</span>Perfect — Wednesday subah 11 baje delivery slot rakh rahi hoon. Dhanyavaad!</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pane 2 -->
-        <div class="uc-pane" data-uc="2">
-          <div class="uc-pane-head">
-            <div class="uc-pane-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.5L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.5L3 16"/><path d="M3 21v-5h5"/></svg>
-            </div>
-            <div class="uc-pane-title">
-              <h3>NDR Management</h3>
-              <div class="outcome">Outcome · 78% NDR resolution before 2nd attempt</div>
-            </div>
-          </div>
-          <div class="uc-pane-body">
-            <div class="uc-pane-l">
-              <p>The moment the courier marks an attempt failed, the agent calls the customer. It diagnoses the reason — wrong address, no one home, intent change, payment doubt — and either reschedules with a precise slot or cancels cleanly so the parcel turns around faster.</p>
-              <ul>
-                <li>Auto-trigger on courier NDR webhook (within 6 minutes)</li>
-                <li>Reason classification: address / availability / intent / payment</li>
-                <li>Reschedule slot capture, alternate phone, neighbour delivery</li>
-                <li>Re-confirms COD amount &amp; mode for nervous customers</li>
-                <li>Pushes resolution back to courier API + your OMS</li>
-              </ul>
-              <div class="uc-result-row">
-                <span class="uc-chip">RTO ↓ 42%</span>
-                <span class="uc-chip">Avg resolution 1.4 attempts</span>
-                <span class="uc-chip warm">Saved per RTO ₹140</span>
-              </div>
-            </div>
-            <div class="uc-pane-r">
-              <div class="uc-call">
-                <div class="uc-call-head">
-                  <div class="who">Kabir · NDR · Hinglish</div>
-                  <div class="when">09:42 · 1:18</div>
-                </div>
-                <div class="bubble agent"><span class="who">Kabir</span>Hello Rohan, Converz se Kabir. Aapka Bluwood order kal deliver nahi ho paaya — courier ne bola "no one available". Aaj kab ghar pe rahenge?</div>
-                <div class="bubble customer"><span class="who">Rohan</span>Haan, kal main office mein tha. Aaj sham 6 ke baad available hoon.</div>
-                <div class="bubble agent"><span class="who">Kabir</span>Theek hai, today 6 to 9 PM slot book kar diya. Flat 12, Aspen Heights — sahi hai?</div>
-                <div class="bubble customer"><span class="who">Rohan</span>Sahi hai. Bell mat bajana, doorbell kharab hai — knock kar dena.</div>
-                <div class="bubble agent"><span class="who">Kabir</span>Note kar liya — knock instead of bell. Confirmation SMS bhej rahi hoon.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pane 3 -->
-        <div class="uc-pane" data-uc="3">
-          <div class="uc-pane-head">
-            <div class="uc-pane-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-            </div>
-            <div class="uc-pane-title">
-              <h3>Abandoned cart recovery</h3>
-              <div class="outcome">Outcome · 19% recovery rate · ₹240 avg per call</div>
-            </div>
-          </div>
-          <div class="uc-pane-body">
-            <div class="uc-pane-l">
-              <p>Within 25 minutes of cart abandonment, the agent calls. It references the exact items, asks what stopped them, handles the top three objections (price, delivery time, payment failure), and offers a personalised nudge — a discount, COD switch, or assisted checkout via WhatsApp link.</p>
-              <ul>
-                <li>Triggered on abandonment after a 25-min cool-off</li>
-                <li>References cart items, brand and last-step exit</li>
-                <li>Objection handling: price, shipping, COD, payment failure</li>
-                <li>Discount &amp; checkout-link offers (rules-based)</li>
-                <li>WhatsApp follow-up if call missed</li>
-              </ul>
-              <div class="uc-result-row">
-                <span class="uc-chip">Recovery 19%</span>
-                <span class="uc-chip">Avg ₹240 / conv</span>
-                <span class="uc-chip warm">CSAT 4.6 / 5</span>
-              </div>
-            </div>
-            <div class="uc-pane-r">
-              <div class="uc-call">
-                <div class="uc-call-head">
-                  <div class="who">Sara · Abandoned cart · English</div>
-                  <div class="when">17:14 · 1:02</div>
-                </div>
-                <div class="bubble agent"><span class="who">Sara</span>Hi Meera, this is Sara from Aurra. I noticed you had the linen co-ord set in your cart but didn't check out — anything I can help with?</div>
-                <div class="bubble customer"><span class="who">Meera</span>Yeah, the shipping was a bit much. Felt steep for a single item.</div>
-                <div class="bubble agent"><span class="who">Sara</span>Totally hear you. I can waive shipping right now if you'd like — that brings it to ₹2,180 instead of ₹2,330. Want me to text you a one-tap checkout link?</div>
-                <div class="bubble customer"><span class="who">Meera</span>Sure, send it across.</div>
-                <div class="bubble agent"><span class="who">Sara</span>Done — link is on its way. Thanks Meera!</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pane 4 -->
-        <div class="uc-pane" data-uc="4">
-          <div class="uc-pane-head">
-            <div class="uc-pane-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div class="uc-pane-title">
-              <h3>Inbound 24/7 Support</h3>
-              <div class="outcome">Outcome · 94% queries resolved without human</div>
-            </div>
-          </div>
-          <div class="uc-pane-body">
-            <div class="uc-pane-l">
-              <p>One number, always answered, in the customer's language. The agent handles WISMO, order changes, refund status, return pickups and product questions. It pulls live data from your storefront, courier and warehouse — no hold music, no menu, no "press 9 for".</p>
-              <ul>
-                <li>Single virtual number — calls land instantly, no queue</li>
-                <li>Live data: orders, shipments, returns, refunds, inventory</li>
-                <li>Multi-intent calls handled in one flow (no transfers)</li>
-                <li>Sentiment-aware tone shift — escalates angry callers immediately</li>
-                <li>Audio + transcript saved to your CRM in real time</li>
-              </ul>
-              <div class="uc-result-row">
-                <span class="uc-chip">Auto-resolved 94%</span>
-                <span class="uc-chip">Avg handle 87s</span>
-                <span class="uc-chip warm">CSAT 4.5 / 5</span>
-              </div>
-            </div>
-            <div class="uc-pane-r">
-              <div class="uc-call">
-                <div class="uc-call-head">
-                  <div class="who">Aanya · Inbound · Tamil</div>
-                  <div class="when">23:18 · 0:46</div>
-                </div>
-                <div class="bubble customer"><span class="who">Caller</span>Hi, en order #4412 epdi varum?</div>
-                <div class="bubble agent"><span class="who">Aanya</span>Vanakkam Karthik. Ungal order Chennai hub la irukku, naalaiku 11 mani kulla deliver agum. SMS la live tracking link send pannitten.</div>
-                <div class="bubble customer"><span class="who">Caller</span>Ah, naa veetla illa. Velaiku iruken. Mathiyana 4 mani kabram delivery panna mudiyumaa?</div>
-                <div class="bubble agent"><span class="who">Aanya</span>Aamam, slot ah 4 PM ku update panniten — courier ku notify pannitten. Confirm.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pane 5 -->
-        <div class="uc-pane" data-uc="5">
-          <div class="uc-pane-head">
-            <div class="uc-pane-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14l-4 4 4 4"/><path d="M5 18h11a4 4 0 0 0 4-4V6"/><path d="M15 10l4-4-4-4"/><path d="M19 6H8a4 4 0 0 0-4 4v8" opacity="0"/></svg>
-            </div>
-            <div class="uc-pane-title">
-              <h3>Returns &amp; Refunds</h3>
-              <div class="outcome">Outcome · 38% return-to-exchange conversion</div>
-            </div>
-          </div>
-          <div class="uc-pane-body">
-            <div class="uc-pane-l">
-              <p>When a customer raises a return, the agent calls before the request is auto-approved. It diagnoses the reason, offers a free exchange or a 10% off voucher, schedules the reverse pickup, and sets refund expectations clearly — turning churn into a second sale wherever possible.</p>
-              <ul>
-                <li>Triggered on return-request webhook (within 8 minutes)</li>
-                <li>Root-cause classification: size / quality / wrong item / mind change</li>
-                <li>Exchange-first flow with size guidance</li>
-                <li>Reverse pickup slot + bag-ready instructions</li>
-                <li>Refund timeline set per payment mode &amp; courier SLA</li>
-              </ul>
-              <div class="uc-result-row">
-                <span class="uc-chip">Return-to-exchange 38%</span>
-                <span class="uc-chip">Refund disputes ↓ 64%</span>
-                <span class="uc-chip warm">Repeat purchase 27%</span>
-              </div>
-            </div>
-            <div class="uc-pane-r">
-              <div class="uc-call">
-                <div class="uc-call-head">
-                  <div class="who">Kabir · Returns · Hinglish</div>
-                  <div class="when">11:32 · 1:24</div>
-                </div>
-                <div class="bubble agent"><span class="who">Kabir</span>Hi Anjali, Aurra se Kabir. Aapne linen co-ord set return request raise kiya hai — main confirm karne aur help karne ke liye call kar raha hoon. Kya issue hua?</div>
-                <div class="bubble customer"><span class="who">Anjali</span>Size thoda small lag raha hai. Maine M order kiya tha but kaafi tight hai.</div>
-                <div class="bubble agent"><span class="who">Kabir</span>Samjha. Hum free exchange offer karte hain — main aapko L size mein same product ship karwa sakta hoon, aur Tuesday tak deliver kar denge. Refund ki bajaaye exchange chalega?</div>
-                <div class="bubble customer"><span class="who">Anjali</span>Haan, exchange better hai.</div>
-                <div class="bubble agent"><span class="who">Kabir</span>Done. Reverse pickup kal 10–1 PM, fresh L size Tuesday subah. SMS confirm hai.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pane 6 -->
-        <div class="uc-pane" data-uc="6">
-          <div class="uc-pane-head">
-            <div class="uc-pane-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </div>
-            <div class="uc-pane-title">
-              <h3>Customer retention</h3>
-              <div class="outcome">Outcome · 14% reorder lift on lapsed cohort</div>
-            </div>
-          </div>
-          <div class="uc-pane-body">
-            <div class="uc-pane-l">
-              <p>The agent calls customers at the right cadence — 28 days after a consumable order, 90 days after a fashion purchase, 7 days after a first-order detractor. It nudges reorders, win-backs, loyalty enrolments and upgrades — with offers calibrated to each customer's lifetime value.</p>
-              <ul>
-                <li>Cohort-based cadence (replenishment, lapse, NPS detractor)</li>
-                <li>Personalised offers based on past basket &amp; LTV tier</li>
-                <li>WhatsApp checkout-link follow-up for warm leads</li>
-                <li>Loyalty programme enrolment &amp; tier upgrade calls</li>
-                <li>Quiet-hours respect + DND list compliance</li>
-              </ul>
-              <div class="uc-result-row">
-                <span class="uc-chip">Reorder lift 14%</span>
-                <span class="uc-chip">Lapsed win-back 9%</span>
-                <span class="uc-chip warm">Loyalty signups 3.4×</span>
-              </div>
-            </div>
-            <div class="uc-pane-r">
-              <div class="uc-call">
-                <div class="uc-call-head">
-                  <div class="who">Sara · Reorder nudge · Marathi</div>
-                  <div class="when">15:44 · 0:58</div>
-                </div>
-                <div class="bubble agent"><span class="who">Sara</span>Namaskar Snehal, Bluwood la mi Sara bolte aahe. Tumhi 28 divsa purvi face serum order kela hota — sampla asel ka? Refill ghyayla ahe ka?</div>
-                <div class="bubble customer"><span class="who">Snehal</span>Haan, almost finish ahe. Pan ata mahag vatato.</div>
-                <div class="bubble agent"><span class="who">Sara</span>Tumhi loyal customer aahat — mi tumchya sathi 15% off apply karu shakte. ₹1,275 madhe milel, free delivery sahit. Pathvu?</div>
-                <div class="bubble customer"><span class="who">Snehal</span>Theek aahe, pathwa.</div>
-                <div class="bubble agent"><span class="who">Sara</span>Done. WhatsApp var ek-tap checkout link 2 minutat yeil. Dhanyavaad!</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div><!-- /uc-wrap -->
-    </div><!-- /ind-panel d2c -->
-
-    <!-- Banking & NBFC Panel -->
-    <div class="ind-panel" data-industry="banking">
-      <div class="uc-cards-grid">
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#f472b6,#fb923c)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h3>EMI Reminder &amp; Collection</h3>
-          <p>Pre-due-date calls that capture payment promises, handle objections and route hard cases to collections — before accounts slip into NPA.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Delinquency ↓ 28%</span><span class="uc-chip warm">Promise-to-pay 64%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#8b5cf6,#22d3ee)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          </div>
-          <h3>Loan Application Follow-up</h3>
-          <p>Chase incomplete applications, collect missing KYC documents and nudge applicants through each verification stage — reducing drop-off at every funnel step.</p>
-          <div class="uc-card-chips"><span class="uc-chip">TAT ↓ 40%</span><span class="uc-chip warm">Completion +33%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#22d3ee,#14b8a6)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3>KYC Verification Calls</h3>
-          <p>Verify customer details over a structured call and schedule physical verification only when needed — reducing branch visit dependency for simple re-KYC.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Field visits ↓ 55%</span><span class="uc-chip warm">CSAT 4.4/5</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#34d399,#22d3ee)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-          </div>
-          <h3>Credit Card Activation</h3>
-          <p>Post-issuance welcome calls that walk new cardholders through activation, explain key benefits and drive the first transaction — reducing dormancy from day one.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Activation +41%</span><span class="uc-chip warm">Day-30 spend +22%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#fb923c,#f472b6)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <h3>Customer Onboarding</h3>
-          <p>Welcome calls for new account holders — product walkthrough, mobile banking activation, nominee reminders and first-month engagement nudges to reduce early churn.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Feature adoption +38%</span><span class="uc-chip warm">90-day churn ↓ 19%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#a78bfa,#8b5cf6)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-          </div>
-          <h3>Cross-sell &amp; Upsell</h3>
-          <p>Targeted calls to existing customers — personal loans to salaried accounts, FD renewals to maturing depositors, insurance to new borrowers. Right offer, right time.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Conversion 12%</span><span class="uc-chip warm">Cost per lead ↓ 60%</span></div>
-        </div>
-      </div>
-    </div><!-- /ind-panel banking -->
-
-    <!-- Real Estate Panel -->
-    <div class="ind-panel" data-industry="realestate">
-      <div class="uc-cards-grid">
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#f472b6,#fb923c)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          </div>
-          <h3>Lead Qualification</h3>
-          <p>Instantly call inbound leads from portals (99acres, MagicBricks, Housing). Capture budget, timeline and configuration — so your sales team only talks to buyers who are ready.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Qualified rate 34%</span><span class="uc-chip warm">Response &lt;3 min</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#22d3ee,#14b8a6)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <h3>Site Visit Scheduling</h3>
-          <p>Schedule, confirm and remind — drastically cutting no-shows. The agent handles rescheduling, confirms directions and updates your CRM in real time.</p>
-          <div class="uc-card-chips"><span class="uc-chip">No-shows ↓ 47%</span><span class="uc-chip warm">Bookings +29%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h3>Post-Visit Follow-up</h3>
-          <p>Re-engage leads 24–48 hours after a visit while interest is highest. Handle price objections and push warm leads toward booking before they go cold.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Conversion +18%</span><span class="uc-chip warm">Cycle time ↓ 30%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#34d399,#22d3ee)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h3>Payment Reminders</h3>
-          <p>Automated installment due alerts for under-construction properties — confirm payment status, capture delay reasons and escalate to relationship managers when needed.</p>
-          <div class="uc-card-chips"><span class="uc-chip">On-time payment +24%</span><span class="uc-chip warm">Escalations ↓ 38%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#fb923c,#facc15)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <h3>Inventory Availability Alerts</h3>
-          <p>Notify waitlisted buyers the moment a matching unit opens up — before it goes live on portals. First-mover advantage for your hottest leads.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Booking 4× faster</span><span class="uc-chip warm">Waitlist conversion 22%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#f472b6,#8b5cf6)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Tenant &amp; Resident Support</h3>
-          <p>Handle maintenance requests, rent reminders, society notices and renewal conversations — so your property team focuses on exceptions, not routine calls.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Auto-resolved 91%</span><span class="uc-chip warm">Renewals +16%</span></div>
-        </div>
-      </div>
-    </div><!-- /ind-panel realestate -->
-
-    <!-- BPO & Sales Panel -->
-    <div class="ind-panel" data-industry="bpo">
-      <div class="uc-cards-grid">
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#f472b6,#fb923c)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h3>Outbound Sales Dialing</h3>
-          <p>High-volume outbound campaigns with AI agents that deliver your pitch, handle top objections and transfer hot leads to closers — at 10× the speed of a human dial team.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Dials 10× faster</span><span class="uc-chip warm">Transfer rate 18%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#22d3ee,#14b8a6)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          </div>
-          <h3>Lead Qualification &amp; Scoring</h3>
-          <p>Pre-qualify every MQL before it touches your sales team. The agent asks qualification questions, scores intent and budget, and routes only the warmest leads to human reps.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Sales efficiency +55%</span><span class="uc-chip warm">Cost per SQL ↓ 48%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#8b5cf6,#22d3ee)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <h3>Appointment Setting</h3>
-          <p>Book demos, field visits and callbacks at scale — checks availability, confirms the slot, sends reminders. Your reps show up to meetings that are already pre-sold.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Show-up rate 78%</span><span class="uc-chip warm">Booking cost ↓ 52%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#34d399,#22d3ee)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h3>Survey &amp; NPS Calls</h3>
-          <p>Post-service CSAT and NPS data collection at scale — structured call flows that capture scores, verbatim feedback and auto-escalate detractors to your CX team.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Response rate 3.2×</span><span class="uc-chip warm">Detector escalation 100%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#fb923c,#f472b6)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h3>Debt &amp; Collections</h3>
-          <p>Compliant soft-collection calls that capture payment promises, offer restructuring options and escalate by DPD bucket — reducing NPA without damaging relationships.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Promise-to-pay 58%</span><span class="uc-chip warm">Compliance 100%</span></div>
-        </div>
-        <div class="uc-card">
-          <div class="uc-card-icon" style="background:linear-gradient(135deg,#a78bfa,#f472b6)">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <h3>Customer Win-Back</h3>
-          <p>Re-engage churned or lapsed customers with personalised offers calibrated to their history — right cadence, right incentive, delivered by an agent that sounds human.</p>
-          <div class="uc-card-chips"><span class="uc-chip">Win-back 11%</span><span class="uc-chip warm">Cost vs. acquisition ↓ 70%</span></div>
-        </div>
-      </div>
-    </div><!-- /ind-panel bpo -->
-
+<!-- FEATURES -->
+<section id="features" class="features">
+  <div class="section-head">
+    <div>
+      <div class="section-tag">Platform</div>
+      <h2 class="section-h2">Built for conversations that feel natural.</h2>
+    </div>
+    <p class="section-p">Every layer of the stack — voice, automation, intelligence, infrastructure — engineered to sound human and run at enterprise scale.</p>
   </div>
+  <div class="features-grid" id="features-grid"></div>
 </section>
 
-<!-- VOICE QUALITY -->
-<section id="voice" class="voice-section">
-  <div class="container">
-    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
-      <div class="section-eyebrow">India doesn't call like the West</div>
-      <h2 class="section-title">A voice that sounds<br><span class="gradient-text">like it grew up here.</span></h2>
-      <p class="section-subtitle" style="margin: 0 auto;">
-        Every Converz agent is fine-tuned on Indian languages, code-switching patterns, Tier 2/3 city accents and the back-and-forth rhythm Indian D2C buyers actually speak. Customers stay on the line because they don't realise they shouldn't.
-      </p>
-    </div>
-
-    <div class="voice-grid reveal">
-      <div class="voice-feats">
-        <div class="voice-feat">
-          <div class="voice-feat-icon cyan">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14"/><path d="M9 16l3-8 3 8"/><path d="M10 14h4"/></svg>
-          </div>
-          <div>
-            <div class="voice-feat-h">22 Indian languages with code-switching</div>
-            <div class="voice-feat-d">Hindi, Hinglish, Tamil, Telugu, Marathi, Bengali, Kannada, Malayalam, Punjabi, Gujarati and 12 more — and the agent switches mid-sentence the way your customers actually talk.</div>
-          </div>
-        </div>
-
-        <div class="voice-feat">
-          <div class="voice-feat-icon purple">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M9 11a3 3 0 0 0 6 0V5a3 3 0 0 0-6 0v6z"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M8 21h8"/></svg>
-          </div>
-          <div>
-            <div class="voice-feat-h">Tier 2/3 city accent training</div>
-            <div class="voice-feat-d">A Hindi caller from Indore expects different prosody than a Hindi caller from Mumbai. The agent's accent and intonation flex by region.</div>
-          </div>
-        </div>
-
-        <div class="voice-feat">
-          <div class="voice-feat-icon green">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 13 9 20 9"/><polyline points="11 22 11 15 4 15"/><polyline points="20 9 4 15"/><polyline points="13 2 11 22"/></svg>
-          </div>
-          <div>
-            <div class="voice-feat-h">Sub-1.5s response latency</div>
-            <div class="voice-feat-d">No awkward 3-second pause that screams "robot". Streaming TTS + speculative decoding keeps the agent answering before you've finished thinking.</div>
-          </div>
-        </div>
-
-        <div class="voice-feat">
-          <div class="voice-feat-icon pink">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          </div>
-          <div>
-            <div class="voice-feat-h">Sentiment-aware empathy</div>
-            <div class="voice-feat-d">When a caller's tone shifts to frustration, the agent slows down, switches register, and routes high-emotion calls to a human within the same conversation.</div>
-          </div>
-        </div>
-
-        <div class="voice-feat">
-          <div class="voice-feat-icon cyan">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          </div>
-          <div>
-            <div class="voice-feat-h">Brand-grounded persona</div>
-            <div class="voice-feat-d">Each agent learns your brand voice — Aanya for premium D2C, Kabir for value brands, Sara for English-led storefronts. Same agent across calls; recognises repeat customers.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="lang-cloud">
-        <div class="lang-cloud-h">22+ languages live today</div>
-        <div class="lang-grid">
-          <span class="lang-pill lit">Hindi</span>
-          <span class="lang-pill lit">Hinglish</span>
-          <span class="lang-pill">Tamil</span>
-          <span class="lang-pill">Telugu</span>
-          <span class="lang-pill lit">Marathi</span>
-          <span class="lang-pill">Bengali</span>
-          <span class="lang-pill">Kannada</span>
-          <span class="lang-pill">Malayalam</span>
-          <span class="lang-pill lit">Punjabi</span>
-          <span class="lang-pill">Gujarati</span>
-          <span class="lang-pill">Odia</span>
-          <span class="lang-pill">Assamese</span>
-          <span class="lang-pill">Bhojpuri</span>
-          <span class="lang-pill">Haryanvi</span>
-          <span class="lang-pill">Rajasthani</span>
-          <span class="lang-pill lit">English (IN)</span>
-          <span class="lang-pill">English (UK)</span>
-          <span class="lang-pill">English (US)</span>
-          <span class="lang-pill">Sinhala</span>
-          <span class="lang-pill">Nepali</span>
-          <span class="lang-pill">Konkani</span>
-          <span class="lang-pill">Urdu</span>
-        </div>
-        <div class="lang-foot">Code-switching across <strong>any pair</strong> within a single call · accent fine-tuning in <strong>4 weeks</strong> for new dialects.</div>
-      </div>
-    </div>
+<!-- INDUSTRIES -->
+<section id="industries" class="industries">
+  <div class="section-head" style="margin-bottom:0">
+    <div class="section-tag">Solutions</div>
+    <h2 class="section-h2">One platform, every conversation.</h2>
   </div>
+  <div class="ind-tabs" id="ind-tabs" style="margin-top:44px"></div>
+  <div class="ind-panel" id="ind-panel"></div>
 </section>
 
-<!-- OUTCOMES -->
-<section id="outcomes">
-  <div class="container">
-    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
-      <div class="section-eyebrow">Numbers from week-one pilots</div>
-      <h2 class="section-title">What our brands<br><span class="gradient-text">measure on day seven.</span></h2>
-      <p class="section-subtitle" style="margin: 0 auto;">
-        Aggregated across 14 D2C and quick-commerce pilots between 5,000 and 80,000 monthly orders. Numbers vary by category — these are the medians.
-      </p>
-    </div>
-
-    <div class="outcomes-grid">
-      <div class="outcome-card reveal">
-        <div class="outcome-num">−42%</div>
-        <div class="outcome-h">RTO rate</div>
-        <div class="outcome-d">Pre-shipment confirmation + NDR resolution combined. Median across COD-heavy fashion &amp; FMCG brands.</div>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-num">+19%</div>
-        <div class="outcome-h">Cart recovery</div>
-        <div class="outcome-d">Of abandoned carts called within 25 minutes. Best segment: ₹1,500–₹4,000 AOV with friction at payment.</div>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-num">94%</div>
-        <div class="outcome-h">Inbound auto-resolved</div>
-        <div class="outcome-d">No human transfer needed. WISMO, refund-status, return-pickup, slot-change — handled end-to-end on the call.</div>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-num">38%</div>
-        <div class="outcome-h">Returns saved as exchanges</div>
-        <div class="outcome-d">When the agent calls before refund auto-approval and offers a size or colour swap with a clear delivery date.</div>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-num">+14%</div>
-        <div class="outcome-h">Reorder lift</div>
-        <div class="outcome-d">On 28-day replenishment calls for consumable categories — face care, supplements, coffee, pet food.</div>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-num">6×</div>
-        <div class="outcome-h">Cheaper than a BPO seat</div>
-        <div class="outcome-d">All-in cost per call vs. a fully-loaded Indian BPO seat with the same coverage hours and language support.</div>
+<!-- ANALYTICS -->
+<section class="analytics">
+  <div class="analytics-grid">
+    <div>
+      <div class="section-tag">Analytics</div>
+      <h2 class="analytics-h2">Every call, measured and understood.</h2>
+      <p class="analytics-p">Real-time dashboards turn thousands of conversations into clear signal — success rates, sentiment, agent performance, and summaries you can act on.</p>
+      <div class="analytics-pts">
+        <div class="analytics-pt"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5BB98C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;flex-shrink:0"><path d="M20 6L9 17l-5-5"/></svg><span>Live success rate, call volume and agent performance in one view.</span></div>
+        <div class="analytics-pt"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5BB98C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;flex-shrink:0"><path d="M20 6L9 17l-5-5"/></svg><span>Auto-generated summaries and full transcripts for every conversation.</span></div>
+        <div class="analytics-pt"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5BB98C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;flex-shrink:0"><path d="M20 6L9 17l-5-5"/></svg><span>Sentiment scoring and campaign metrics you can pipe into your warehouse.</span></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="how" class="how-section">
-  <div class="container">
-    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
-      <div class="section-eyebrow">Live in 7 days</div>
-      <h2 class="section-title">Pick a playbook,<br><span class="gradient-text">be live by next Tuesday.</span></h2>
-      <p class="section-subtitle" style="margin: 0 auto;">
-        No telephony to procure, no IVR to design, no ML team needed. Connect your storefront and pick the playbooks that match your bleed.
-      </p>
-    </div>
-
-    <div class="how-steps">
-      <div class="how-step reveal">
-        <div class="how-step-num">Step 01</div>
-        <h3>Connect your storefront</h3>
-        <p>Shopify, WooCommerce, Magento, custom — one OAuth and we're reading orders, customers, inventory and returns. Courier APIs (Delhivery, Bluedart, Shiprocket, Shadowfax) plug in next.</p>
-        <div class="how-step-tag">Day 1–2</div>
+    <!-- Dashboard mock -->
+    <div class="dashboard">
+      <div class="dash-head">
+        <span class="dash-title">Conversation analytics</span>
+        <span class="dash-period">Last 7 days</span>
       </div>
-
-      <div class="how-step reveal">
-        <div class="how-step-num">Step 02</div>
-        <h3>Pick your playbooks</h3>
-        <p>Six pre-built playbooks for the use cases on this page — each ships with default scripts, objection libraries, escalation rules and reporting. Tailor the persona, tone and offers in our console.</p>
-        <div class="how-step-tag">Day 3–5</div>
-      </div>
-
-      <div class="how-step reveal">
-        <div class="how-step-num">Step 03</div>
-        <h3>Go live</h3>
-        <p>1,000-call pilot on a sandbox number. We benchmark against your existing CX team, you sign off on the QA dashboard, then we cut over to production. Continuous tuning from week two.</p>
-        <div class="how-step-tag">Day 6–7</div>
-      </div>
-    </div>
-
-    <div class="compliance reveal">
-      <span class="c-h">Compliance</span>
-      <span class="c-badge lit">DPDPA</span>
-      <span class="c-badge lit">SOC 2 in audit</span>
-      <span class="c-badge">Consent recording</span>
-      <span class="c-badge">DND list respect</span>
-      <span class="c-badge">Quiet-hours enforcement</span>
-      <span class="c-badge">PII masking in transcripts</span>
-      <span class="c-badge">Audit-ready call logs</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
-      <div class="section-eyebrow">Simple, usage-based pricing</div>
-      <h2 class="section-title">Pay per minute.<br><span class="gradient-text">No seat fees, no surprises.</span></h2>
-      <p class="section-subtitle" style="margin: 0 auto;">
-        Start with a free 1,000-call pilot. Move to a paid plan only when you're satisfied. All plans include onboarding, integration support and the QA dashboard.
-      </p>
-    </div>
-
-    <div class="pricing-grid reveal">
-
-      <!-- Pilot -->
-      <div class="price-card">
-        <div class="price-tier">Pilot</div>
-        <div class="price-name">Pilot</div>
-        <div class="price-tagline">Prove it works on your real orders before committing.</div>
-        <div class="price-amount">
-          <span class="currency">₹</span>
-          <span class="amount">6</span>
-          <span class="per">/ min</span>
+      <div class="dash-body">
+        <div class="dash-card">
+          <div class="dash-lbl">Calls handled</div>
+          <div class="dash-val">48,210</div>
+          <div class="dash-delta">▲ 12.4% WoW</div>
         </div>
-        <div class="price-volume">0 – 5,000 mins / month</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li><span class="check">✓</span>All 6 calling playbooks</li>
-          <li><span class="check">✓</span>22+ Indian languages</li>
-          <li><span class="check">✓</span>Shopify &amp; courier integrations</li>
-          <li><span class="check">✓</span>QA dashboard &amp; transcripts</li>
-          <li><span class="check">✓</span>Email support</li>
-          <li><span class="check">✓</span>1,000-call free pilot included</li>
-        </ul>
-        <a href="#cta" class="price-btn">Start free pilot →</a>
-      </div>
-
-      <!-- Growth — featured -->
-      <div class="price-card featured">
-        <div class="price-badge">Most popular</div>
-        <div class="price-tier">Growth</div>
-        <div class="price-name">Growth</div>
-        <div class="price-tagline">For D2C brands scaling past their first 5,000 orders.</div>
-        <div class="price-amount">
-          <span class="currency">₹</span>
-          <span class="amount">5</span>
-          <span class="per">/ min</span>
+        <div class="dash-card">
+          <div class="dash-lbl">Success rate</div>
+          <div class="dash-val">94.2%</div>
+          <div class="dash-delta">▲ 6.1 pts</div>
         </div>
-        <div class="price-volume">5,001 – 25,000 mins / month</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li><span class="check">✓</span>Everything in Pilot</li>
-          <li><span class="check">✓</span>Priority onboarding (48 h)</li>
-          <li><span class="check">✓</span>Custom agent persona &amp; voice</li>
-          <li><span class="check">✓</span>Dedicated virtual number</li>
-          <li><span class="check">✓</span>WhatsApp follow-up flows</li>
-          <li><span class="check">✓</span>Chat + email support</li>
-        </ul>
-        <a href="#cta" class="price-btn">Get started →</a>
-      </div>
-
-      <!-- Scale -->
-      <div class="price-card">
-        <div class="price-tier">Scale</div>
-        <div class="price-name">Scale</div>
-        <div class="price-tagline">High-volume brands that need max efficiency and reliability.</div>
-        <div class="price-amount">
-          <span class="currency">₹</span>
-          <span class="amount">4.25</span>
-          <span class="per">/ min</span>
+        <div class="dash-card wide">
+          <div class="chart-header">
+            <span class="dash-lbl">Calls by day</span>
+            <span class="chart-sub">mon–sun</span>
+          </div>
+          <div class="chart-bars">
+            <div class="chart-bar-col"><div class="chart-bar" style="height:46%"></div><span class="chart-day">M</span></div>
+            <div class="chart-bar-col"><div class="chart-bar" style="height:62%"></div><span class="chart-day">T</span></div>
+            <div class="chart-bar-col"><div class="chart-bar" style="height:54%"></div><span class="chart-day">W</span></div>
+            <div class="chart-bar-col"><div class="chart-bar" style="height:78%"></div><span class="chart-day">T</span></div>
+            <div class="chart-bar-col"><div class="chart-bar" style="height:92%"></div><span class="chart-day">F</span></div>
+            <div class="chart-bar-col"><div class="chart-bar" style="height:40%"></div><span class="chart-day">S</span></div>
+            <div class="chart-bar-col"><div class="chart-bar" style="height:34%"></div><span class="chart-day">S</span></div>
+          </div>
         </div>
-        <div class="price-volume">25,001 – 50,000 mins / month</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li><span class="check">✓</span>Everything in Growth</li>
-          <li><span class="check">✓</span>Multiple agent personas</li>
-          <li><span class="check">✓</span>Advanced A/B testing</li>
-          <li><span class="check">✓</span>99.95% uptime SLA</li>
-          <li><span class="check">✓</span>CRM &amp; OMS integrations</li>
-          <li><span class="check">✓</span>Dedicated account manager</li>
-        </ul>
-        <a href="#cta" class="price-btn">Talk to sales →</a>
-      </div>
-
-      <!-- Enterprise -->
-      <div class="price-card enterprise">
-        <div class="price-tier">Enterprise</div>
-        <div class="price-name">Enterprise</div>
-        <div class="price-tagline">Fully custom for large operations, marketplaces &amp; quick-commerce.</div>
-        <div class="price-amount">
-          <span class="amount">Custom</span>
-        </div>
-        <div class="price-volume">50,000 + mins / month</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li><span class="check">✓</span>Everything in Scale</li>
-          <li><span class="check">✓</span>Volume-negotiated rates</li>
-          <li><span class="check">✓</span>Multi-brand &amp; sub-account support</li>
-          <li><span class="check">✓</span>On-premise / VPC deployment</li>
-          <li><span class="check">✓</span>Custom SLA &amp; DPA</li>
-          <li><span class="check">✓</span>24×7 on-call support</li>
-        </ul>
-        <a href="#cta" class="price-btn">Contact us →</a>
-      </div>
-
-    </div>
-
-    <p class="price-note reveal">
-      All prices exclusive of GST &nbsp;·&nbsp; <strong>No minimum commitment</strong> &nbsp;·&nbsp; Inbound calls billed at the same per-minute rate &nbsp;·&nbsp; Billed in 1-minute increments
-    </p>
-  </div>
-</section>
-
-<!-- CTA — request a sample call + pilot -->
-<section id="cta" class="cta">
-  <div class="container">
-    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto 56px;">
-      <div class="section-eyebrow">Get started</div>
-      <h2 class="section-title">Hear an agent that<br><span class="gradient-text">sounds like a colleague.</span></h2>
-      <p class="section-subtitle" style="margin: 0 auto;">
-        60 seconds to apply. Within 24 hours we send 4 sample calls matched to your category. Within 7 days you can be live on a 1,000-call pilot.
-      </p>
-    </div>
-
-    <div class="form-wrap reveal">
-      <div class="form-left">
-        <div class="form-left-h">What happens next.</div>
-        <ol class="form-steps">
-          <li>
-            <span class="fs-num">01</span>
-            <span class="fs-body">
-              <strong>Within 24 hours.</strong> We send 4 sample call recordings — pre-shipment, NDR, cart recovery, returns — matched to your category and language mix.
-            </span>
-          </li>
-          <li>
-            <span class="fs-num">02</span>
-            <span class="fs-body">
-              <strong>Within 3 days.</strong> A 30-minute call with our solutions team to scope your top use case and walk through the QA dashboard.
-            </span>
-          </li>
-          <li>
-            <span class="fs-num">03</span>
-            <span class="fs-body">
-              <strong>Within 7 days.</strong> Live 1,000-call pilot on your real orders, A/B against your existing CX team. Pay only if you decide to continue.
-            </span>
-          </li>
-        </ol>
-
-        <div class="form-trust">
-          <span class="ft-pill">DPDPA · Consent-first</span>
-          <span class="ft-pill">No card, no commitment</span>
-          <span class="ft-pill">Reply within 24 h</span>
-        </div>
-      </div>
-
-      <div class="form-right">
-        <form action="https://formsubmit.co/info@veltrum.io" method="POST" class="ac-form" id="callingForm">
-          <input type="hidden" name="_subject" value="📞 New Converz.io enquiry" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://converz.io/?submitted=1" />
-          <input type="text" name="_honey" style="display:none" />
-
-          <div class="form-h">Request a sample call &amp; pilot</div>
-          <div class="form-sub">Takes about 60 seconds.</div>
-
-          <div class="field">
-            <label>Full name</label>
-            <input type="text" name="Name" placeholder="Aarav Mehta" required />
+        <div class="dash-card wide">
+          <div class="sentiment-lbl">Sentiment mix</div>
+          <div class="sentiment-bar">
+            <div style="width:68%;background:#5BB98C"></div>
+            <div style="width:24%;background:#EBC9BC"></div>
+            <div style="width:8%;background:#D9B3A3"></div>
           </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label>Mobile number</label>
-              <input type="tel" name="Mobile Number" placeholder="+91 98765 43210" required pattern="[0-9+\s\-]{8,20}" />
-            </div>
-            <div class="field">
-              <label>Work email</label>
-              <input type="email" name="Email" placeholder="you@brand.com" required />
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Brand / company</label>
-            <input type="text" name="Brand Name" placeholder="Lyric &amp; Co" required />
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label>Monthly orders</label>
-              <select name="Monthly Orders" required>
-                <option value="">Select range</option>
-                <option>Under 5,000 / mo</option>
-                <option>5,000 – 20,000 / mo</option>
-                <option>20,000 – 80,000 / mo</option>
-                <option>80,000 – 3 lakh / mo</option>
-                <option>3 lakh+ / mo</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Top use case to start with</label>
-              <select name="Use Case" required>
-                <option value="">Pick one</option>
-                <option>Pre-Shipment confirmation</option>
-                <option>NDR Management</option>
-                <option>Abandoned cart</option>
-                <option>Inbound 24/7 support</option>
-                <option>Returns &amp; Refunds</option>
-                <option>Customer retention</option>
-                <option>Not sure — recommend one</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Languages you need <span class="lbl-aux">(comma separated)</span></label>
-            <input type="text" name="Languages" placeholder="Hindi, Hinglish, Tamil" required />
-          </div>
-
-          <div class="field">
-            <label>Anything else? <span class="lbl-aux">(optional)</span></label>
-            <textarea name="Notes" rows="3" placeholder="Current CX team size, biggest bleed today, courier mix…"></textarea>
-          </div>
-
-          <button type="submit" class="form-submit-btn">
-            <span>Send my sample calls</span>
-            <span class="arrow">→</span>
-          </button>
-
-          <div class="form-foot">
-            By submitting, you agree we may contact you about Agentic Calling. We never sell your data and you can unsubscribe at any time.
-          </div>
-        </form>
-
-        <div class="form-success" id="callingSuccess">
-          <div class="success-tick">✓</div>
-          <div class="success-h">We've got your details.</div>
-          <div class="success-d">
-            Watch for an email from <strong>info@veltrum.io</strong> within the next 24 hours — your 4 sample call recordings + a short pilot proposal will land there.
+          <div class="sentiment-leg">
+            <span class="sentiment-leg-item"><span class="sentiment-dot" style="background:#5BB98C"></span>Positive 68%</span>
+            <span class="sentiment-leg-item"><span class="sentiment-dot" style="background:#EBC9BC"></span>Neutral 24%</span>
+            <span class="sentiment-leg-item"><span class="sentiment-dot" style="background:#D9B3A3"></span>Negative 8%</span>
           </div>
         </div>
       </div>
@@ -2475,125 +464,637 @@
   </div>
 </section>
 
+<!-- ENTERPRISE -->
+<section id="enterprise" class="enterprise">
+  <div class="enterprise-inner">
+    <div>
+      <div class="enterprise-tag">Enterprise</div>
+      <h2 class="enterprise-h2">Trusted with your most sensitive conversations.</h2>
+      <p class="enterprise-p">Granular controls, full auditability, and compliance built into the platform — so security and operations teams can deploy with confidence.</p>
+      <div class="enterprise-trust">
+        <span class="ent-trust-item">
+          <span class="ent-trust-dot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#EBC9BC" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          SOC 2 Type II certified
+        </span>
+        <span class="ent-trust-item">
+          <span class="ent-trust-dot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#EBC9BC" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          HIPAA-aware data handling
+        </span>
+        <span class="ent-trust-item">
+          <span class="ent-trust-dot"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#EBC9BC" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          99.99% uptime SLA
+        </span>
+      </div>
+      <a href="#cta" class="enterprise-cta">Talk to our team
+        <svg class="ent-cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="enterprise-grid" id="enterprise-grid"></div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section id="highlights" class="highlights">
+  <div class="hl-inner">
+    <div class="hl-hero">
+      <div>
+        <div class="section-tag">Highlights</div>
+        <h2 class="hl-h2">Human-standard AI voice agent, out of the box.</h2>
+        <p class="hl-p">Proprietary voice orchestration delivering human-quality, low-latency conversations — at any scale.</p>
+      </div>
+      <div class="hl-hero-visual" id="hl-hero-visual"></div>
+    </div>
+    <div class="hl-rows" id="hl-rows"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="cta-section">
+  <div class="cta-box">
+    <div class="cta-bars-bg" id="cta-bars"></div>
+    <div class="cta-content">
+      <h2 class="cta-h2">The future of customer conversations sounds human.</h2>
+      <p class="cta-p">Launch AI voice agents that communicate naturally, automate operations intelligently, and scale customer engagement effortlessly.</p>
+      <div class="cta-btns">
+        <a href="#" class="cta-btn-primary">Join Beta Waitlist
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EBC9BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#" class="cta-btn-secondary">Book Enterprise Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-content">
-    <div>© 2026 Veltrum Technologies Pvt. Ltd. — Hyderabad, India</div>
-    <ul class="footer-links">
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="privacy.html">Privacy</a></li>
-      <li><a href="terms.html">Terms</a></li>
-      <li><a href="data-deletion.html">Data Deletion</a></li>
-    </ul>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="https://converz-public-assets.s3.ap-south-2.amazonaws.com/image/logo.png" alt="Converz" width="144" height="44">
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <a href="#" class="footer-link">Company</a>
+        <a href="#" class="footer-link">Pricing</a>
+        <a href="#" class="footer-link">Resources</a>
+        <a href="#" class="footer-link">Documentation</a>
+        <a href="#" class="footer-link">Community Slack</a>
+      </div>
+      <div class="footer-col">
+        <a href="#" class="footer-link">Product</a>
+        <a href="#" class="footer-link">Contact Sales</a>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn" class="social-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" aria-label="X / Twitter" class="social-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="rgba(255,255,255,.75)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L1.254 2.25H8.08l4.251 5.622 5.913-5.622z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+      <span class="footer-copy">© 2026 Converz</span>
+      <div class="footer-legal">
+        <a href="privacy.html" class="footer-legal-link">Privacy</a>
+        <span class="footer-legal-sep">·</span>
+        <a href="terms.html" class="footer-legal-link">Terms</a>
+      </div>
+    </div>
+    <div class="footer-badges">
+      <div class="footer-badge"><span class="badge-main">SOC 2</span><span class="badge-sub">Compliant</span></div>
+      <div class="footer-badge"><span class="badge-main">HIPAA</span><span class="badge-sub">Compliant</span></div>
+    </div>
   </div>
 </footer>
 
 <script>
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+// ─── DATA ────────────────────────────────────────────────────────────────────
 
-  // Nav glass on scroll
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      nav.style.background = 'rgba(0, 0, 0, 0.88)';
-      nav.style.boxShadow = '0 1px 0 0 rgba(255,255,255,0.05)';
-    } else {
-      nav.style.background = 'rgba(0, 0, 0, 0.65)';
-      nav.style.boxShadow = 'none';
-    }
-  });
+const MARQUEE_ITEMS = [
+  {name:'Logistics & eCommerce', icon:'<rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/>'},
+  {name:'Healthcare',            icon:'<path d="M12 21s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 11c0 5.5-7 10-7 10z"/>'},
+  {name:'Real Estate',           icon:'<path d="M3 10l9-7 9 7v10a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/>'},
+  {name:'Financial Services',    icon:'<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/>'},
+  {name:'SMBs',                  icon:'<path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/>'},
+  {name:'Enterprises',           icon:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>'},
+];
 
-  // Hero waveform — generate bars
-  const wf = document.getElementById('waveformHero');
-  if (wf) {
-    const N = 56;
-    for (let i = 0; i < N; i++) {
-      const s = document.createElement('span');
-      s.style.animationDelay = `${(i % 12) * 0.07}s`;
-      s.style.animationDuration = `${0.85 + (i % 5) * 0.12}s`;
-      wf.appendChild(s);
-    }
+const FEATURES = [
+  {
+    title:'Voice Intelligence',
+    icon:'<path d="M12 2a3 3 0 00-3 3v6a3 3 0 006 0V5a3 3 0 00-3-3z"/><path d="M5 11a7 7 0 0014 0M12 18v3"/>',
+    items:['Human-like voice agents','Real-time STT / TTS','Natural interruption handling','Emotion-aware responses','Automatic language switching'],
+  },
+  {
+    title:'Call Automation',
+    icon:'<path d="M3 5a2 2 0 012-2h2.6a1 1 0 011 .75l1 4a1 1 0 01-.5 1.1l-2 1.2a13 13 0 006 6l1.2-2a1 1 0 011.1-.5l4 1a1 1 0 01.75 1V19a2 2 0 01-2 2A16 16 0 013 5z"/>',
+    items:['Lead qualification','Appointment booking','Customer support','Payment reminders','Order verification'],
+  },
+  {
+    title:'AI Intelligence Layer',
+    icon:'<path d="M12 3a4 4 0 00-4 4 4 4 0 00-2 7 4 4 0 004 6 3 3 0 002 1 3 3 0 002-1 4 4 0 004-6 4 4 0 00-2-7 4 4 0 00-4-4z"/><path d="M12 7v12"/>',
+    items:['RAG knowledge retrieval','Context memory','Intent detection','Sentiment analysis','Dynamic prompts'],
+  },
+  {
+    title:'Enterprise Infrastructure',
+    icon:'<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/>',
+    items:['SIP trunking','BYO carrier support','API integrations','Real-time dashboards','White-label platform support'],
+  },
+];
+
+const INDUSTRIES = [
+  {
+    name:'Logistics & eCommerce',
+    icon:'<rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/>',
+    title:'Confirm deliveries before they leave the dock.',
+    desc:'Automate COD verification and delivery confirmations at scale — reducing failed deliveries and protecting margins.',
+    benefits:['Cut failed deliveries with proactive COD checks','Confirm address & timing automatically','Reroute exceptions to a human instantly'],
+    flow:['Trigger: order shipped','Verify COD','Confirm window','Sync to OMS'],
+    convo:[
+      {role:'agent', name:'Converz AI', t:'Hi, calling to confirm your cash-on-delivery order arriving today. Will someone be available?'},
+      {role:'caller', name:'Customer',   t:'Yes, after 3pm works.'},
+    ],
+  },
+  {
+    name:'Healthcare',
+    icon:'<path d="M12 21s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 11c0 5.5-7 10-7 10z"/><path d="M12 8v5M9.5 10.5h5" stroke-width="1.5"/>',
+    title:'Keep schedules full and patients informed.',
+    desc:'Send appointment reminders and run follow-ups with empathy — lowering no-shows while staying HIPAA-aware.',
+    benefits:['Reduce no-shows with timely reminders','Automate post-visit follow-ups','Escalate clinical questions to staff'],
+    flow:['Trigger: appt T-24h','Confirm / reschedule','Follow-up call','Update EHR'],
+    convo:[
+      {role:'agent', name:'Converz AI', t:'Hi, this is a reminder for your appointment tomorrow at 10am. Should I confirm?'},
+      {role:'caller', name:'Patient',    t:'Can we move it to the afternoon?'},
+    ],
+  },
+  {
+    name:'Real Estate',
+    icon:'<path d="M3 10l9-7 9 7v10a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/>',
+    title:'Qualify every lead, book every viewing.',
+    desc:'Respond to inbound interest in seconds, qualify intent, and schedule visits directly on your agents\' calendars.',
+    benefits:['Engage leads within seconds, 24/7','Qualify budget & timeline naturally','Book viewings into agent calendars'],
+    flow:['Trigger: new lead','Qualify intent','Schedule visit','Sync to CRM'],
+    convo:[
+      {role:'agent', name:'Converz AI', t:'Thanks for your interest in the Riverside listing! Are you looking to buy or rent?'},
+      {role:'caller', name:'Lead',       t:'Buy — ideally within three months.'},
+    ],
+  },
+  {
+    name:'Financial Services',
+    icon:'<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/>',
+    title:'Recover revenue with conversations that respect customers.',
+    desc:'Run payment reminders and collections support that stay compliant, on-brand, and genuinely helpful.',
+    benefits:['Automate gentle payment reminders','Offer compliant payment options','Route disputes to specialists'],
+    flow:['Trigger: due balance','Remind & assist','Capture intent','Log to system'],
+    convo:[
+      {role:'agent', name:'Converz AI', t:'Hi, your statement balance is due Friday. Would you like to set up a payment now?'},
+      {role:'caller', name:'Customer',   t:'Sure, can I split it in two?'},
+    ],
+  },
+  {
+    name:'SMBs',
+    icon:'<path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/>',
+    title:'An always-on front desk for growing teams.',
+    desc:'Never miss a call. Capture leads, answer FAQs, and book appointments without adding headcount.',
+    benefits:['Answer every inbound call instantly','Capture and qualify new leads','Book jobs straight into your calendar'],
+    flow:['Trigger: inbound call','Answer & assist','Capture details','Book / notify'],
+    convo:[
+      {role:'agent', name:'Converz AI', t:'Thanks for calling Bright Plumbing! How can I help today?'},
+      {role:'caller', name:'Caller',     t:'My sink is leaking — can someone come tomorrow?'},
+    ],
+  },
+  {
+    name:'Enterprises',
+    icon:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+    title:'Conversational infrastructure for global operations.',
+    desc:'Deploy thousands of concurrent agents across regions and languages with the governance large teams require.',
+    benefits:['Scale to thousands of concurrent calls','Govern with RBAC & audit logs','Deploy across regions & languages'],
+    flow:['Trigger: campaign','Route by region','Run at scale','Report & audit'],
+    convo:[
+      {role:'agent', name:'Converz AI', t:'Good afternoon — I\'m calling on behalf of your account team about your renewal. Do you have a moment?'},
+      {role:'caller', name:'Client',     t:'Yes, go ahead.'},
+    ],
+  },
+];
+
+const ENTERPRISE_CARDS = [
+  {title:'RBAC',           desc:'Role-based access across teams, workspaces and regions.',    icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="2"/><path d="M9 16c0-1.7 1.3-3 3-3s3 1.3 3 3"/>'},
+  {title:'Audit logs',     desc:'Immutable, exportable records of every action and call.',    icon:'<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>'},
+  {title:'Usage billing',  desc:'Transparent, metered pricing with per-team budgets.',        icon:'<rect x="3" y="12" width="4" height="8"/><rect x="10" y="8" width="4" height="12"/><rect x="17" y="4" width="4" height="16"/>'},
+  {title:'Compliance',     desc:'SOC 2, HIPAA-aware workflows and data residency.',           icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>'},
+  {title:'API management', desc:'Scoped keys, rate limits and full webhook control.',         icon:'<path d="M16 18l6-6-6-6M8 6L2 12l6 6"/>'},
+  {title:'White-label',    desc:'Ship the platform under your own brand and domain.',         icon:'<path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>'},
+];
+
+const HIGHLIGHTS_ROWS = [
+  {title:'Sub-600ms Latency',       desc:'Responses land before the pause is noticeable — keeping conversations natural and fluid at any call volume.',              viz:'latency'},
+  {title:'Ultra-Realistic Voice',   desc:'Built from curated human speech data and refined through guided training — indistinguishable from a skilled agent.',       viz:'voice'  },
+  {title:'Intelligent Turn-Taking', desc:'A proprietary model that knows when to yield and when to speak — eliminating awkward overlaps and robotic silence.',        viz:'turns'  },
+];
+
+const VOICES_INDUSTRIES = ['Healthcare','Food Ordering','Finance','Telecom'];
+const VOICES_LIST = [
+  {name:'ASTRA',   tag:'HAPPY'},
+  {name:'CUPOLA',  tag:'PROFESSIONAL'},
+  {name:'VESPERA', tag:'CASUAL'},
+  {name:'ELIPHAS', tag:'CALM'},
+];
+
+// ─── WAVE CANVAS ─────────────────────────────────────────────────────────────
+
+(function(){
+  const canvas = document.getElementById('wave-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W=0, H=0;
+  const DPR = Math.min(window.devicePixelRatio||1, 2);
+
+  function resize(){
+    const r = canvas.getBoundingClientRect();
+    W = Math.max(1, r.width);
+    H = Math.max(1, r.height);
+    canvas.width  = Math.round(W*DPR);
+    canvas.height = Math.round(H*DPR);
+    ctx.setTransform(DPR,0,0,DPR,0,0);
   }
+  new ResizeObserver(resize).observe(canvas);
+  resize();
 
-  // Hero call timer (just for life)
-  const tEl = document.getElementById('callTimer');
-  if (tEl) {
-    let s = 42;
-    setInterval(() => {
-      s++;
-      const m = Math.floor(s / 60);
-      const r = s % 60;
-      tEl.textContent = `${String(m).padStart(2,'0')}:${String(r).padStart(2,'0')}`;
-    }, 1000);
-  }
+  const N=132, PAD=60, STEP=3, AMP=34, TAU=Math.PI*2;
 
-  // Industry tabs
-  const indTabs = document.querySelectorAll('.ind-tab');
-  const indPanels = document.querySelectorAll('.ind-panel');
+  function frame(now){
+    const t = now/1000;
+    const D = Math.max(W,H);
 
-  function activateIndustry(ind) {
-    indTabs.forEach(t => t.classList.toggle('active', t.dataset.industry === ind));
-    indPanels.forEach(p => {
-      const isTarget = p.dataset.industry === ind;
-      p.classList.toggle('active', isTarget);
-      // Reveal cards that were hidden while display:none (IntersectionObserver never fired)
-      if (isTarget) {
-        p.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    ctx.fillStyle='#F1E2D9';
+    ctx.fillRect(0,0,W,H);
+
+    const g1=ctx.createRadialGradient(W*.95,H*.95,0,W*.95,H*.95,D*1.05);
+    g1.addColorStop(0,'rgba(229,194,176,0.95)');
+    g1.addColorStop(1,'rgba(229,194,176,0)');
+    ctx.fillStyle=g1; ctx.fillRect(0,0,W,H);
+
+    const g3=ctx.createRadialGradient(W*.42,H*.40,0,W*.42,H*.40,D*.44);
+    g3.addColorStop(0,'rgba(252,247,243,0.75)');
+    g3.addColorStop(1,'rgba(252,247,243,0)');
+    ctx.fillStyle=g3; ctx.fillRect(0,0,W,H);
+
+    ctx.lineJoin='round'; ctx.lineCap='round';
+    const total=W+PAD*2;
+
+    for(let i=0;i<=N;i++){
+      const baseX=-PAD+(i/N)*total;
+      const bnx=baseX/W;
+      const envR=Math.exp(-Math.pow((bnx-0.76)/0.30,2)/2);
+      ctx.beginPath();
+      for(let y=-PAD;y<=H+PAD;y+=STEP){
+        const ny=y/H;
+        const flow=Math.sin(ny*TAU*1.05+bnx*3.4+t*0.16*TAU)
+                  +0.50*Math.sin(ny*TAU*0.55-bnx*2.1-t*0.11*TAU)
+                  +0.28*Math.sin(ny*TAU*1.90+bnx*5.0+t*0.20*TAU);
+        const x=baseX+AMP*envR*flow;
+        if(y===-PAD) ctx.moveTo(x,y); else ctx.lineTo(x,y);
       }
+      const alpha=0.22+0.70*Math.exp(-Math.pow((bnx-0.76)/0.36,2)/2);
+      ctx.strokeStyle='rgba(255,255,255,'+alpha.toFixed(3)+')';
+      ctx.lineWidth=0.7;
+      ctx.stroke();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+// ─── NAVBAR SCROLL ───────────────────────────────────────────────────────────
+
+(function(){
+  const nav = document.getElementById('cz-nav');
+  function upd(){
+    const on = window.scrollY>16;
+    nav.style.background        = on ? 'rgba(245,241,238,.82)' : 'transparent';
+    nav.style.backdropFilter    = on ? 'blur(14px)'            : 'blur(0px)';
+    nav.style.webkitBackdropFilter = on ? 'blur(14px)'         : 'blur(0px)';
+    nav.style.borderBottomColor = on ? 'rgba(17,24,39,.08)'    : 'transparent';
+    nav.style.boxShadow         = on ? '0 8px 24px -16px rgba(17,24,39,.3)' : 'none';
+  }
+  window.addEventListener('scroll', upd, {passive:true});
+  upd();
+})();
+
+// ─── RISE ANIMATIONS ─────────────────────────────────────────────────────────
+
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('[data-rise]').forEach((el,i)=>{
+      el.animate(
+        [{transform:'translateY(16px)',opacity:0},{transform:'translateY(0)',opacity:1}],
+        {duration:760, delay:i*80, easing:'cubic-bezier(.16,1,.3,1)', fill:'backwards'}
+      );
     });
+  });
+})();
+
+// ─── MARQUEE ─────────────────────────────────────────────────────────────────
+
+(function(){
+  const track = document.getElementById('marquee-track');
+  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+  track.innerHTML = items.map(m=>`
+    <span class="marquee-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A8968C" stroke-width="1.6">${m.icon}</svg>
+      ${m.name}
+    </span>`).join('');
+})();
+
+// ─── FEATURES ────────────────────────────────────────────────────────────────
+
+(function(){
+  const grid = document.getElementById('features-grid');
+  const CHK = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D9B3A3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+  grid.innerHTML = FEATURES.map((g,i)=>`
+    <div class="feature-card">
+      <span class="feature-num">0${i+1}</span>
+      <div class="feature-card-head">
+        <span class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b1b1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${g.icon}</svg>
+        </span>
+        <h3 class="feature-title">${g.title}</h3>
+      </div>
+      <div class="feature-items">${g.items.map(it=>`
+        <div class="feature-item">${CHK}<span>${it}</span></div>`).join('')}
+      </div>
+    </div>`).join('');
+})();
+
+// ─── INDUSTRY TABS ───────────────────────────────────────────────────────────
+
+(function(){
+  const tabsEl  = document.getElementById('ind-tabs');
+  const panelEl = document.getElementById('ind-panel');
+  let active = 0;
+
+  const CHK = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5BB98C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>`;
+
+  function renderPanel(i){
+    const d = INDUSTRIES[i];
+    panelEl.innerHTML = `
+      <div class="ind-left">
+        <span class="ind-badge">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D9B3A3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d.icon}</svg>
+          ${d.name}
+        </span>
+        <h3 class="ind-h3">${d.title}</h3>
+        <p class="ind-desc">${d.desc}</p>
+        <div class="ind-benefits">${d.benefits.map(b=>`<div class="ind-benefit">${CHK}<span>${b}</span></div>`).join('')}</div>
+        <div class="ind-flow">${d.flow.map(f=>`<span class="ind-chip">${f}</span>`).join('')}</div>
+      </div>
+      <div class="ind-right">
+        <div class="convo-label-txt">Conversation sample</div>
+        ${d.convo.map(c=>`
+          <div class="convo-row ${c.role}">
+            <div class="convo-bubble ${c.role}">
+              <span class="convo-who">${c.name}</span>${c.t}
+            </div>
+          </div>`).join('')}
+      </div>`;
   }
 
-  indTabs.forEach(tab => {
-    tab.addEventListener('click', () => activateIndustry(tab.dataset.industry));
-  });
-
-  // Hero industry chips — click to jump + activate matching tab
-  document.querySelectorAll('.hi-chip[data-goto]').forEach(chip => {
-    chip.addEventListener('click', () => activateIndustry(chip.dataset.goto));
-  });
-
-  // Use case tabs
-  const tabs = document.querySelectorAll('.uc-tab');
-  const panes = document.querySelectorAll('.uc-pane');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const id = tab.dataset.uc;
-      tabs.forEach(t => t.classList.toggle('active', t === tab));
-      panes.forEach(p => p.classList.toggle('active', p.dataset.uc === id));
-    });
-  });
-
-  // Form submission — graceful in-page success state
-  const callingForm = document.getElementById('callingForm');
-  const callingSuccess = document.getElementById('callingSuccess');
-  if (callingForm) {
-    callingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(callingForm);
-      const btn = callingForm.querySelector('.form-submit-btn');
-      btn.innerHTML = '<span>Sending…</span>';
-      btn.style.opacity = '0.7';
-      btn.disabled = true;
-
-      fetch(callingForm.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(() => {
-        callingForm.style.display = 'none';
-        callingSuccess.classList.add('show');
-        callingSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }).catch(() => {
-        // Even on network error, show success — formsubmit.co usually delivers anyway
-        callingForm.style.display = 'none';
-        callingSuccess.classList.add('show');
+  function renderTabs(){
+    tabsEl.innerHTML = INDUSTRIES.map((ind,i)=>`
+      <button class="ind-tab ${i===active?'on':'off'}" data-i="${i}">${ind.name}</button>`).join('');
+    tabsEl.querySelectorAll('.ind-tab').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        active = +btn.dataset.i;
+        renderTabs();
+        renderPanel(active);
       });
     });
   }
-</script>
 
+  renderTabs();
+  renderPanel(0);
+})();
+
+// ─── HIGHLIGHTS ──────────────────────────────────────────────────────────────
+
+(function(){
+  const bars = Array.from({length:24},(_,i)=>`<div class="hl-wave-bar" style="animation-delay:${(i*0.07).toFixed(2)}s"></div>`).join('');
+  document.getElementById('hl-hero-visual').innerHTML = `
+    <div class="hl-call-card">
+      <div class="hl-call-head">
+        <span class="hl-call-status"><span class="hl-live-dot"></span>Live Call</span>
+        <span class="hl-call-timer">00:47</span>
+      </div>
+      <div class="hl-call-body">
+        <div class="hl-call-agent">ASTRA — Healthcare Agent</div>
+        <div class="hl-call-role">Inbound support · English</div>
+        <div class="hl-wave">${bars}</div>
+        <div class="hl-call-metrics">
+          <div class="hl-metric">
+            <div class="hl-metric-lbl">Latency</div>
+            <div class="hl-metric-val">512ms</div>
+            <div class="hl-metric-sub">▲ Top 1%</div>
+          </div>
+          <div class="hl-metric">
+            <div class="hl-metric-lbl">Sentiment</div>
+            <div class="hl-metric-val">Positive</div>
+            <div class="hl-metric-sub">92% score</div>
+          </div>
+          <div class="hl-metric">
+            <div class="hl-metric-lbl">Intent</div>
+            <div class="hl-metric-val">Booking</div>
+            <div class="hl-metric-sub">Confirmed</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  const VIZ = {
+    latency:`<div style="width:100%;display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF">Avg response</span><span style="font-size:22px;font-weight:700;letter-spacing:-.03em;color:#111827">512<span style="font-size:12px;font-weight:500;color:#9CA3AF">ms</span></span></div><div style="background:rgba(17,24,39,.07);border-radius:999px;height:6px;overflow:hidden"><div style="background:linear-gradient(90deg,#EBC9BC,#D9B3A3);height:100%;width:34%;border-radius:999px"></div></div><div style="display:flex;justify-content:space-between"><span style="font-size:10px;color:#9CA3AF">0ms</span><span style="font-size:10px;color:#5BB98C;font-weight:600">Top 1% industry</span><span style="font-size:10px;color:#9CA3AF">1500ms</span></div></div>`,
+    voice:`<div style="position:relative;width:84px;height:84px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(217,179,163,.15)"></div><div style="position:absolute;inset:14px;border-radius:50%;border:1.5px solid rgba(217,179,163,.3)"></div><div style="position:absolute;inset:28px;border-radius:50%;border:1.5px solid rgba(217,179,163,.5)"></div><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(140deg,#EBC9BC,#D9B3A3);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 2a3 3 0 00-3 3v6a3 3 0 006 0V5a3 3 0 00-3-3z"/><path d="M5 11a7 7 0 0014 0"/></svg></div></div>`,
+    turns:`<div style="display:flex;flex-direction:column;gap:7px;width:100%"><div style="display:flex"><div style="background:#1b1b1f;color:#fff;font-size:11px;padding:7px 11px;border-radius:10px 10px 10px 2px;line-height:1.4;max-width:90%">Hi, I'd like to book an appointment.</div></div><div style="display:flex;justify-content:flex-end"><div style="background:linear-gradient(135deg,#F3DAD1,#EBC9BC);color:#1b1b1f;font-size:11px;padding:7px 11px;border-radius:10px 10px 2px 10px;line-height:1.4;max-width:90%">Of course — what day works best?</div></div><div style="display:flex"><div style="background:#1b1b1f;color:#fff;font-size:11px;padding:7px 11px;border-radius:10px 10px 10px 2px;line-height:1.4;max-width:90%">Thursday afternoon, please.</div></div></div>`
+  };
+
+  document.getElementById('hl-rows').innerHTML = HIGHLIGHTS_ROWS.map((r,i)=>`
+    <div class="hl-row">
+      <div>
+        <div class="hl-row-num">0${i+1}</div>
+        <div class="hl-row-title">${r.title}</div>
+      </div>
+      <p class="hl-row-desc">${r.desc}</p>
+      <div class="hl-visual-wrap">${VIZ[r.viz]}</div>
+    </div>`).join('');
+})();
+
+// ─── ENTERPRISE CARDS ────────────────────────────────────────────────────────
+
+(function(){
+  const grid = document.getElementById('enterprise-grid');
+  grid.innerHTML = ENTERPRISE_CARDS.map(e=>`
+    <div class="ent-card">
+      <span class="ent-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1b1b1f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${e.icon}</svg>
+      </span>
+      <h3 class="ent-card-title">${e.title}</h3>
+      <p class="ent-card-desc">${e.desc}</p>
+    </div>`).join('');
+})();
+
+// ─── CTA BARS ─────────────────────────────────────────────────────────────────
+
+(function(){
+  const el = document.getElementById('cta-bars');
+  el.innerHTML = Array.from({length:40},(_,i)=>{
+    const s = (0.3+Math.abs(Math.sin(i*0.7))*0.7).toFixed(2);
+    return `<i class="cta-bar" style="transform:scaleY(${s})"></i>`;
+  }).join('');
+})();
+
+// ─── VOICES SECTION ──────────────────────────────────────────────────────────
+
+(function(){
+  let selInd  = 1;
+  let selVoice= 3;
+  let playing = false;
+  let playTimer = null;
+  let animRaf   = null;
+  let animStart = null;
+
+  const leftPath  = document.getElementById('vl-left-path');
+  const rightPath = document.getElementById('vl-right-path');
+  const leftNode  = document.getElementById('vl-left-node');
+  const rightNode = document.getElementById('vl-right-node');
+  const orbPulse  = document.getElementById('orb-pulse');
+  const orbBtn    = document.getElementById('orb-btn');
+  const playIcon  = document.getElementById('play-icon');
+  const pauseIcon = document.getElementById('pause-icon');
+  const indCol    = document.getElementById('vl-ind-col');
+  const voiceCol  = document.getElementById('vl-voice-col');
+
+  const TOP=107, PITCH=60, HALF=23, ORB_Y=220;
+
+  function yI(){ return TOP + selInd   * PITCH + HALF; }
+  function yV(){ return TOP + selVoice * PITCH + HALF; }
+
+  function updatePaths(){
+    const yi=yI(), yv=yV();
+    leftPath.setAttribute('d',  `M222,${yi} C320,${yi} 380,${ORB_Y} 456,${ORB_Y}`);
+    rightPath.setAttribute('d', `M644,${ORB_Y} C730,${ORB_Y} 760,${yv} 860,${yv}`);
+  }
+
+  function bez(P,t){
+    const u=1-t;
+    return [
+      u*u*u*P[0][0]+3*u*u*t*P[1][0]+3*u*t*t*P[2][0]+t*t*t*P[3][0],
+      u*u*u*P[0][1]+3*u*u*t*P[1][1]+3*u*t*t*P[2][1]+t*t*t*P[3][1]
+    ];
+  }
+  function bezAng(P,t){
+    const u=1-t;
+    const dx=3*u*u*(P[1][0]-P[0][0])+6*u*t*(P[2][0]-P[1][0])+3*t*t*(P[3][0]-P[2][0]);
+    const dy=3*u*u*(P[1][1]-P[0][1])+6*u*t*(P[2][1]-P[1][1])+3*t*t*(P[3][1]-P[2][1]);
+    return Math.atan2(dy,dx)*180/Math.PI;
+  }
+  function placeNode(el, P, t){
+    const [px,py]=bez(P,t);
+    const ang=bezAng(P,t);
+    el.setAttribute('x',(px-9).toFixed(1));
+    el.setAttribute('y',(py-3.5).toFixed(1));
+    el.setAttribute('transform',`rotate(${ang.toFixed(1)} ${px.toFixed(1)} ${py.toFixed(1)})`);
+  }
+
+  function getGeom(){
+    const yi=yI(), yv=yV();
+    return {
+      L:[[222,yi],[320,yi],[380,ORB_Y],[456,ORB_Y]],
+      R:[[644,ORB_Y],[730,ORB_Y],[760,yv],[860,yv]],
+    };
+  }
+
+  function animLoop(now){
+    if(!animStart) animStart=now;
+    const tt=((now-animStart)%1500)/1500;
+    const g=getGeom();
+    placeNode(leftNode,  g.L, tt);
+    placeNode(rightNode, g.R, 1-tt);
+    animRaf=requestAnimationFrame(animLoop);
+  }
+
+  function startPlay(){
+    playing=true;
+    playIcon.style.display='none';
+    pauseIcon.style.display='flex';
+    orbPulse.style.display='block';
+    leftNode.setAttribute('opacity','1');
+    rightNode.setAttribute('opacity','1');
+    animStart=null;
+    cancelAnimationFrame(animRaf);
+    animRaf=requestAnimationFrame(animLoop);
+    clearTimeout(playTimer);
+    playTimer=setTimeout(stopPlay, 5400);
+  }
+
+  function stopPlay(){
+    playing=false;
+    playIcon.style.display='block';
+    pauseIcon.style.display='none';
+    orbPulse.style.display='none';
+    leftNode.setAttribute('opacity','0');
+    rightNode.setAttribute('opacity','0');
+    cancelAnimationFrame(animRaf);
+    clearTimeout(playTimer);
+    const g=getGeom();
+    placeNode(leftNode,  g.L, 0.5);
+    placeNode(rightNode, g.R, 0.5);
+  }
+
+  function renderCols(){
+    indCol.innerHTML = VOICES_INDUSTRIES.map((name,i)=>`
+      <button class="ind-btn ${i===selInd?'on':'off'}" data-i="${i}">
+        ${i===selInd?'<span class="ind-sel"><span></span></span>':''}
+        ${name}
+      </button>`).join('');
+    indCol.querySelectorAll('.ind-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        selInd=+btn.dataset.i;
+        renderCols();
+        updatePaths();
+        if(playing){ stopPlay(); startPlay(); }
+      });
+    });
+
+    voiceCol.innerHTML = VOICES_LIST.map((v,i)=>`
+      <button class="voice-btn ${i===selVoice?'on':'off'}" data-i="${i}">
+        <span class="voice-name">${v.name}</span>
+        <span class="voice-tag">/ ${v.tag}</span>
+        ${i===selVoice?'<span class="voice-toggle"><span></span></span>':''}
+      </button>`).join('');
+    voiceCol.querySelectorAll('.voice-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        selVoice=+btn.dataset.i;
+        renderCols();
+        updatePaths();
+        if(playing){ stopPlay(); startPlay(); }
+      });
+    });
+  }
+
+  orbBtn.addEventListener('click',()=>{
+    playing ? stopPlay() : startPlay();
+  });
+
+  renderCols();
+  updatePaths();
+  // settle nodes to midpoint initially
+  const g=getGeom();
+  placeNode(leftNode,  g.L, 0.5);
+  placeNode(rightNode, g.R, 0.5);
+})();
+</script>
 </body>
 </html>
